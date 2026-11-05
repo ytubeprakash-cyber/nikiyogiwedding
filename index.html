@@ -1098,6 +1098,162 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 .p-sched > div.cr { transform: translateX(-18px); } .p-sched > div.cr.in { transform: none; }
 .cardview[data-card="diya"] .cv-opener { perspective: none; }
 
+/* =========================================================================
+   PAINTED LETTER
+   ========================================================================= */
+.cardview[data-card="painted_letter"] { background: linear-gradient(180deg, #e7e2ec, #efe8e4); }
+.cardview[data-card="painted_letter"]::before, .cardview[data-card="painted_letter"]::after { display: none; }
+.cardview[data-card="painted_letter"] .fx { z-index: 58; }
+
+/* ---------- envelope overlay ---------- */
+.rb { position: fixed; inset: 0; z-index: 55; perspective: 1700px; overflow: hidden; }
+.rb__flap { position: absolute; inset: 0; transform-style: preserve-3d; will-change: transform; }
+.rb__flap.b { z-index: 1; transform-origin: 50% 100%; } .rb__flap.l { z-index: 2; transform-origin: 0 50%; }
+.rb__flap.r { z-index: 3; transform-origin: 100% 50%; } .rb__flap.t { z-index: 4; transform-origin: 50% 0; }
+.rb__face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+.rb__flap.t .rb__face { clip-path: polygon(-1% -1%, 101% -1%, 50% 51.5%); }
+.rb__flap.b .rb__face { clip-path: polygon(-1% 101%, 101% 101%, 50% 48.5%); }
+.rb__flap.l .rb__face { clip-path: polygon(-1% -1%, 51.5% 50%, -1% 101%); }
+.rb__flap.r .rb__face { clip-path: polygon(101% -1%, 101% 101%, 48.5% 50%); }
+.rb__flap.t .back, .rb__flap.b .back { transform: rotateX(180deg); }
+.rb__flap.l .back, .rb__flap.r .back { transform: rotateY(180deg); }
+.rb__art { position: absolute; inset: 0; }
+.rb__art svg { width: 100%; height: 100%; display: block; }
+.rb__face.front::after { content: ''; position: absolute; inset: 0; pointer-events: none; }
+.rb__flap.t .front::after { background: linear-gradient(180deg, rgba(255,255,255,.06), transparent 40%, rgba(0,0,0,.12)); }
+.rb__flap.l .front::after { background: linear-gradient(90deg, transparent 55%, rgba(0,0,0,.16)); }
+.rb__flap.r .front::after { background: linear-gradient(270deg, transparent 55%, rgba(0,0,0,.16)); }
+.rb__flap.b .front::after { background: linear-gradient(0deg, transparent 50%, rgba(0,0,0,.1)); }
+.rb__face.back { background: var(--grain), linear-gradient(135deg, #f7f1e7, #e9dfcf); background-blend-mode: multiply; }
+.rb__shade { position: absolute; inset: 0; background: #1d1626; opacity: 0; pointer-events: none; }
+.rb__folds { position: absolute; inset: 0; z-index: 5; width: 100%; height: 100%; pointer-events: none; }
+.rb__ribbon { position: absolute; z-index: 6; left: 50%; top: 50%; width: 170vmax; height: 36px; margin: -18px 0 0 -85vmax; transform: rotate(-28deg); pointer-events: none; }
+.rb__ribbon span { position: absolute; top: 0; bottom: 0; background: linear-gradient(180deg, #fffefb 0%, #efe7da 28%, #ffffff 52%, #e2d8c8 82%, #cdc1b0 100%); box-shadow: 0 6px 14px rgba(30,20,40,.28); }
+.rb__ribbon span::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 60px, rgba(255,255,255,.35) 60px 61px, transparent 61px 140px); mix-blend-mode: soft-light; }
+.rb__ribbon.a span { left: 0; right: 50%; } .rb__ribbon.b span { left: 50%; right: 0; }
+.rb__bow { position: absolute; z-index: 7; left: 50%; top: 50%; width: clamp(170px, 46vw, 230px); transform: translate(-50%, -56%) rotate(-8deg); filter: drop-shadow(0 10px 12px rgba(30,20,40,.35)); }
+.rb__bow svg { width: 100%; height: auto; display: block; overflow: visible; }
+.rb__bow g { transform-box: fill-box; transform-origin: 50% 50%; }
+.rb__bow .bow-loop.l { transform-origin: 100% 60%; } .rb__bow .bow-loop.r { transform-origin: 0 60%; }
+.rb__bow:not(:disabled):hover .bow-loop { animation: bowp .9s ease-in-out; }
+@keyframes bowp { 50% { scale: 1.05; } }
+.rb__pulse { position: absolute; left: 50%; top: 51%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.9); animation: ring 2.2s ease-out infinite; pointer-events: none; }
+.rb.is-opening .rb__pulse { display: none; }
+.rb__hint { position: absolute; z-index: 8; left: 0; right: 0; bottom: 0; display: grid; justify-items: center; gap: 8px; padding: 70px 20px max(110px, calc(env(safe-area-inset-bottom) + 100px)); text-align: center; color: #fff; background: linear-gradient(180deg, transparent, rgba(22,26,52,.55)); pointer-events: none; }
+.rb__hint span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(30px, 8vw, 40px); text-shadow: 0 2px 16px rgba(0,0,0,.35); }
+.rb__hint em { font: 500 11px 'Inter', sans-serif; font-style: normal; letter-spacing: .32em; text-transform: uppercase; opacity: .9; animation: breathe 2.4s ease-in-out infinite; }
+
+/* ---------- painted page ---------- */
+.pl { --pp: #f8f4ef; --pi: #28324f; --pm: #6b6f86; --pa: #2c4fa3; --pk: #c2336a; position: relative; z-index: 1; width: min(560px, 100%); margin: 0 auto; overflow: hidden; background: var(--pp); color: var(--pi); font-family: 'Cormorant Garamond', serif; box-shadow: 0 0 90px rgba(40,30,60,.16); }
+.pl::before { content: ''; position: absolute; inset: 0; z-index: 3; background: var(--grain); opacity: .28; mix-blend-mode: multiply; pointer-events: none; }
+.pl [data-rv] { opacity: 0; transform: translateY(26px); filter: blur(6px); transition: opacity 1.2s var(--eo), transform 1.2s var(--eo), filter 1.1s ease; }
+.pl [data-rv].in { opacity: 1; transform: none; filter: none; }
+.pt-torn { position: absolute; left: 0; z-index: 2; width: 100%; height: 26px; display: block; }
+.pt-torn.bot { bottom: -1px; } .pt-torn.top { top: -1px; transform: scaleY(-1); }
+.pt-caps { font: 500 11px/1.8 'Inter', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: var(--pm); }
+.pt-caps.light { color: #d9cfb8; }
+.pt-script { font-family: 'Pinyon Script', cursive; font-weight: 400; font-size: clamp(46px, 13vw, 62px); line-height: 1.1; color: var(--pi); }
+.pt-script.light { color: #f3ecdc; }
+.pt-sub { margin-top: -6px; font-style: italic; font-size: 19px; color: var(--pm); }
+
+.pt-hero { position: relative; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.pt-band.top { position: relative; flex: none; height: 38vh; height: 38dvh; min-height: 240px; overflow: hidden; }
+.pt-band__art { position: absolute; inset: -12% 0; }
+.pt-band__art svg { width: 100%; height: 100%; display: block; }
+.pt-hero__in { flex: 1; display: grid; justify-items: center; align-content: center; gap: 14px; padding: 22px 24px 40px; text-align: center; }
+.pt-names { display: grid; font-weight: 400; font-style: italic; font-size: clamp(56px, 16vw, 86px); line-height: .92; color: var(--pi); }
+.pt-names i { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: .5em; line-height: 1.3; color: var(--pa); }
+.pt-lead { font-style: italic; font-size: 20px; color: var(--pm); }
+.pt-date { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.pt-date > div { display: grid; justify-items: center; }
+.pt-date b { font-weight: 300; font-size: 68px; line-height: 1; color: var(--pa); }
+.pt-date small { font: 500 10px 'Inter', sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--pm); }
+.pt-sprig { width: 74px; } .pt-sprig svg { width: 100%; height: auto; display: block; } .pt-sprig.r svg { transform: scaleX(-1); }
+.pt-scroll { display: grid; justify-items: center; gap: 8px; margin-top: 16px; font: 500 10px 'Inter', sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--pm); }
+.pt-scroll i { width: 1px; height: 38px; background: linear-gradient(var(--pm), transparent); transform-origin: top; animation: cue 2.2s ease-in-out infinite; }
+@keyframes cue { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+
+.pt-sec { position: relative; display: grid; justify-items: center; gap: 14px; padding: 92px 28px; text-align: center; }
+.pt-tiles { position: relative; width: min(100%, 340px); margin-top: 26px; padding: 15px; background: repeating-conic-gradient(#2c4fa3 0 25%, #f4efe6 0 50%) 0 0 / 15px 15px; box-shadow: 0 22px 44px -18px rgba(40,50,110,.45); }
+.pt-tiles__in { position: relative; z-index: 1; padding: 44px 18px 40px; background: var(--pp); box-shadow: inset 0 0 0 1px #2c4fa3, inset 0 0 0 6px var(--pp), inset 0 0 0 7px rgba(44,79,163,.35); }
+.pt-tiles__fl { position: absolute; z-index: 2; width: 128px; pointer-events: none; }
+.pt-tiles__fl svg { width: 100%; height: auto; display: block; overflow: visible; }
+.pt-tiles__fl.tl { left: -40px; top: -30px; } .pt-tiles__fl.br { right: -40px; bottom: -30px; transform: rotate(180deg); }
+.pt-cd { display: grid; gap: 22px; }
+.pt-cd__d b { display: block; font-weight: 300; font-size: clamp(84px, 24vw, 104px); line-height: .9; color: var(--pa); font-variant-numeric: tabular-nums; }
+.pt-cd span { font: 500 10px 'Inter', sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--pm); }
+.pt-cd__row { display: flex; justify-content: center; gap: 24px; }
+.pt-cd__row b { display: block; font-weight: 400; font-size: 34px; line-height: 1.1; color: var(--pi); font-variant-numeric: tabular-nums; }
+
+.pt-story { padding: 0 0 92px; overflow: hidden; background: #f3eef2; }
+.pt-sky { position: absolute; left: 0; right: 0; top: -60px; height: 560px; }
+.pt-sky svg { width: 100%; height: 100%; display: block; }
+.pt-sky::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, #f3eef2 92%); }
+.pt-story__in { position: relative; z-index: 1; display: grid; justify-items: center; gap: 14px; max-width: 460px; padding: 120px 28px 0; }
+.pt-ch { display: grid; gap: 6px; }
+.pt-ch small { font: 500 10px 'Inter', sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--pa); }
+.pt-ch h3 { font-size: 27px; font-weight: 500; font-style: italic; line-height: 1.2; }
+.pt-ch p { font-size: 19px; line-height: 1.55; color: #4a4f66; }
+.pt-dot { margin: 6px 0; font-size: 13px; color: var(--pk); }
+.pt-sign { margin-top: 14px; font-family: 'Pinyon Script', cursive; font-size: 32px; color: var(--pa); }
+
+.pt-paint { position: relative; width: calc(100% + 56px); margin: 12px -28px 8px; aspect-ratio: 4 / 3; overflow: hidden; }
+.pt-paint > div { position: absolute; inset: -8% 0; }
+.pt-paint > div svg { width: 100%; height: 100%; display: block; }
+.pt-h { font-size: 34px; font-weight: 500; font-style: italic; line-height: 1.15; }
+.pt-body { max-width: 400px; font-size: 19px; line-height: 1.55; color: #4a4f66; }
+.pt-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px; }
+.pt-btns--col { display: grid; width: min(100%, 320px); }
+.pt-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid var(--pi); color: var(--pi); background: transparent; font: 500 12px 'Inter', sans-serif; letter-spacing: .16em; text-transform: uppercase; text-decoration: none; transition: background .25s, color .25s; }
+.pt-btn:hover, .pt-btn.solid { background: var(--pi); color: var(--pp); }
+.pt-btn .ico { width: 17px; height: 17px; }
+
+.pt-dark { padding: 72px 22px; background: radial-gradient(120% 70% at 50% 0%, #2a3746, #18212c); color: #efe8d8; }
+.pt-frame { position: relative; width: min(100%, 380px); padding: 70px 34px; }
+.pt-frame__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.pt-frame__in { position: relative; display: grid; justify-items: center; gap: 10px; }
+.pt-ev { display: grid; gap: 2px; width: 100%; padding: 13px 0; border-bottom: 1px solid rgba(217,207,184,.2); }
+.pt-ev:last-child { border-bottom: 0; }
+.pt-ev small { font: 500 11px 'Inter', sans-serif; letter-spacing: .2em; color: #d9b878; }
+.pt-ev b { font-size: 27px; font-weight: 500; font-style: italic; line-height: 1.15; }
+.pt-ev span { font-size: 16px; color: #b9b2a2; }
+
+.pt-tl { position: relative; display: grid; gap: 22px; width: 100%; max-width: 440px; margin-top: 18px; padding: 10px 0; }
+.pt-tl::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(transparent, #cfc8d6 8%, #cfc8d6 92%, transparent); }
+.pt-tl__i { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 30px; }
+.pt-tl__i::after { content: ''; position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--pa); }
+.pt-tl__ico { width: 66px; height: 66px; display: grid; place-items: center; border-radius: 50%; background: #f1eadf; box-shadow: 0 6px 14px -6px rgba(60,40,20,.3); }
+.pt-tl__ico svg { width: 46px; height: 46px; }
+.pt-tl__i.l .pt-tl__ico { grid-column: 1; justify-self: end; } .pt-tl__i.l .pt-tl__t { grid-column: 2; text-align: left; }
+.pt-tl__i.r .pt-tl__ico { grid-column: 2; grid-row: 1; justify-self: start; } .pt-tl__i.r .pt-tl__t { grid-column: 1; grid-row: 1; text-align: right; }
+.pt-tl__t b { display: block; font-size: 19px; font-weight: 500; font-style: italic; line-height: 1.25; }
+.pt-tl__t small { font: 500 11px 'Inter', sans-serif; letter-spacing: .16em; color: var(--pa); }
+.pt-heart { position: relative; z-index: 1; justify-self: center; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #1d2733; color: #f3ecdc; font-size: 14px; }
+
+.pt-dress__list { display: grid; width: 100%; max-width: 420px; margin-top: 12px; border-top: 1px solid #ddd5e0; }
+.pt-dr { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 18px; padding: 16px 0; text-align: left; border-bottom: 1px solid #ddd5e0; }
+.pt-dr__sw { display: flex; padding-left: 8px; }
+.pt-dr__sw i { width: 30px; height: 30px; margin-left: -8px; border-radius: 50%; border: 2px solid var(--pp); box-shadow: 0 2px 6px rgba(0,0,0,.14); }
+.pt-dr b { display: block; font-size: 22px; font-weight: 500; font-style: italic; }
+.pt-dr span { font-size: 16px; color: var(--pm); }
+
+.pt-gift { padding-top: 70px; }
+.pt-wreath { position: relative; width: min(380px, 100%); aspect-ratio: 1; display: grid; place-items: center; }
+.pt-wreath > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: spin 140s linear infinite; }
+.pt-wreath__t { position: relative; display: grid; gap: 4px; max-width: 52%; }
+.pt-wreath__t .pt-script { font-size: clamp(34px, 10vw, 44px); }
+.pt-wreath__t p { font-style: italic; font-size: 16px; line-height: 1.4; color: #4a4f66; }
+.pt-foot { position: relative; height: 380px; display: grid; place-items: center; overflow: hidden; text-align: center; }
+.pt-foot__art { position: absolute; inset: 0; }
+.pt-foot__art svg { width: 100%; height: 100%; display: block; }
+.pt-foot__art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(248,244,239,1) 0%, rgba(20,24,50,.25) 30%, rgba(20,24,50,.55)); }
+.pt-foot__in { position: relative; z-index: 1; display: grid; gap: 4px; padding-top: 80px; }
+.pt-foot .pt-script { text-shadow: 0 2px 16px rgba(0,0,0,.35); }
+@media (min-width: 600px) {
+  .rb { left: 50%; right: auto; width: 560px; margin-left: -280px; box-shadow: 0 0 120px rgba(40,30,60,.25); }
+  .rb__ribbon { width: 1400px; margin-left: -700px; }
+}
+
 </style>
 </head>
 <body>
@@ -1298,6 +1454,9 @@ const SITES = [
 
 /* ---------------------------- INVITATION CARDS --------------------------- */
 const CARDS = [
+  { id: 'painted_letter', name: 'Painted Letter', layout: 'painted', opener: 'ribbon', openLabel: 'Tap the bow to open', desc: 'A full-screen hand-painted envelope of Amer Fort tied with a satin ribbon. Untie the bow, the flaps unfold, and a painted invitation scrolls open — countdown, story, venue, celebration, timeline and dress code.', tags: ['Painted', 'Full-screen'],
+    frame: 'none', ornament: 'none', invocation: '',
+    v: { stage: '#ece7ee', paper: '#f8f4ef', ink: '#28324f', muted: '#6b6f86', accent: '#2c4fa3', line: '#cfc8d6', fd: "'Cormorant Garamond', serif", fs: "'Cormorant Garamond', serif", script: "'Pinyon Script', cursive" } },
   { id: 'lotus_diya', name: 'Lotus & Diya', layout: 'lotus', opener: 'envelope', openLabel: 'Tap the seal to open', desc: 'An ivory envelope with botanicals, a wax seal and tassel, falling petals, and a long illustrated scroll — kalash, sunset mandap and every function.', tags: ['Envelope', 'Illustrated'],
     frame: 'double', ornament: 'lotus', invocation: '॥ श्री गणेशाय नमः ॥',
     v: { stage: 'radial-gradient(120% 90% at 50% 0%, #6b2a1f 0%, #3a1410 75%)', paper: '#fbf3e6', ink: '#4a1a14', muted: '#7a5244', accent: '#9a6a2a', line: '#d6b57a', env: '#f2e6d3', env2: '#e7d6bd', seal: '#8e1424', fd: "'Cinzel', serif", fs: "'Cormorant Garamond', serif", script: "'Great Vibes', cursive" } },
@@ -1343,7 +1502,7 @@ const CARDS = [
 
 /* Curated selection shown in the studio (5 + 5). Add ids here to show more. */
 const SHOW_SITES = ['thread', 'boarding', 'editorial', 'rajwada', 'pinkcity', 'sheeshmahal', 'thar'];
-const SHOW_CARDS = ['mehendi', 'diya', 'lotus_diya', 'velvet_haveli', 'gold_foil', 'story_reel', 'emerald_gatefold'];
+const SHOW_CARDS = ['painted_letter', 'mehendi', 'diya', 'lotus_diya', 'velvet_haveli', 'gold_foil', 'story_reel', 'emerald_gatefold'];
 const ACTIVE_SITES = SHOW_SITES.map(id => SITES.find(s => s.id === id));
 const ACTIVE_CARDS = SHOW_CARDS.map(id => CARDS.find(c => c.id === id));
 
@@ -1632,6 +1791,7 @@ function thumbSite(s) {
 }
 function thumbCard(c) {
   const v = c.v;
+  if (c.layout === 'painted') return `<div class="thumb" style="padding:0"><div style="position:absolute;inset:0">${PAINT.amer()}</div><div style="position:absolute;left:-10%;right:-10%;top:52%;height:16px;background:linear-gradient(180deg,#fffdf8,#e6dccd);transform:rotate(-24deg);box-shadow:0 4px 10px rgba(0,0,0,.2)"></div><div style="position:relative;background:rgba(248,244,239,.92);padding:10px 18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#28324f">${CONFIG.groom} &amp; ${CONFIG.bride}</div></div>`;
   const inner = `<div class="thumb__card" style="background:${v.paper};color:${v.ink};border:1px solid ${v.line};${c.frame === 'arch' ? 'border-radius:999px 999px 4px 4px;' : ''}${c.opener === 'mehendi' ? 'border-radius:50%;aspect-ratio:1;width:52%;' : ''}"><div><div style="font-family:${v.script};color:${v.accent};font-size:16px">${c.opener === 'stories' ? 'You’re invited' : 'Shubh Vivah'}</div><div style="font-family:${v.fd};font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin:4px 0">${CONFIG.groom}<br><span style="font-family:${v.script};text-transform:none;color:${v.accent}">&amp;</span><br>${CONFIG.bride}</div><div style="font-size:7px;letter-spacing:.24em;opacity:.7">12 · 12 · 2026</div></div></div>`;
   return `<div class="thumb" style="background:${v.stage}">${inner}</div>`;
 }
@@ -2184,7 +2344,7 @@ function lotusHTML(c) {
 /* =========================================================================
    INVITATION RENDERER
    ========================================================================= */
-const CARD_SITE = { lotus_diya: 'rajwada', velvet_haveli: 'rajwada', gold_foil: 'sheeshmahal', story_reel: 'editorial', emerald_gatefold: 'thread', mehendi: 'thread', diya: 'sheeshmahal' };
+const CARD_SITE = { painted_letter: 'editorial', lotus_diya: 'rajwada', velvet_haveli: 'rajwada', gold_foil: 'sheeshmahal', story_reel: 'editorial', emerald_gatefold: 'thread', mehendi: 'thread', diya: 'sheeshmahal' };
 const CARD_VARS = ['stage', 'paper', 'ink', 'muted', 'accent', 'line', 'env', 'env2', 'seal', 'door', 'panel', 'hint', 'fd', 'fs', 'script'];
 const siteLinkFor = (c) => `${location.pathname}${GUEST ? '?guest=1' : ''}#/site/${CARD_SITE[c.id] || ACTIVE_SITES[0].id}`;
 
@@ -2785,6 +2945,7 @@ function renderCard(c) {
   root.style.setProperty('--liner', PATTERNS.jaali('#e3c27a', .6));
   root.toggleAttribute('data-dark', !!c.dark); root.setAttribute('data-card', c.id);
   document.title = `${CONFIG.groom} & ${CONFIG.bride} — Invitation`;
+  if (c.layout === 'painted') return renderPainted(c, root, run);
   const isStories = c.layout === 'stories', O = OPENERS[c.opener];
   root.innerHTML = `<div class="cv-top"><button class="cv-btn" id="cvSound" aria-label="Toggle sound">${I(soundOn ? 'sound' : 'mute')}</button><button class="cv-btn" id="cvReplay" aria-label="Replay">${I('replay')}</button></div>
     <div class="cv-stage">${isStories ? storiesHTML(c) : `<div class="cv-opener" id="cvOpener">${O.html(c)}</div><div class="cv-card ${c.layout === 'lotus' ? 'cv-card--wide' : ''}" id="cvCard">${c.layout === 'lotus' ? lotusHTML(c) : paperHTML(c)}</div>`}</div>`;
@@ -2819,6 +2980,263 @@ function showCard(x) {
   revealInside(card, c);
   ({ lotus_diya: () => AMBIENT.petals(fx, .9), velvet_haveli: () => AMBIENT.dust(fx, 2.5), gold_foil: () => AMBIENT.dust(fx, 2), emerald_gatefold: () => AMBIENT.dust(fx, 2), mehendi: () => AMBIENT.roses(fx, .6), diya: () => AMBIENT.embers(fx, 1.6) }[c.id] || (() => {}))();
   const cc = card.getBoundingClientRect(); setTimeout(() => x.alive() && fx.burst('dust', innerWidth / 2, Math.min(innerHeight * .4, cc.top + 200), 36, { min: 40, max: 260, life: 2, size: 2.4, drag: .95 }), 300);
+}
+
+/* =========================================================================
+   PAINTED LETTER — full-screen painted envelope, satin ribbon, unfolding
+   flaps, then a long hand-painted scrolling invitation
+   ========================================================================= */
+const PAINT = (() => {
+  let n = 0; const id = (p) => `${p}${++n}`;
+  const brush = (fid, scale = 7, freq = .022) => `<filter id="${fid}" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="${freq}" numOctaves="3" seed="${n % 9}"/><feDisplacementMap in="SourceGraphic" scale="${scale}"/></filter>`;
+  const soft = (fid, b = 6) => `<filter id="${fid}" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="${b}"/></filter>`;
+  const frangi = (x, y, s, r = 0) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})">${[0, 72, 144, 216, 288].map((a) => `<path transform="rotate(${a})" d="M0 0C6 -4 13 -12 10 -20C7 -26 -1 -24 -2 -16C-3 -9 -2 -4 0 0Z" fill="#fffdf6" stroke="#e9dccb" stroke-width=".6"/>`).join('')}<circle r="3.4" fill="#f6cf5a"/><circle r="1.6" fill="#e8a83a"/></g>`;
+  const leafP = (x, y, r, s, c = '#4f7a4a') => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><path d="M0 0C14 -18 46 -24 70 -10C48 4 22 10 0 0Z" fill="${c}"/><path d="M2 -1C24 -9 48 -12 68 -10" stroke="#2f4f2c" stroke-width="1" fill="none" opacity=".55"/></g>`;
+  const bougain = (x, y, s) => `<g transform="translate(${x} ${y}) scale(${s})">${Array.from({ length: 9 }, (_, i) => { const a = i * 40 * Math.PI / 180, rr = 8 + (i % 3) * 5; return `<path transform="translate(${(Math.cos(a) * rr).toFixed(1)} ${(Math.sin(a) * rr).toFixed(1)}) rotate(${i * 40})" d="M0 0c5-6 12-6 12 0s-7 6-12 0z" fill="${['#d9467c', '#e2639a', '#c2336a'][i % 3]}"/>`; }).join('')}</g>`;
+  const sprig = (x, y, r, s) => `<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})">${leafP(0, 0, -20, .8)}${leafP(10, 6, 30, .7, '#5f8b57')}${leafP(-6, 4, 160, .7)}${frangi(22, -10, .9, 10)}${frangi(46, 8, .75, 40)}${frangi(4, -30, .7, -20)}</g>`;
+
+  /* Amer Fort above Maota Lake, gouache style. Portrait 400x720 */
+  const texture = (fid) => `<filter id="${fid}" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".75" numOctaves="2" seed="5" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .4  0 0 0 .55 0" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gi"/><feBlend in="SourceGraphic" in2="gi" mode="multiply"/></filter>`;
+  function amer(vb = '0 0 400 720') {
+    const f = id('br'), f2 = id('bs'), fs = id('sf'), tx = id('tx'), sky = id('sk'), lk = id('lk'), rf = id('rf'), wall = id('wl'), wall2 = id('wm');
+    const win = (x, y, w = 6, h = 9) => `<path d="M${x} ${y + h}v-${h - w / 2}a${w / 2} ${w / 2} 0 0 1 ${w} 0v${h - w / 2}z" fill="#7a4a2a" opacity=".62"/>`;
+    const chhatri = (x, y, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-9" y="-2" width="18" height="12" fill="#efcf8f"/><rect x="-7" y="1" width="4" height="9" fill="#9a6a3a" opacity=".5"/><rect x="3" y="1" width="4" height="9" fill="#9a6a3a" opacity=".5"/><path d="M-11 -2h22l-2 -3h-18z" fill="#d9a865"/><path d="M-8 -5q8 -14 16 0z" fill="#f6dca4"/><path d="M0 -14v-4" stroke="#b8824a" stroke-width="1.2"/></g>`;
+    const fort = `<g>
+      <path d="M40 336C60 300 90 292 120 296L130 270H300L318 300C340 302 360 316 372 336Z" fill="url(#${wall2})"/>
+      <rect x="96" y="262" width="230" height="56" fill="url(#${wall})"/>
+      ${Array.from({ length: 16 }, (_, k) => win(104 + k * 14, 274)).join('')}${Array.from({ length: 16 }, (_, k) => win(104 + k * 14, 294, 5, 8)).join('')}
+      <rect x="96" y="262" width="230" height="4" fill="#fff3d6" opacity=".6"/>
+      <rect x="140" y="226" width="150" height="38" fill="url(#${wall})"/>${Array.from({ length: 9 }, (_, k) => win(148 + k * 16, 236, 7, 11)).join('')}
+      <rect x="140" y="226" width="150" height="3" fill="#fff3d6" opacity=".6"/><rect x="282" y="226" width="8" height="38" fill="#7a4a2a" opacity=".15"/>
+      <rect x="180" y="198" width="70" height="30" fill="url(#${wall})"/>${Array.from({ length: 4 }, (_, k) => win(188 + k * 15, 206, 7, 12)).join('')}
+      <path d="M200 198q15 -28 30 0z" fill="#f6dca4"/><path d="M215 172v-6" stroke="#b8824a" stroke-width="1.5"/>
+      ${chhatri(150, 224, .9)}${chhatri(280, 224, .9)}${chhatri(108, 260, .8)}${chhatri(318, 260, .8)}${chhatri(186, 196, .7)}${chhatri(244, 196, .7)}
+      <rect x="324" y="262" width="2" height="56" fill="#7a4a2a" opacity=".2"/>
+      <path d="M96 318h230" stroke="#9a6a3a" stroke-width="1.5" opacity=".6"/>
+      ${Array.from({ length: 10 }, (_, k) => `<path d="M${60 + k * 30} ${336 - (k % 3) * 2}l10 -18h12l8 18z" fill="#d9a865" opacity=".55"/>`).join('')}
+    </g>`;
+    const ridgeWall = `<path d="M0 214C40 196 70 176 110 168S170 140 210 128 270 104 310 98 360 80 400 70" fill="none" stroke="#d6a463" stroke-width="4.5" stroke-linecap="round"/><path d="M0 214C40 196 70 176 110 168S170 140 210 128 270 104 310 98 360 80 400 70" fill="none" stroke="#7a4a2a" stroke-width="4.5" stroke-dasharray="2 6" opacity=".45"/>
+      ${[[110, 168], [210, 128], [310, 98]].map(([x, y]) => `<rect x="${x - 7}" y="${y - 16}" width="14" height="16" fill="#e4b46d"/><path d="M${x - 9} ${y - 16}q9 -12 18 0z" fill="#f4d29a"/>`).join('')}`;
+    const treeDots = (y0, y1, n, c, seed) => Array.from({ length: n }, (_, i) => { const k = (i * 7919 + seed * 104729) % 1000 / 1000, k2 = (i * 6007 + seed * 7) % 1000 / 1000; return `<ellipse cx="${(k * 400).toFixed(1)}" cy="${(y0 + k2 * (y1 - y0)).toFixed(1)}" rx="${(4 + k2 * 6).toFixed(1)}" ry="${(3 + k * 3).toFixed(1)}" fill="${c}" opacity=".7"/>`; }).join('');
+    const ghat = `<g><path d="M0 610h170v110H0z" fill="#e9b9a0"/>${Array.from({ length: 7 }, (_, k) => `<path d="M0 ${610 + k * 9}h${170 - k * 6}" stroke="#c98f78" stroke-width="1.4" opacity=".7"/>`).join('')}
+      <g transform="translate(40 560)"><rect x="0" y="0" width="70" height="52" fill="#f1c7ae"/><path d="M-6 0h82l-6 -8h-70z" fill="#d99c80"/><path d="M8 -8q27 -36 54 0z" fill="#f6d8c3"/>${[0, 1, 2].map((k) => `<path d="M${8 + k * 20} 52v-26a7 7 0 0 1 14 0v26z" fill="#8a4a3a" opacity=".5"/>`).join('')}<path d="M35 -44v-6" stroke="#b8724a" stroke-width="1.4"/></g>
+      <g transform="translate(130 584)"><rect x="0" y="0" width="44" height="28" fill="#f6dcc8"/><path d="M4 0q18 -22 36 0z" fill="#f9e6d6"/>${[0, 1].map((k) => `<path d="M${8 + k * 18} 28v-14a5 5 0 0 1 10 0v14z" fill="#8a4a3a" opacity=".45"/>`).join('')}</g></g>`;
+    const clouds = [[60, 96, 66], [190, 58, 50], [310, 120, 74], [380, 48, 44], [120, 160, 38], [250, 176, 30]].map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r * 1.7}" ry="${r * .5}" fill="#fff" opacity=".8"/><ellipse cx="${x + r * .45}" cy="${y - r * .28}" rx="${r}" ry="${r * .46}" fill="#fff" opacity=".92"/><ellipse cx="${x - r * .3}" cy="${y + r * .18}" rx="${r * 1.2}" ry="${r * .22}" fill="#c9cde8" opacity=".55"/>`).join('');
+    return `<svg viewBox="${vb}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Painting of Amer Fort above Maota Lake"><defs>${brush(f, 7)}${brush(f2, 3, .05)}${soft(fs, 8)}${texture(tx)}
+      <linearGradient id="${sky}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f93d6"/><stop offset=".35" stop-color="#a9bfeb"/><stop offset=".7" stop-color="#f1d8d2"/><stop offset="1" stop-color="#f8e3c6"/></linearGradient>
+      <linearGradient id="${lk}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7aa0d8"/><stop offset=".25" stop-color="#3f6cb8"/><stop offset="1" stop-color="#1c3d82"/></linearGradient>
+      <linearGradient id="${wall}" x1="0" x2="1"><stop offset="0" stop-color="#f5d398"/><stop offset=".6" stop-color="#e8b670"/><stop offset="1" stop-color="#cf9550"/></linearGradient>
+      <linearGradient id="${wall2}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9a560"/><stop offset="1" stop-color="#a8723e"/></linearGradient>
+      <filter id="${rf}" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".005 .25" numOctaves="1" seed="3"/><feDisplacementMap in="SourceGraphic" scale="10"/><feGaussianBlur stdDeviation="1.2"/></filter></defs>
+      <g filter="url(#${tx})">
+      <rect width="400" height="720" fill="url(#${sky})"/>
+      <g filter="url(#${fs})">${clouds}<circle cx="70" cy="250" r="54" fill="#fff0cf" opacity=".65"/></g>
+      <g filter="url(#${f})">
+        <path d="M0 240C50 200 110 210 170 186S300 150 400 160V360H0Z" fill="#9aa0cf" opacity=".8"/>
+        <path d="M0 268C60 236 130 250 200 226S330 200 400 214V380H0Z" fill="#7686bc"/>${treeDots(240, 300, 40, '#5d6d9a', 1)}
+        ${ridgeWall}
+        <path d="M0 300C70 270 140 286 210 272S330 262 400 276V392H0Z" fill="#5e709f"/>${treeDots(286, 340, 50, '#4a5b86', 2)}
+        ${fort}
+        <path d="M0 336C70 328 140 334 200 340S340 334 400 340V384H0Z" fill="#6f8a5a"/>${treeDots(338, 378, 46, '#4f6b44', 3)}
+        <rect y="378" width="400" height="232" fill="url(#${lk})"/>
+        <g filter="url(#${rf})" opacity=".42"><g transform="translate(0 756) scale(1 -1)">${fort}</g></g>
+        <g transform="translate(232 436)"><path d="M0 0h96l-8 16H8z" fill="#c9b78c"/><path d="M4 0h88" stroke="#efe3c2" stroke-width="2"/>${Array.from({ length: 6 }, (_, k) => `<rect x="${8 + k * 14}" y="-9" width="10" height="9" fill="${k % 2 ? '#6f9a5a' : '#86ad6a'}"/>`).join('')}</g>
+        ${Array.from({ length: 26 }, (_, i) => `<path d="M${(i * 61) % 390} ${400 + (i * 37) % 200}h${14 + (i % 4) * 10}" stroke="${i % 3 ? '#a9c6f2' : '#f2cf96'}" stroke-width="${1.4 + (i % 2)}" stroke-linecap="round" opacity="${.3 + (i % 3) * .15}"/>`).join('')}
+        <g transform="translate(96 494)"><path d="M0 0h30l-5 7H5z" fill="#f4ecdf"/><path d="M14 0v-16l10 14z" fill="#fff"/></g>
+        ${ghat}
+      </g>
+      <g filter="url(#${f2})">
+        ${leafP(300, 716, -118, 1.7)}${leafP(350, 680, -146, 1.5, '#3f6b3a')}${leafP(392, 610, -170, 1.4)}${leafP(270, 730, -90, 1.4, '#5f8b57')}${leafP(400, 540, 160, 1.2, '#4f7a4a')}
+        ${bougain(330, 650, 1.6)}${bougain(380, 700, 1.4)}${bougain(392, 580, 1.2)}${frangi(306, 668, 1.5, 20)}${frangi(354, 700, 1.3, -10)}${frangi(380, 632, 1.1, 50)}${frangi(270, 706, 1.2, 80)}
+        ${leafP(-8, 12, 20, 1.6)}${leafP(8, 70, -12, 1.4, '#3f6b3a')}${leafP(60, -6, 46, 1.3)}${leafP(132, -12, 70, 1.2, '#5f8b57')}${leafP(-10, 120, -30, 1.2)}
+        ${frangi(40, 30, 1.6, 10)}${frangi(92, 16, 1.3, 30)}${frangi(18, 84, 1.2, -20)}${frangi(150, 10, 1.05, 60)}${frangi(64, 70, 1, 0)}${bougain(108, 54, 1.2)}${bougain(30, 130, 1.1)}
+      </g></g>
+    </svg>`;
+  }
+  function clouds() {
+    const fs = id('cs'), g = id('cg');
+    return `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>${soft(fs, 9)}<linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9bde6"/><stop offset=".7" stop-color="#e8e3f0"/><stop offset="1" stop-color="#f6f1ee"/></linearGradient></defs>
+      <rect width="400" height="300" fill="url(#${g})"/><g filter="url(#${fs})">${[[60, 80, 70], [200, 60, 90], [340, 100, 70], [120, 170, 80], [300, 200, 90], [30, 230, 60]].map(([x, y, r]) => `<ellipse cx="${x}" cy="${y}" rx="${r * 1.5}" ry="${r * .5}" fill="#fff" opacity=".9"/><ellipse cx="${x + 20}" cy="${y - 14}" rx="${r * .9}" ry="${r * .45}" fill="#fdfbff"/><ellipse cx="${x - 10}" cy="${y + 10}" rx="${r}" ry="${r * .3}" fill="#c9cfe6" opacity=".6"/>`).join('')}</g></svg>`;
+  }
+  function garden() {
+    const f = id('gb');
+    return `<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Painting of the palace garden"><defs>${brush(f, 6)}<linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c7d3ee"/><stop offset="1" stop-color="#f4e6da"/></linearGradient></defs>
+      <rect width="400" height="300" fill="url(#gsky)"/><g filter="url(#${f})">
+      <path d="M0 110C80 80 160 100 240 84S360 70 400 80V200H0Z" fill="#4f6b48"/><path d="M0 130C90 110 170 126 250 110S360 100 400 112V210H0Z" fill="#3e5a3c"/>
+      <rect x="110" y="96" width="180" height="70" fill="#f1dcc3"/><path d="M180 96q20-30 40 0z" fill="#f4e6d0"/>${[0, 1, 2, 3, 4, 5, 6].map((k) => `<path d="M${120 + k * 24} 160v-30a8 8 0 0 1 16 0v30z" fill="#9a7a5e" opacity=".55"/>`).join('')}
+      <rect y="170" width="400" height="130" fill="#7d9a5c"/><path d="M120 300L170 180h60l50 120z" fill="#c9b99a"/>
+      <ellipse cx="200" cy="232" rx="78" ry="26" fill="#7fb2d9"/><ellipse cx="200" cy="232" rx="78" ry="26" fill="none" stroke="#efe3cf" stroke-width="5"/>
+      <path d="M200 232v-40" stroke="#dfe9f2" stroke-width="3"/>${Array.from({ length: 9 }, (_, i) => `<path d="M200 194q${-40 + i * 10} -6 ${-44 + i * 11} 34" stroke="#eef6ff" stroke-width="1.6" fill="none" opacity=".8"/>`).join('')}
+      ${[[40, 200], [360, 200], [70, 260], [330, 260]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="34" fill="#5f8b57"/>${bougain(x - 10, y - 8, 1.6)}${bougain(x + 12, y + 6, 1.4)}`).join('')}
+      ${[[150, 270], [250, 270]].map(([x, y]) => frangi(x, y, 1.2, 10) + frangi(x + 14, y + 8, 1, 40)).join('')}</g></svg>`;
+  }
+  function tornEdge(fill, flip = false, seed = 1) {
+    let d = 'M0 0'; let x = 0; let k = seed;
+    while (x < 400) { k = (k * 9301 + 49297) % 233280; const r = k / 233280; x += 6 + r * 14; d += `L${x.toFixed(1)} ${(6 + r * 12).toFixed(1)}`; }
+    d += 'L400 30L0 30Z';
+    return `<svg class="pt-torn ${flip ? 'top' : 'bot'}" viewBox="0 0 400 30" preserveAspectRatio="none" aria-hidden="true"><path d="${d}" fill="${fill}"/></svg>`;
+  }
+  function wreath() {
+    const items = []; const N = 26;
+    for (let i = 0; i < N; i++) { const a = i / N * Math.PI * 2, r = 122 + (i % 3) * 5, x = 150 + Math.cos(a) * r, y = 150 + Math.sin(a) * r, deg = a * 180 / Math.PI + 90;
+      items.push(leafP(x, y, deg + (i % 2 ? 40 : -40), .9, i % 3 ? '#4f7a4a' : '#6f9a5a'));
+      if (i % 2 === 0) items.push(bougain(x, y, 1.3)); else items.push(frangi(x, y, 1.05, deg)); }
+    return `<svg viewBox="0 0 300 300" aria-hidden="true">${items.join('')}</svg>`;
+  }
+  return { amer, clouds, garden, tornEdge, wreath, frangi, sprig, bougain };
+})();
+
+function paintedPageHTML(c) {
+  const v = VENUES.rambagh;
+  const cd = `<div class="pt-cd" data-cd><div class="pt-cd__d"><b data-d>00</b><span>Days</span></div><div class="pt-cd__row"><div><b data-h>00</b><span>Hours</span></div><div><b data-m>00</b><span>Minutes</span></div><div><b data-s>00</b><span>Seconds</span></div></div></div>`;
+  return `<main class="pl" id="pl">
+    <section class="pt-hero">
+      <div class="pt-band top"><div class="pt-band__art" data-par=".12">${PAINT.amer('0 120 400 430')}</div>${PAINT.tornEdge('#f8f4ef', false, 3)}</div>
+      <div class="pt-hero__in">
+        <p class="pt-caps" data-rv>Together with their families</p>
+        <h1 class="pt-names" data-rv><span>${CONFIG.groom}</span><i>&amp;</i><span>${CONFIG.bride}</span></h1>
+        <p class="pt-lead" data-rv>invite you to celebrate their wedding</p>
+        <div class="pt-date" data-rv><span class="pt-sprig">${PAINT.sprig(0, 30, 0, .55).replace(/^/, '<svg viewBox="-10 -30 90 70" aria-hidden="true">') + '</svg>'}</span><div><small>December</small><b>12</b><small>2026</small></div><span class="pt-sprig r"><svg viewBox="-10 -30 90 70" aria-hidden="true">${PAINT.sprig(0, 30, 0, .55)}</svg></span></div>
+        <p class="pt-caps" data-rv>Saturday · ${v.name}, Jaipur</p>
+        <div class="pt-scroll" data-rv><span>Scroll</span><i></i></div>
+      </div>
+    </section>
+
+    <section class="pt-sec pt-count">
+      <h2 class="pt-script" data-rv>Countdown</h2>
+      <p class="pt-sub" data-rv>until we say “yes” in Jaipur</p>
+      <div class="pt-tiles" data-rv><span class="pt-tiles__fl tl">${PAINT.sprig(0, 0, 0, 1).replace(/^/, '<svg viewBox="-20 -50 110 90" aria-hidden="true">') + '</svg>'}</span><span class="pt-tiles__fl br"><svg viewBox="-20 -50 110 90" aria-hidden="true">${PAINT.sprig(0, 0, 0, 1)}</svg></span>
+        <div class="pt-tiles__in">${cd}</div></div>
+    </section>
+
+    <section class="pt-sec pt-story">
+      <div class="pt-sky" data-par=".08">${PAINT.clouds()}</div>
+      <div class="pt-story__in">
+        <h2 class="pt-script" data-rv>Our Story</h2>
+        ${STORY.map((s, i) => `<div class="pt-ch" data-rv><small>${s.year}</small><h3>${s.title}</h3><p>${s.text}</p></div>${i < STORY.length - 1 ? '<div class="pt-dot" data-rv>✦</div>' : ''}`).join('')}
+        <p class="pt-sign" data-rv>${CONFIG.groom} &amp; ${CONFIG.bride}</p>
+      </div>
+    </section>
+
+    <section class="pt-sec pt-venue">
+      <h2 class="pt-script" data-rv>The Venue</h2>
+      <div class="pt-paint" data-rv><div data-par=".06">${PAINT.garden()}</div>${PAINT.tornEdge('#f8f4ef', true, 7)}${PAINT.tornEdge('#f8f4ef', false, 11)}</div>
+      <h3 class="pt-h" data-rv>${v.name}</h3>
+      <p class="pt-caps" data-rv>${v.address}</p>
+      <p class="pt-body" data-rv>${v.note}</p>
+      <div class="pt-btns" data-rv><a class="pt-btn" href="${mapsUrl(v.q)}" target="_blank" rel="noopener">${I('pin')} Directions</a></div>
+    </section>
+
+    <section class="pt-sec pt-dark">
+      <div class="pt-frame" data-rv>
+        <svg class="pt-frame__svg" viewBox="0 0 300 500" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="#d9cfb8" stroke-width=".8">
+          <path d="M20 60Q20 20 60 20H240Q280 20 280 60V440Q280 480 240 480H60Q20 480 20 440Z"/><path d="M28 64Q28 28 64 28H236Q272 28 272 64V436Q272 472 236 472H64Q28 472 28 436Z" stroke-opacity=".5"/>
+          <path d="M150 10c-10 0-14 10-24 10M150 10c10 0 14 10 24 10M150 490c-10 0-14-10-24-10M150 490c10 0 14-10 24-10"/><circle cx="150" cy="10" r="3"/><circle cx="150" cy="490" r="3"/></g></svg>
+        <div class="pt-frame__in">
+          <h2 class="pt-script light">The Celebration</h2>
+          <p class="pt-caps light">${CONFIG.dateLong}</p>
+          ${EVENTS.map((e) => `<div class="pt-ev" data-rv><small>${e.time}</small><b>${e.name}</b><span>${VENUES[e.venue].name}</span></div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-sec pt-day">
+      <h2 class="pt-script" data-rv>The Day</h2>
+      <p class="pt-sub" data-rv>one day · six ceremonies · four palaces</p>
+      <div class="pt-tl">
+        ${EVENTS.map((e, i) => `<div class="pt-tl__i ${i % 2 ? 'r' : 'l'}" data-rv><div class="pt-tl__ico">${ILL.ICO_EV[e.id]}</div><div class="pt-tl__t"><b>${e.title}</b><small>${e.time}</small></div></div>${i === 2 ? '<div class="pt-heart" data-rv>♥</div>' : ''}`).join('')}
+      </div>
+    </section>
+
+    <section class="pt-sec pt-dress">
+      <h2 class="pt-script" data-rv>Dress Code</h2>
+      <p class="pt-sub" data-rv>colours for every ceremony</p>
+      <div class="pt-dress__list">${EVENTS.map((e) => `<div class="pt-dr" data-rv><div class="pt-dr__sw">${e.colors.map((col) => `<i style="background:${col}"></i>`).join('')}</div><div><b>${e.name}</b><span>${e.dress}</span></div></div>`).join('')}</div>
+    </section>
+
+    <section class="pt-sec pt-gift">
+      <div class="pt-wreath" data-rv>${PAINT.wreath()}<div class="pt-wreath__t"><h2 class="pt-script">With Love</h2><p>Your presence is our greatest gift.<br>Kindly reply by 25 Nov.</p></div></div>
+      <div class="pt-btns pt-btns--col" data-rv>
+        <a class="pt-btn solid" href="${waUrl(`Hi! RSVP for ${CONFIG.groom} & ${CONFIG.bride}'s wedding on 12 Dec 2026 — Name: , Guests: `)}" target="_blank" rel="noopener">${I('chat')} RSVP on WhatsApp</a>
+        <a class="pt-btn" href="${siteLinkFor(c)}">${I('globe')} Wedding website</a>
+        <button class="pt-btn" data-ics>${I('cal')} Save to calendar</button>
+      </div>
+    </section>
+
+    <footer class="pt-foot"><div class="pt-foot__art">${PAINT.amer('0 150 400 420')}</div><div class="pt-foot__in"><p class="pt-script light">${CONFIG.groom} &amp; ${CONFIG.bride}</p><p class="pt-caps light">${CONFIG.dateShort} · ${CONFIG.hashtag}</p></div></footer>
+  </main>`;
+}
+
+function envelopeOverlayHTML(c) {
+  const art = PAINT.amer();
+  const flap = (k) => `<div class="rb__flap ${k}"><div class="rb__face front"><div class="rb__art">${art}</div><span class="rb__shade"></span></div><div class="rb__face back"></div></div>`;
+  return `<div class="rb" id="rb" role="dialog" aria-label="Invitation envelope">
+    ${flap('b')}${flap('l')}${flap('r')}${flap('t')}
+    <svg class="rb__folds" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0L50 50L100 0M0 100L50 50L100 100" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width=".25"/><path d="M0 0L50 50L100 0M0 100L50 50L100 100" fill="none" stroke="#3a2a40" stroke-opacity=".25" stroke-width=".6" transform="translate(0 .4)"/></svg>
+    <div class="rb__ribbon a"><span></span></div><div class="rb__ribbon b"><span></span></div>
+    <button class="rb__bow" data-open aria-label="${c.openLabel}"><svg viewBox="0 0 200 140" aria-hidden="true"><defs>
+      <linearGradient id="sat" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset=".35" stop-color="#efe7da"/><stop offset=".55" stop-color="#ffffff"/><stop offset="1" stop-color="#d9cfc0"/></linearGradient>
+      <linearGradient id="sat2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffdf8"/><stop offset=".4" stop-color="#e6dccd"/><stop offset=".7" stop-color="#fbf7f0"/><stop offset="1" stop-color="#cfc4b4"/></linearGradient></defs>
+      <g class="bow-tail l"><path d="M96 74C80 96 64 116 44 134L58 138C74 118 88 98 100 78Z" fill="url(#sat2)"/></g>
+      <g class="bow-tail r"><path d="M104 74C118 98 132 116 150 136L162 128C146 110 128 92 108 72Z" fill="url(#sat)"/></g>
+      <g class="bow-loop l"><path d="M98 68C70 30 20 26 16 52C12 78 60 88 96 74Z" fill="url(#sat)"/><path d="M96 70C70 46 34 42 28 54" fill="none" stroke="#cbbfae" stroke-width="1.4" opacity=".7"/></g>
+      <g class="bow-loop r"><path d="M102 68C130 30 180 26 184 52C188 78 140 88 104 74Z" fill="url(#sat2)"/><path d="M104 70C130 46 166 42 172 54" fill="none" stroke="#cbbfae" stroke-width="1.4" opacity=".7"/></g>
+      <g class="bow-knot"><ellipse cx="100" cy="71" rx="13" ry="11" fill="url(#sat2)"/><path d="M92 66c5 3 11 3 16 0" stroke="#cbbfae" stroke-width="1.2" fill="none"/></g></svg><span class="rb__pulse"></span></button>
+    <div class="rb__hint"><span>${CONFIG.groom} &amp; ${CONFIG.bride}</span><em>${c.openLabel}</em></div>
+  </div>`;
+}
+
+function renderPainted(c, root, run) {
+  const alive = () => run === cardRun;
+  root.innerHTML = `<div class="cv-top"><button class="cv-btn" id="cvSound" aria-label="Toggle sound">${I(soundOn ? 'sound' : 'mute')}</button><button class="cv-btn" id="cvReplay" aria-label="Replay">${I('replay')}</button></div>
+    ${paintedPageHTML(c)}${envelopeOverlayHTML(c)}`;
+  $('#cvSound').addEventListener('click', () => { soundOn = !soundOn; store.set('yn-sound', soundOn); $('#cvSound').innerHTML = I(soundOn ? 'sound' : 'mute'); });
+  $('#cvReplay').addEventListener('click', () => { window.scrollTo(0, 0); app.cleanup.forEach((fn) => { try { fn(); } catch (e) {} }); app.cleanup = []; renderCard(c); });
+  root.onclick = (e) => { if (e.target.closest('[data-ics]')) downloadICS(); };
+  const fx = createFX(root); app.cleanup.push(() => fx.stop());
+  document.body.classList.add('no-scroll'); app.cleanup.push(() => document.body.classList.remove('no-scroll'));
+  const rb = $('#rb'), pl = $('#pl');
+  // idle: drifting blossoms over the painting
+  const stopIdle = fx.emit((W) => fx.add('petal', rnd(0, W), -20, { pal: Math.random() < .5 ? ['#ffffff', '#eadfd2'] : ['#f08ab0', '#c2336a'], vy: rnd(30, 60), wind: 35, life: 18, size: rnd(5, 8), drag: .999 }), .9);
+  let opened = false;
+  const open = async () => {
+    if (opened) return; opened = true; rb.classList.add('is-opening');
+    const $r = (s) => $(s, rb);
+    A($r('.rb__hint'), [{ opacity: 1 }, { opacity: 0 }], { duration: 400 });
+    sfx('slide');
+    $$('.bow-loop', rb).forEach((l, i) => A(l, [{ transform: 'scale(1) rotate(0)', opacity: 1 }, { transform: `scale(.2) rotate(${i ? 40 : -40}deg)`, opacity: 0 }], { duration: 700, easing: EASE.in }));
+    $$('.bow-tail', rb).forEach((l, i) => A(l, [{ transform: 'none', opacity: 1 }, { transform: `translate(${i ? 30 : -30}px, 40px) rotate(${i ? 20 : -20}deg)`, opacity: 0 }], { duration: 700, easing: EASE.in }));
+    A($r('.bow-knot'), [{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(.3)', opacity: 0 }], { duration: 500, delay: 250, easing: EASE.in });
+    await sleep(380);
+    A($r('.rb__ribbon.a span'), [{ transform: 'translateX(0)' }, { transform: 'translateX(-120%)' }], { duration: 1100, easing: EASE.inOut });
+    A($r('.rb__ribbon.b span'), [{ transform: 'translateX(0)' }, { transform: 'translateX(120%)' }], { duration: 1100, easing: EASE.inOut });
+    await sleep(800);
+    A($r('.rb__folds'), [{ opacity: 1 }, { opacity: 0 }], { duration: 400 });
+    const flaps = [['t', 'rotateX(0deg)', 'rotateX(-178deg)'], ['l', 'rotateY(0deg)', 'rotateY(-178deg)'], ['r', 'rotateY(0deg)', 'rotateY(178deg)'], ['b', 'rotateX(0deg)', 'rotateX(178deg)']];
+    for (let i = 0; i < flaps.length; i++) {
+      const [k, from, to] = flaps[i], el = $r('.rb__flap.' + k); sfx('paper');
+      el.style.zIndex = 10 + i;
+      A(el, [{ transform: from }, { transform: to, offset: 1 }], { duration: 1150, easing: EASE.inOut });
+      A($('.rb__shade', el), [{ opacity: 0 }, { opacity: .55, offset: .5 }, { opacity: .2 }], { duration: 1150 });
+      A(el, [{ opacity: 1 }, { opacity: 1, offset: .7 }, { opacity: 0 }], { duration: 1150 });
+      if (i === 1) startHero();
+      await sleep(330);
+    }
+    await sleep(900); chime(); sfx('sparkle');
+    fx.burst('dust', innerWidth / 2, innerHeight * .45, 50, { min: 40, max: 260, life: 2, size: 2.6, drag: .95 });
+    rb.remove(); stopIdle(); document.body.classList.remove('no-scroll');
+    fx.emit((W) => fx.add('petal', rnd(0, W), -20, { pal: Math.random() < .55 ? ['#ffffff', '#eadfd2'] : ['#f08ab0', '#c2336a'], vy: rnd(30, 60), wind: 35, life: 18, size: rnd(4, 7), drag: .999 }), .5);
+  };
+  let heroStarted = false;
+  const startHero = () => { if (heroStarted) return; heroStarted = true; $$('.pt-hero [data-rv]', pl).forEach((e, i) => { e.style.transitionDelay = (300 + i * 140) + 'ms'; e.classList.add('in'); }); };
+  $$('[data-open]', rb).forEach((b) => b.addEventListener('click', open));
+  // scroll reveals + parallax
+  const io = new IntersectionObserver((ents) => { let k = 0; ents.forEach((en) => { if (en.isIntersecting && !en.target.closest('.pt-hero')) { en.target.style.transitionDelay = (k++ * 110) + 'ms'; en.target.classList.add('in'); io.unobserve(en.target); } }); }, { rootMargin: '0px 0px -8% 0px', threshold: .08 });
+  $$('[data-rv]', pl).forEach((e) => io.observe(e)); app.cleanup.push(() => io.disconnect());
+  const pars = $$('[data-par]', pl);
+  const onS = () => { pars.forEach((p) => { const r = p.parentElement.getBoundingClientRect(); const k = +p.dataset.par; p.style.transform = `translateY(${(-(r.top + r.height / 2 - innerHeight / 2) * k).toFixed(1)}px) scale(1.12)`; }); };
+  window.addEventListener('scroll', onS, { passive: true }); onS(); app.cleanup.push(() => window.removeEventListener('scroll', onS));
+  if (REDUCED) { $$('[data-rv]', pl).forEach((e) => e.classList.add('in')); }
 }
 
 /* pill hides while scrolling down, returns on scroll up */

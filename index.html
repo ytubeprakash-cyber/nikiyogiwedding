@@ -967,6 +967,8 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 .lotus .p-btn { border-radius: 999px; }
 .drawer__step { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
+.couple__met { font-family: var(--fs); font-style: italic; font-size: clamp(21px, 2.4vw, 26px); line-height: 1.45; color: var(--ink); padding-top: 8px; }
+
 </style>
 </head>
 <body>
@@ -1021,8 +1023,9 @@ const CONFIG = {
   groomFamily: 'Kiroriwal', brideFamily: 'Meena',
 };
 
-const GROOM_BIO = 'IIT Delhi alumnus. Add a line or two about Yogesh here.';
-const BRIDE_BIO = 'IIT Delhi alumna. Add a line or two about Nikita here.';
+const GROOM_BIO = ''; // optional: a line about Yogesh
+const BRIDE_BIO = ''; // optional: a line about Nikita
+const COUPLE_LINE = 'Yogesh and Nikita met at IIT Delhi — and have been each other’s favourite person ever since.';
 
 const STORY = [
   { year: 'IIT Delhi', title: 'Where it all began',
@@ -1700,6 +1703,8 @@ function rsvpBlock() { return `    <div class="rsvp">
       <div class="wall"><h3 class="rv">Blessings</h3><div id="wall" style="display:grid;gap:16px"></div></div>
     `; }
 
+const parLine = (rel, p) => /^The /.test(p) ? `From the ${p.slice(4).replace(' Family', ' family')}` : `${rel} of ${p}`;
+
 function siteHTML(s) {
   const L = LAYOUT[s.id] || {}; let hn = 0;
   const head = (id, k, t, lead) => { hn++; return L.head === 'left'
@@ -1731,8 +1736,9 @@ function siteHTML(s) {
   <section class="sec sec--alt" id="couple"><div class="wrap">${head('couple', 'The couple', 'Meet the two of us')}
     <div class="couple ${L.couple === 'spread' ? 'couple--spread' : ''}"><div class="couple__img rv img-${s.img}"><img src="${P()}" alt="${CONFIG.groom} and ${CONFIG.bride}" loading="lazy"></div>
       <div class="couple__people">
-        <div class="person rv"><small>The groom</small><h3 class="disp">${CONFIG.groomFull}</h3><div class="par">Son of ${CONFIG.groomParents}</div><p>${GROOM_BIO}</p></div>
-        <div class="person rv"><small>The bride</small><h3 class="disp">${CONFIG.brideFull}</h3><div class="par">Daughter of ${CONFIG.brideParents}</div><p>${BRIDE_BIO}</p></div>
+        <div class="person rv"><small>The groom</small><h3 class="disp">${CONFIG.groomFull}</h3><div class="par">${parLine("Son", CONFIG.groomParents)}</div>${GROOM_BIO ? `<p>${GROOM_BIO}</p>` : ''}</div>
+        <div class="person rv"><small>The bride</small><h3 class="disp">${CONFIG.brideFull}</h3><div class="par">${parLine("Daughter", CONFIG.brideParents)}</div>${BRIDE_BIO ? `<p>${BRIDE_BIO}</p>` : ''}</div>
+        <p class="couple__met rv">${COUPLE_LINE}</p>
       </div></div></div></section>
 
   <section class="sec" id="story"><div class="wrap">${head('story', 'Our story', 'How we got here')}

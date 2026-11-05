@@ -1,11 +1,23 @@
-# Yogesh & Nikita — Royal Jaipur Wedding Website (5-Theme Studio)
+# Yogesh & Nikita — Wedding Website & Invitation Studio
 
-## Deploying to Vercel
-1. **Option 1 (Vercel CLI)**: Run `npx vercel` inside this folder.
-2. **Option 2 (GitHub + Vercel Dashboard)**: Push `index.html` and `vercel.json` to a GitHub repository and import it into Vercel (Framework Preset: `Other`).
-3. **Locking a Theme for Wedding Guests**:
-   - Use `?theme=rajwada&guest=1` (Royal Rajwada Palace)
-   - Use `?theme=pinkcity&guest=1` (Pink City Editorial)
-   - Use `?theme=bluepottery&guest=1` (Jaipur Blue Pottery)
-   - Use `?theme=sheeshmahal&guest=1` (Starlit Sheesh Mahal)
-   - Use `?theme=marigold&guest=1` (Bandhani & Marigold)
+One file (`index.html`), no build step. 7 website designs + 7 invitation cards.
+
+## Deploy to Vercel
+- `npx vercel` inside this folder, or push to GitHub and import in Vercel (Framework preset: Other).
+
+## Links to send guests (studio controls hidden)
+Use the **Share** button inside any design, or build the link yourself:
+
+- Website: `https://YOUR-SITE.vercel.app/?guest=1#/site/editorial`
+- Invitation: `https://YOUR-SITE.vercel.app/?guest=1#/card/lotus_diya`
+
+Website ids: editorial, rajwada, pinkcity, sheeshmahal, thar, thread, boarding
+Card ids: lotus_diya, velvet_haveli, gold_foil, story_reel, emerald_gatefold, mehendi, diya
+
+## Editing details
+Open `index.html` and search for `CONFIG` (names, parents, date, RSVP date) and `EVENTS` (times, venues, dress codes).
+Set `rsvpWhatsApp` to a number like `919829012345` so RSVPs arrive on that WhatsApp.
+
+## Background music
+The invitations and the Shubh Vivah site play an original instrumental generated live in the browser (free, nothing to download).
+To use a recording instead, put a royalty-free MP3 named `music.mp3` in this folder next to index.html and redeploy — it's picked up automatically.

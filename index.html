@@ -823,6 +823,35 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 
 .couple__met { font-family: var(--fs); font-style: italic; font-size: clamp(21px, 2.4vw, 26px); line-height: 1.45; color: var(--ink); padding-top: 8px; }
 
+/* ---------- studio: clearer choice ---------- */
+.studio__sub b { color: var(--s-ink); font-weight: 600; }
+.picks { display: grid; gap: 14px; margin: 0 auto 28px; max-width: 920px; }
+@media (min-width: 760px) { .picks { grid-template-columns: 1fr 1fr; gap: 18px; } }
+.pick { position: relative; display: grid; grid-template-columns: 96px 1fr auto; align-items: center; gap: 16px; padding: 18px; border-radius: 18px; border: 1.5px solid var(--s-line); background: var(--s-surface); text-align: left; transition: border-color .25s, background .25s, transform .25s; }
+.pick:hover { transform: translateY(-2px); border-color: #5a4f42; }
+.pick.is-on { border-color: var(--s-gold); background: linear-gradient(160deg, #262017, #1b1815); box-shadow: 0 0 0 4px rgba(207,174,107,.12); }
+.pick__art svg { width: 96px; height: auto; display: block; }
+.pick__txt { display: grid; gap: 3px; }
+.pick__k { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--s-gold); }
+.pick__txt b { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 26px; line-height: 1.1; color: var(--s-ink); }
+.pick__what { font-size: 14px; color: var(--s-ink); opacity: .85; }
+.pick__use { font-size: 12.5px; color: var(--s-muted); }
+.pick__tick { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--s-line); color: var(--s-muted); }
+.pick.is-on .pick__tick { background: var(--s-gold); border-color: var(--s-gold); color: #12100e; }
+.pick__tick .ico { width: 16px; height: 16px; }
+@media (max-width: 420px) { .pick { grid-template-columns: 72px 1fr auto; padding: 14px; gap: 12px; } .pick__art svg { width: 72px; } .pick__txt b { font-size: 22px; } }
+.switchbar { position: sticky; top: 0; z-index: 20; display: flex; justify-content: center; padding: 10px 0; margin: 0 -20px 6px; background: linear-gradient(var(--s-bg) 70%, rgba(18,16,14,0)); }
+.switchbar .seg button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; }
+.switchbar .seg .ico { width: 16px; height: 16px; }
+.list-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 20px; margin: 18px 0 22px; padding-bottom: 16px; border-bottom: 1px solid var(--s-line); }
+.list-head h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(28px, 5vw, 38px); line-height: 1.1; }
+.list-head p { color: var(--s-muted); font-size: 14px; margin-top: 4px; }
+.list-switch { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--s-line); color: var(--s-gold); font-size: 13px; }
+.list-switch:hover { border-color: var(--s-gold); }
+.list-switch .ico { width: 16px; height: 16px; }
+.tile__type { position: absolute; left: 12px; top: 12px; z-index: 2; padding: 5px 10px; border-radius: 999px; background: rgba(18,16,14,.75); color: #f3ece0; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+@media (max-width: 520px) { .pill #pillMenu { width: auto; padding: 0 16px; height: 48px; } .pill #pillMenu .lbl { display: inline; } }
+
 /* =========================================================================
    INVITATIONS — pro openers
    ========================================================================= */
@@ -935,7 +964,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 
 /* ---------- EMERALD GATEFOLD ---------- */
 .ixg { --w: min(340px, 80vw); position: relative; width: var(--w); aspect-ratio: 3 / 4.3; perspective: 1800px; transform-style: preserve-3d; }
-.ixg__inner { position: absolute; inset: 0; overflow: hidden; border-radius: calc(var(--w) / 2) calc(var(--w) / 2) 6px 6px; background: #fbf9f3; box-shadow: 0 50px 90px -30px rgba(0,0,0,.75); }
+.ixg__inner { position: absolute; inset: 0; transform: translateZ(-2px); overflow: hidden; border-radius: calc(var(--w) / 2) calc(var(--w) / 2) 6px 6px; background: #fbf9f3; box-shadow: 0 50px 90px -30px rgba(0,0,0,.75); }
 .ixg__marble { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 38%, rgba(140,150,140,.16) 40%, transparent 43%), linear-gradient(62deg, transparent 58%, rgba(140,150,140,.12) 59.5%, transparent 62%), linear-gradient(150deg, transparent 70%, rgba(180,150,90,.12) 71%, transparent 73%), var(--grain); background-blend-mode: normal, normal, normal, multiply; opacity: .9; }
 .ixg__pop { position: absolute; left: var(--in); right: var(--in); top: var(--top); bottom: 0; border-radius: 999px 999px 0 0; transform-origin: 50% 100%; transform: scaleY(0); opacity: 0; }
 .ixg__pop.p3 { --in: 7%; --top: 7%; background: radial-gradient(circle at 50% 20%, #2b7a62, #163f33); box-shadow: inset 0 0 0 1px #c9ad6e; }
@@ -957,7 +986,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 .ixg__face.in { transform: rotateY(180deg); background: var(--grain), linear-gradient(180deg, #f8f3e6, #ece3cc); background-blend-mode: multiply; box-shadow: inset 0 0 0 6px #f8f3e6, inset 0 0 0 7px rgba(201,173,110,.7); }
 .ixg__shade { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
 .ixg__p.l .ixg__shade { background: linear-gradient(90deg, rgba(0,0,0,.65), rgba(0,0,0,.1)); } .ixg__p.r .ixg__shade { background: linear-gradient(270deg, rgba(0,0,0,.65), rgba(0,0,0,.1)); }
-.ixg__band { position: absolute; z-index: 5; left: -4%; right: -4%; top: 57%; height: 46px; transform: translateY(-50%); display: flex; align-items: center; justify-content: center; gap: 14px; background: linear-gradient(180deg, #f0d898 0%, #c9a24a 45%, #a8802e 55%, #e9cf87 100%); box-shadow: 0 8px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.5); overflow: visible; }
+.ixg__band { position: absolute; z-index: 5; left: -4%; right: -4%; top: 57%; height: 46px; transform: translateY(-50%) translateZ(6px); display: flex; align-items: center; justify-content: center; gap: 14px; background: linear-gradient(180deg, #f0d898 0%, #c9a24a 45%, #a8802e 55%, #e9cf87 100%); box-shadow: 0 8px 16px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.5); overflow: visible; }
 .ixg__band::after { content: ''; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 35%, rgba(255,255,240,.6) 48%, transparent 60%); background-size: 260% 100%; animation: shine 3.4s ease-in-out infinite; pointer-events: none; mix-blend-mode: overlay; }
 .ixg__bandtxt { font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #3d2a08; }
 .ixg__medal { position: relative; z-index: 1; flex: none; width: 74px; height: 74px; border-radius: 50%; filter: drop-shadow(0 6px 8px rgba(0,0,0,.45)); }
@@ -1254,6 +1283,158 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
   .rb__ribbon { width: 1400px; margin-left: -700px; }
 }
 
+/* =========================================================================
+   SHUBH VIVAH
+   ========================================================================= */
+.site[data-theme="shubh"] { --gold: #d4a64a; --gold2: #f1d58a; --cream: #f7ecd6; --brown: #2a1a0a; --maroon: #7a1424; background: var(--brown); color: var(--ink); font-family: 'Cormorant Garamond', serif; overflow-x: clip;
+  background-image: radial-gradient(120% 60% at 50% 0%, #3d2712 0%, transparent 60%), var(--pat); }
+.site[data-theme="shubh"][data-lang="hi"] .t { font-family: 'Tiro Devanagari Hindi', serif; letter-spacing: 0 !important; text-transform: none !important; }
+.site[data-theme="shubh"] .rv { transition-duration: 1.1s; }
+.sh-inv { font-family: 'Tiro Devanagari Hindi', serif; font-size: 17px; color: var(--gold); letter-spacing: .04em; }
+.sh-mono { display: flex; align-items: center; gap: 14px; width: 92px; height: 92px; justify-content: center; border-radius: 50%; border: 1px solid var(--gold); box-shadow: inset 0 0 0 5px var(--brown), inset 0 0 0 6px rgba(212,166,74,.5); font-family: 'Cinzel', serif; font-size: 26px; color: var(--gold2); }
+.sh-mono i { width: 1px; height: 30px; background: var(--gold); }
+
+/* ---------- gate ---------- */
+.sh-gate { position: fixed; inset: 0; z-index: 75; display: grid; place-items: center; overflow: hidden; }
+.sh-gate__half { position: absolute; top: 0; bottom: 0; width: 50.5%; background: radial-gradient(140% 90% at 100% 50%, #3d2712, #1d1206 70%); }
+.sh-gate__half::before { content: ''; position: absolute; inset: 0; background-image: var(--pat); opacity: .9; }
+.sh-gate__half.l { left: 0; box-shadow: inset -2px 0 0 var(--gold), inset -8px 0 0 rgba(212,166,74,.25); }
+.sh-gate__half.r { right: 0; background: radial-gradient(140% 90% at 0% 50%, #3d2712, #1d1206 70%); box-shadow: inset 2px 0 0 var(--gold), inset 8px 0 0 rgba(212,166,74,.25); }
+.sh-gate__lk { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; justify-content: space-around; padding: 0 4%; pointer-events: none; }
+.sh-gate__lk span, .sh-lks span { display: block; transform-origin: 50% 0; animation: swing 3.6s ease-in-out infinite; animation-delay: var(--d); }
+.lk { width: 20px; height: auto; display: block; filter: drop-shadow(0 4px 4px rgba(0,0,0,.4)); }
+@keyframes swing { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+.sh-gate__in { position: relative; z-index: 3; display: grid; justify-items: center; gap: 16px; padding: 24px; text-align: center; color: var(--cream); }
+.sh-gate__k { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .36em; text-transform: uppercase; color: #cdb994; }
+.sh-gate__names { font-style: italic; font-size: clamp(40px, 11vw, 64px); line-height: 1.05; }
+.sh-gate__names em { color: var(--gold); font-weight: 300; }
+.sh-gate__d { font-family: 'Cinzel', serif; letter-spacing: .3em; font-size: 15px; color: var(--gold2); }
+.sh-open { position: relative; margin-top: 18px; padding: 16px 30px; border-radius: 999px; border: 1px solid var(--gold); background: linear-gradient(180deg, rgba(212,166,74,.18), rgba(212,166,74,.06)); color: var(--gold2); font: 500 12px 'Inter', sans-serif; letter-spacing: .26em; text-transform: uppercase; }
+.sh-open__ring { position: absolute; inset: -8px; border-radius: 999px; border: 1px solid rgba(212,166,74,.6); animation: ring 2.4s ease-out infinite; pointer-events: none; }
+.sh-gate__note { font-size: 15px; font-style: italic; color: #a99673; }
+
+/* ---------- floating controls ---------- */
+.sh-ctl { position: fixed; z-index: 65; top: max(14px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); display: flex; gap: 8px; }
+.sh-ctl__b { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: rgba(42,26,10,.72); border: 1px solid rgba(212,166,74,.55); color: var(--gold2); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-family: 'Tiro Devanagari Hindi', serif; font-size: 15px; }
+.sh-ctl__b .t { font-family: inherit; }
+.eq { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
+.eq i { width: 3px; height: 4px; background: var(--gold2); border-radius: 1px; }
+.sh-ctl__b.on .eq i { animation: eq 1s ease-in-out infinite; } .sh-ctl__b.on .eq i:nth-child(2) { animation-delay: .2s; } .sh-ctl__b.on .eq i:nth-child(3) { animation-delay: .45s; } .sh-ctl__b.on .eq i:nth-child(4) { animation-delay: .1s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+
+/* ---------- hero ---------- */
+.sh-hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 150px 24px 70px; text-align: center; overflow: hidden; }
+.sh-lks { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 6%; pointer-events: none; z-index: 1; }
+.sh-lks.small { position: relative; justify-content: center; gap: 40px; margin-bottom: 10px; }
+.sh-swag { position: absolute; top: 0; left: 0; right: 0; height: 60px; z-index: 1; pointer-events: none; }
+.swag { width: 100%; height: 100%; display: block; }
+.sh-co { position: absolute; width: clamp(70px, 18vw, 110px); pointer-events: none; z-index: 1; }
+.sh-co svg { width: 100%; height: auto; display: block; }
+.sh-co.tl { left: 10px; top: 70px; } .sh-co.tr { right: 10px; top: 70px; transform: scaleX(-1); }
+.sh-co.bl { left: 10px; bottom: 10px; transform: scaleY(-1); } .sh-co.br { right: 10px; bottom: 10px; transform: scale(-1); }
+.sh-paper .sh-co.tl, .sh-paper .sh-co.tr { top: 10px; }
+.sh-co.dark svg g { stroke: #9a6a2a; }
+.sh-hero__in { position: relative; z-index: 2; display: grid; justify-items: center; gap: 16px; max-width: 560px; }
+.sh-k { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: .36em; text-transform: uppercase; color: #cdb994; }
+.sh-names { display: grid; font-weight: 400; font-style: italic; font-size: clamp(54px, 15vw, 96px); line-height: .98; color: var(--cream); }
+.sh-names em { font-weight: 300; font-size: .55em; color: var(--gold); line-height: 1.3; }
+.sh-date { font-family: 'Cinzel', serif; letter-spacing: .3em; font-size: 18px; color: var(--gold2); }
+.sh-day { font-size: 19px; font-style: italic; color: #cdb994; }
+.sh-scroll { display: grid; justify-items: center; gap: 8px; margin-top: 18px; font: 500 10px 'Inter', sans-serif; letter-spacing: .32em; text-transform: uppercase; color: #cdb994; text-decoration: none; }
+.sh-scroll i { width: 1px; height: 40px; background: linear-gradient(var(--gold), transparent); transform-origin: top; animation: cue 2.2s ease-in-out infinite; }
+
+/* ---------- sections ---------- */
+.sh-sec { position: relative; display: grid; justify-items: center; gap: 16px; padding: clamp(80px, 12vw, 120px) 22px; text-align: center; }
+.sh-h { font-family: 'Cinzel', serif; font-weight: 500; font-size: clamp(30px, 7vw, 46px); letter-spacing: .06em; color: var(--gold2); line-height: 1.15; }
+.sh-h.dark { color: var(--maroon); }
+.sh-sub { margin-top: -6px; font-style: italic; font-size: 19px; color: #cdb994; }
+.sh-sub.dark { color: #7a5a3a; }
+.sh-paper { background: var(--grain), linear-gradient(180deg, #fbf3e3, #f3e5c8); background-blend-mode: multiply; color: #3a2410; box-shadow: inset 0 0 0 10px #2a1a0a, inset 0 0 0 11px var(--gold); }
+.sh-ganesh .sh-wreath { width: min(420px, 100%); margin-bottom: -10px; }
+.sh-wreath svg { width: 100%; height: auto; display: block; }
+.sh-lotus { width: min(240px, 66vw); }
+.sh-lotus svg { width: 100%; height: auto; display: block; overflow: visible; }
+.om-glow { animation: omg 4s ease-in-out infinite; transform-origin: 0 -40px; transform-box: view-box; }
+@keyframes omg { 50% { opacity: .55; } }
+.sh-shloka { font-family: 'Tiro Devanagari Hindi', serif; font-size: clamp(19px, 5vw, 24px); line-height: 1.8; color: var(--gold2); }
+.sh-gloss { max-width: 440px; font-style: italic; font-size: 18px; line-height: 1.55; color: #cdb994; }
+.sh-formal { max-width: 460px; font-style: italic; font-size: 20px; line-height: 1.6; color: #5a3a1e; }
+.sh-couple { display: grid; justify-items: center; gap: 10px; margin-top: 8px; }
+.sh-p { display: grid; justify-items: center; gap: 2px; }
+.sh-p small { font-size: 15px; font-style: italic; color: #9a6a2a; }
+.sh-p b { font-weight: 500; font-style: italic; font-size: clamp(36px, 10vw, 50px); line-height: 1.05; color: var(--maroon); }
+.sh-p span { font: 500 11px 'Inter', sans-serif; letter-spacing: .26em; text-transform: uppercase; color: #7a5a3a; }
+.sh-with { font-family: 'Great Vibes', cursive; font-size: 32px; color: #9a6a2a; }
+.site[data-lang="hi"] .sh-with .t { font-family: 'Tiro Devanagari Hindi', serif; font-size: 22px; }
+.sh-garland { width: min(420px, 100%); height: 60px; margin-top: 10px; }
+
+.sh-evs { display: grid; gap: 22px; width: 100%; max-width: 1080px; margin-top: 14px; }
+@media (min-width: 760px) { .sh-evs { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1100px) { .sh-evs { grid-template-columns: repeat(3, 1fr); } }
+.sh-ev { position: relative; display: grid; justify-items: center; align-content: start; gap: 10px; padding: 30px 22px 24px; border-radius: 16px; background: var(--grain), linear-gradient(180deg, #fbf3e3, #f1e2c4); background-blend-mode: multiply; color: #3a2410; box-shadow: 0 20px 40px -20px rgba(0,0,0,.6), inset 0 0 0 1px rgba(154,106,42,.4), inset 0 0 0 6px #fbf3e3, inset 0 0 0 7px rgba(154,106,42,.35); }
+.sh-ev__art { width: 92px; height: 92px; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle, #fff8ea, #f3dfb8); box-shadow: 0 0 0 1px #d4a64a, 0 0 0 5px #fbf3e3, 0 0 0 6px rgba(212,166,74,.45); }
+.sh-ev__art svg { width: 64px; height: 64px; }
+.sh-ev__k { font: 500 10px 'Inter', sans-serif; letter-spacing: .28em; text-transform: uppercase; color: #9a6a2a; margin-top: 6px; }
+.sh-ev__n { font-family: 'Cinzel', serif; font-weight: 500; font-size: 28px; color: var(--maroon); letter-spacing: .04em; }
+.sh-ev__time { font-size: 18px; font-style: italic; color: #5a3a1e; }
+.sh-ev__d { font-size: 17px; line-height: 1.5; color: #6a4a2e; max-width: 320px; }
+.sh-ev__meta { display: grid; gap: 6px; width: 100%; padding-top: 12px; border-top: 1px dashed rgba(154,106,42,.45); font: 400 13px/1.5 'Inter', sans-serif; color: #5a3a1e; text-align: left; }
+.sh-ev__meta div { display: flex; gap: 8px; align-items: flex-start; }
+.sh-ev__meta .ico { width: 16px; height: 16px; margin-top: 2px; color: #9a6a2a; }
+.sh-ev__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 6px; }
+.sh-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid #9a6a2a; color: #5a3a1e; background: transparent; font: 500 11px 'Inter', sans-serif; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: background .2s, color .2s; }
+.sh-btn:hover { background: #5a3a1e; color: #fbf3e3; }
+.sh-btn .ico { width: 15px; height: 15px; }
+.sh-cal { position: relative; }
+.sh-cal__m { position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 8px); min-width: 210px; transform: translateX(-50%) translateY(6px); display: grid; padding: 6px; border-radius: 12px; background: #2a1a0a; box-shadow: 0 14px 30px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+.sh-cal.open .sh-cal__m { opacity: 1; pointer-events: auto; transform: translateX(-50%); }
+.sh-cal__m a, .sh-cal__m button { display: block; padding: 11px 12px; border-radius: 8px; color: var(--cream); font: 500 13px 'Inter', sans-serif; text-decoration: none; text-align: left; }
+.sh-cal__m a:hover, .sh-cal__m button:hover { background: rgba(212,166,74,.18); }
+
+/* ---------- RSVP ---------- */
+.sh-form { position: relative; display: grid; gap: 18px; width: min(100%, 480px); margin-top: 10px; text-align: left; }
+.sh-f { display: grid; gap: 8px; border: 0; margin: 0; padding: 0; }
+.sh-f label, .sh-f legend, .sh-lbl { padding: 0; font: 500 11px 'Inter', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #7a5a3a; }
+.sh-f input, .sh-f textarea { width: 100%; min-height: 50px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(154,106,42,.45); background: rgba(255,250,240,.75); color: #3a2410; font: 400 16px 'Inter', sans-serif; }
+.sh-f textarea { min-height: 96px; resize: vertical; }
+.sh-f input:focus, .sh-f textarea:focus { outline: none; border-color: #9a6a2a; box-shadow: 0 0 0 3px rgba(212,166,74,.25); }
+.sh-chips { display: flex; gap: 8px; }
+.sh-chips.wrap { flex-wrap: wrap; }
+.sh-chips label { position: relative; flex: 1 1 auto; text-transform: none; letter-spacing: 0; font: 400 15px 'Inter', sans-serif; color: #3a2410; }
+.sh-chips input { position: absolute; opacity: 0; }
+.sh-chips span { display: flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(154,106,42,.45); background: rgba(255,250,240,.6); text-align: center; transition: background .2s, color .2s, border-color .2s; }
+.sh-chips input:checked + span { background: #5a1a14; border-color: #5a1a14; color: #fbf3e3; }
+.sh-chips input:focus-visible + span { outline: 2px solid #9a6a2a; outline-offset: 2px; }
+.sh-step { display: inline-flex; align-items: center; gap: 4px; justify-self: start; padding: 4px; border-radius: 999px; border: 1px solid rgba(154,106,42,.45); background: rgba(255,250,240,.6); }
+.sh-step button { width: 44px; height: 44px; border-radius: 50%; font-size: 22px; color: #5a1a14; }
+.sh-step button:hover { background: rgba(212,166,74,.25); }
+.sh-step output { min-width: 40px; text-align: center; font: 600 20px 'Inter', sans-serif; color: #3a2410; display: inline-block; }
+.sh-tick { display: flex; align-items: flex-start; gap: 10px; font: 400 14px/1.5 'Inter', sans-serif; color: #5a3a1e; }
+.sh-tick input { width: 20px; height: 20px; margin-top: 1px; accent-color: #5a1a14; flex: none; }
+.sh-send { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; width: 100%; border-radius: 999px; background: linear-gradient(180deg, #6a1e18, #4a120e); color: #fbecc8; font: 600 12px 'Inter', sans-serif; letter-spacing: .22em; text-transform: uppercase; text-decoration: none; box-shadow: 0 10px 20px -10px rgba(74,18,14,.8), inset 0 0 0 1px rgba(241,213,138,.4); }
+.sh-send .ico { width: 18px; height: 18px; }
+.sh-ok { display: none; justify-items: center; gap: 14px; text-align: center; padding: 10px 0; }
+.sh-ok h3 { font-family: 'Cinzel', serif; font-weight: 500; font-size: 30px; color: var(--maroon); }
+.sh-ok p { font-size: 19px; font-style: italic; line-height: 1.5; color: #5a3a1e; }
+.sh-form.done > *:not(.sh-ok) { display: none; }
+.sh-form.done .sh-ok { display: grid; }
+
+.sh-wall { display: grid; gap: 14px; width: min(100%, 560px); }
+.sh-b { margin: 0; padding: 22px; border-radius: 14px; border: 1px solid rgba(212,166,74,.35); background: rgba(255,240,210,.05); }
+.sh-b blockquote { margin: 0 0 8px; font-style: italic; font-size: 20px; line-height: 1.5; color: var(--cream); }
+.sh-b figcaption { font: 500 12px 'Inter', sans-serif; letter-spacing: .08em; color: #cdb994; }
+.sh-empty { padding: 26px; border-radius: 14px; border: 1px dashed rgba(212,166,74,.45); font-style: italic; font-size: 19px; color: #cdb994; }
+.sh-empty a { color: var(--gold2); }
+.sh-cd { display: flex; justify-content: center; gap: clamp(14px, 5vw, 36px); }
+.sh-cd div { display: grid; justify-items: center; gap: 6px; min-width: 64px; padding: 16px 8px; border-radius: 12px; border: 1px solid rgba(212,166,74,.35); background: rgba(255,240,210,.04); }
+.sh-cd b { font-family: 'Cinzel', serif; font-weight: 500; font-size: clamp(30px, 8vw, 46px); line-height: 1; color: var(--gold2); font-variant-numeric: tabular-nums; }
+.sh-cd span { font: 500 10px 'Inter', sans-serif; letter-spacing: .22em; text-transform: uppercase; color: #cdb994; }
+.sh-close { padding-top: 0; padding-bottom: 130px; }
+.sh-close__t { font-style: italic; font-size: clamp(26px, 6vw, 34px); color: var(--cream); max-width: 480px; line-height: 1.3; }
+.sh-close__f { font: 500 12px 'Inter', sans-serif; letter-spacing: .24em; text-transform: uppercase; color: #cdb994; }
+.sh-tag { font-family: 'Cinzel', serif; font-size: 18px; letter-spacing: .1em; color: var(--gold2); }
+.sh-diya { width: 70px; } .sh-diya svg { width: 100%; height: auto; display: block; }
+
 </style>
 </head>
 <body>
@@ -1262,7 +1443,7 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
 <div id="cardView" class="view cardview"></div>
 
 <nav class="pill" id="pill" aria-label="Design studio controls" hidden>
-  <button id="pillMenu" aria-label="Open designs menu"><svg class="ico" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span class="lbl">Designs</span></button>
+  <button id="pillMenu" aria-label="Open designs menu"><svg class="ico" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg><span class="lbl">All designs</span></button>
   <span class="sep"></span>
   <button id="pillPrev" aria-label="Previous design"><svg class="ico" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
   <button id="pillNext" aria-label="Next design"><svg class="ico" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
@@ -1399,6 +1580,10 @@ const PATTERNS = {
 
 /* ---------------------------- WEBSITES ---------------------------------- */
 const SITES = [
+  { id: 'shubh', name: 'Shubh Vivah', desc: 'A traditional bilingual invitation site: tap-to-open with music, Hindi/English switch, Ganesh vandana, family invitation, celebration cards with calendar links, detailed RSVP, blessings wall and countdown.', tags: ['Traditional', 'हिंदी + English'],
+    hero: 'shubh', pattern: ['jaali', '#d4a64a'], img: 'warm', dark: true,
+    v: { bg: '#2a1a0a', alt: '#33210f', surface: '#3a2614', ink: '#f6ead2', muted: '#cdb994', accent: '#d4a64a', accent2: '#b3162d', line: '#5a4223',
+      heroBg: '#2a1a0a', heroInk: '#f6ead2', fd: "'Cinzel', serif", fs: "'Cormorant Garamond', serif", fb: "'Inter', sans-serif", dcase: 'none', dweight: 500, radius: '10px' } },
   { id: 'editorial', name: 'Our Love Story', desc: 'A “welcome to our love story” splash, photo-collage hero, shuffle-through story photos, illustrated venue, details bento and a scroll-reveal vision quote.', tags: ['Editorial', 'Interactive'],
     hero: 'editorial', pattern: ['lines', '#1d1a17'], img: 'mono',
     v: { bg: '#f6f2ea', alt: '#ece5d8', surface: '#fffdf8', ink: '#1d1a17', muted: '#6b6158', accent: '#9e4733', accent2: '#b88b4a', line: '#d9cdb9',
@@ -1501,7 +1686,7 @@ const CARDS = [
 ];
 
 /* Curated selection shown in the studio (5 + 5). Add ids here to show more. */
-const SHOW_SITES = ['thread', 'boarding', 'editorial', 'rajwada', 'pinkcity', 'sheeshmahal', 'thar'];
+const SHOW_SITES = ['shubh', 'thread', 'boarding', 'editorial', 'rajwada', 'pinkcity', 'sheeshmahal', 'thar'];
 const SHOW_CARDS = ['painted_letter', 'mehendi', 'diya', 'lotus_diya', 'velvet_haveli', 'gold_foil', 'story_reel', 'emerald_gatefold'];
 const ACTIVE_SITES = SHOW_SITES.map(id => SITES.find(s => s.id === id));
 const ACTIVE_CARDS = SHOW_CARDS.map(id => CARDS.find(c => c.id === id));
@@ -1770,6 +1955,7 @@ function render() {
   else if (app.route.type === 'site') { renderSite(findSite(app.route.id)); $('#siteView').classList.add('is-active'); pill.hidden = GUEST; }
   else { renderCard(findCard(app.route.id)); $('#cardView').classList.add('is-active'); pill.hidden = GUEST; }
   renderDrawer();
+  if (app.route.type !== 'home' && !GUEST && !store.get('yn-tip', false)) { store.set('yn-tip', true); setTimeout(() => toast('Tip: tap “All designs” (bottom-left) to switch designs'), 1400); }
   const html = document.documentElement; html.style.scrollBehavior = 'auto'; window.scrollTo(0, 0); html.style.scrollBehavior = '';
   window.dispatchEvent(new Event('scroll'));
   tick();
@@ -1785,6 +1971,7 @@ function thumbSite(s) {
   else if (s.hero === 'editorial') inner = `<div style="width:100%;display:grid;grid-template-columns:1.4fr 1fr;gap:14px;align-items:end;text-align:left"><div style="font-family:${v.fd};font-size:clamp(28px,4vw,40px);line-height:.92">${CONFIG.groom}<br><i style="font-family:${v.fs};font-size:.5em;color:${v.accent}">and</i><br>${CONFIG.bride}</div><div class="img-mono" style="aspect-ratio:4/5;overflow:hidden">${img.replace('alt=""', 'alt="" style="width:100%;height:100%;object-fit:cover"')}</div></div>`;
   else if (s.hero === 'split') inner = `<div style="width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:14px;align-items:center;text-align:left"><div><div class="thumb__names" style="font-family:${v.fd}">${CONFIG.groom} &amp; ${CONFIG.bride}</div><div class="thumb__meta" style="color:${v.accent}">${CONFIG.dateShort}</div></div><div class="img-warm" style="aspect-ratio:4/5;overflow:hidden;border-radius:999px 999px 0 0">${img.replace('alt=""', 'alt="" style="width:100%;height:100%;object-fit:cover"')}</div></div>`;
   else if (s.hero === 'dunes') inner = `<div style="position:absolute;left:50%;bottom:22%;width:42%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#ffe2a6,#f7b267 55%,transparent 72%)"></div>${dunesSVG('position:absolute;left:0;right:0;bottom:0;width:100%;height:40%')}<div style="position:relative;align-self:start;margin-top:12%"><div class="thumb__names" style="font-family:${v.fd};font-style:italic">${CONFIG.groom} &amp; ${CONFIG.bride}</div><div class="thumb__meta">${CONFIG.dateShort}</div></div>`;
+  else if (s.hero === 'shubh') inner = `<div style="display:grid;gap:8px;justify-items:center"><div style="font-family:'Tiro Devanagari Hindi';color:#d4a64a;font-size:12px">॥ श्री गणेशाय नमः ॥</div><div style="font-family:Cinzel;font-size:10px;letter-spacing:.3em;color:#cdb994">YOU ARE INVITED</div><div style="font-family:'Cormorant Garamond';font-style:italic;font-size:30px;color:#f6ead2">${CONFIG.groom} <span style="color:#d4a64a">&amp;</span> ${CONFIG.bride}</div><div style="width:54px;height:54px;border:1px solid #d4a64a;border-radius:50%;display:grid;place-items:center;font-family:Cinzel;color:#d4a64a">${CONFIG.groom[0]}|${CONFIG.bride[0]}</div></div>`;
   else if (s.hero === 'pass') inner = `<div style="width:92%;background:#fbfaf7;color:#14202b;border-radius:8px;display:grid;grid-template-columns:1fr 64px;text-align:left;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.3)"><div style="padding:12px 14px"><div style="font-size:8px;letter-spacing:.2em;color:#c4472c">FLIGHT YN1212</div><div style="font-family:'Space Grotesk';font-size:26px;line-height:1.1;margin:4px 0">ANY → JAI</div><div style="font-size:9px;letter-spacing:.14em;color:#5f6b75">YOGESH &amp; NIKITA · 12 DEC</div></div><div style="background:#f1eee7;border-left:1.5px dashed #cfcabe;display:grid;place-items:center"><div style="width:36px;height:30px;background:repeating-linear-gradient(90deg,#14202b 0 2px,transparent 2px 4px)"></div></div></div>`;
   const bg = s.hero === 'split' ? `background:${v.heroBg};background-image:${PATTERNS[s.pattern[0]](s.pattern[1])}` : `background:${v.heroBg}`;
   return `<div class="thumb" style="${bg.replace(/"/g, '&quot;')};color:${v.heroInk}">${inner}</div>`;
@@ -1796,20 +1983,31 @@ function thumbCard(c) {
   return `<div class="thumb" style="background:${v.stage}">${inner}</div>`;
 }
 function renderStudio() {
-  const list = studioTab === 'site' ? ACTIVE_SITES : ACTIVE_CARDS;
+  const isSite = studioTab === 'site', list = isSite ? ACTIVE_SITES : ACTIVE_CARDS;
+  const choice = (k, title, what, use, n, art) => `<button class="pick ${studioTab === k ? 'is-on' : ''}" data-tab="${k}" role="tab" aria-selected="${studioTab === k}">
+      <span class="pick__art">${art}</span>
+      <span class="pick__txt"><span class="pick__k">${n} designs</span><b>${title}</b><span class="pick__what">${what}</span><span class="pick__use">${use}</span></span>
+      <span class="pick__tick">${I('arrow')}</span></button>`;
+  const siteArt = `<svg viewBox="0 0 120 90" aria-hidden="true"><rect x="6" y="6" width="108" height="78" rx="8" fill="#1d1a17" stroke="#cfae6b"/><rect x="6" y="6" width="108" height="14" rx="8" fill="#2a2520"/><circle cx="16" cy="13" r="2.4" fill="#cfae6b"/><circle cx="24" cy="13" r="2.4" fill="#8a7a5c"/><circle cx="32" cy="13" r="2.4" fill="#8a7a5c"/><rect x="18" y="28" width="50" height="7" rx="2" fill="#f3ece0"/><rect x="18" y="40" width="34" height="4" rx="2" fill="#a39a8c"/><rect x="18" y="52" width="26" height="10" rx="5" fill="#cfae6b"/><rect x="76" y="28" width="30" height="34" rx="4" fill="#3a332b"/><rect x="18" y="68" width="88" height="8" rx="2" fill="#2e2924"/></svg>`;
+  const cardArt = `<svg viewBox="0 0 120 90" aria-hidden="true"><rect x="38" y="4" width="44" height="82" rx="8" fill="#1d1a17" stroke="#cfae6b"/><path d="M44 30h32v34H44z" fill="#f3e7d3"/><path d="M44 30l16 14 16-14" fill="none" stroke="#b89a70"/><circle cx="60" cy="46" r="5" fill="#a51e2f"/><rect x="52" y="12" width="16" height="3" rx="1.5" fill="#3a332b"/><path d="M90 30c6 4 6 14 0 18M98 24c10 8 10 22 0 30" fill="none" stroke="#cfae6b" stroke-linecap="round"/><path d="M14 40l10 4-10 4z" fill="#cfae6b" opacity=".7"/></svg>`;
   $('#studio').innerHTML = `<div class="studio__inner">
     <header class="studio__head">
-      <div class="studio__kicker">Wedding design studio · ${CONFIG.dateShort} · Jaipur</div>
+      <div class="studio__kicker">${CONFIG.dateShort} · Jaipur</div>
       <h1 class="studio__title">${CONFIG.groom} <em>&amp;</em> ${CONFIG.bride}</h1>
-      <p class="studio__sub">Choose a wedding website or a digital invitation to preview. Each design opens full-screen — use the <b>Designs</b> button at the bottom to switch or come back here.</p>
-      <div class="seg" role="tablist" aria-label="Design type">
-        <button role="tab" aria-selected="${studioTab === 'site'}" data-tab="site">Websites<span class="count">${ACTIVE_SITES.length}</span></button>
-        <button role="tab" aria-selected="${studioTab === 'card'}" data-tab="card">Invitations<span class="count">${ACTIVE_CARDS.length}</span></button>
-      </div>
+      <p class="studio__sub">Two things to choose: a <b>website</b> for the wedding, and an <b>invitation</b> to send. Pick a type, then tap any design to see it full-screen.</p>
     </header>
+    <div class="picks" role="tablist" aria-label="What do you want to see?">
+      ${choice('site', 'Wedding Website', 'The full site guests open and browse.', 'Schedule · venues · travel · RSVP', ACTIVE_SITES.length, siteArt)}
+      ${choice('card', 'Digital Invitation', 'An animated card you send on WhatsApp.', 'Opens with an animation · tap to reveal', ACTIVE_CARDS.length, cardArt)}
+    </div>
+    <div class="switchbar" id="switchbar"><div class="seg" role="tablist" aria-label="Design type">
+        <button role="tab" aria-selected="${isSite}" data-tab="site">${I('globe')} Websites<span class="count">${ACTIVE_SITES.length}</span></button>
+        <button role="tab" aria-selected="${!isSite}" data-tab="card">${I('chat')} Invitations<span class="count">${ACTIVE_CARDS.length}</span></button></div></div>
+    <div class="list-head" id="listHead"><div><h2>${isSite ? 'Wedding website designs' : 'Invitation designs'}</h2><p>${list.length} designs · tap one to preview it full-screen</p></div>
+      <button class="list-switch" data-tab="${isSite ? 'card' : 'site'}">${isSite ? 'See invitations instead' : 'See websites instead'} ${I('arrow')}</button></div>
     <div class="grid">${list.map((d, i) => `
-      <a class="tile ${studioTab === 'card' ? 'tile--card' : ''}" href="#/${studioTab}/${d.id}" aria-label="Preview ${esc(d.name)}">
-        <div class="tile__preview">${studioTab === 'site' ? thumbSite(d) : thumbCard(d)}</div>
+      <a class="tile ${isSite ? '' : 'tile--card'}" href="#/${studioTab}/${d.id}" aria-label="Preview ${esc(d.name)}">
+        <div class="tile__preview">${isSite ? thumbSite(d) : thumbCard(d)}<span class="tile__type">${isSite ? 'Website' : 'Invitation'}</span></div>
         <div class="tile__body">
           <div class="tile__row"><span class="tile__num">${String(i + 1).padStart(2, '0')}${d.original ? ' · ORIGINAL' : ''}</span><span class="tile__num">${d.tags.filter((t) => t !== 'New' && t !== 'Original').join(' · ')}</span></div>
           <div class="tile__name">${esc(d.name)}</div>
@@ -1818,9 +2016,9 @@ function renderStudio() {
         </div>
       </a>`).join('')}
     </div>
-    <p class="studio__foot">Share a design with guests using the share button inside each preview — guests see only the design, without these studio controls.</p>
+    <p class="studio__foot">Inside any preview, tap <b>All designs</b> (bottom-left) to come back or switch. Use <b>Share</b> to copy a clean link for guests.</p>
   </div>`;
-  $$('#studio [data-tab]').forEach((b) => b.addEventListener('click', () => { studioTab = b.dataset.tab; store.set('yn-tab', studioTab); renderStudio(); }));
+  $$('#studio [data-tab]').forEach((b) => b.addEventListener('click', () => { const changed = studioTab !== b.dataset.tab; studioTab = b.dataset.tab; store.set('yn-tab', studioTab); renderStudio(); if (changed || b.classList.contains('pick') || b.classList.contains('list-switch')) { const h = $('#listHead'); if (h && (b.classList.contains('pick') || b.classList.contains('list-switch') || scrollY > h.offsetTop)) window.scrollTo({ top: h.getBoundingClientRect().top + scrollY - 80, behavior: REDUCED ? 'auto' : 'smooth' }); } }));
 }
 
 /* ---------------- DRAWER + PILL ---------------- */
@@ -2072,6 +2270,11 @@ function renderSite(s) {
   root.style.setProperty('--pat', PATTERNS[s.pattern[0]](s.pattern[1]));
   root.style.setProperty('--wave', svgUrl(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'><path d='M0 40V22C240 0 480 0 720 18s480 22 720 0v22z' fill='${s.v.alt}'/></svg>`));
   NAV = s.id === 'editorial' ? NAV_LOVE : NAV_DEFAULT;
+  if (s.id === 'shubh') {
+    NAV = []; root.innerHTML = shubhHTML(s); document.title = `${CONFIG.groom} & ${CONFIG.bride} — Shubh Vivah`;
+    root.addEventListener('click', onSiteClick); app.cleanup.push(() => root.removeEventListener('click', onSiteClick));
+    initShubh(root); revealAll(root); return;
+  }
   root.innerHTML = s.id === 'editorial' ? loveHTML(s) : siteHTML(s);
   const clock = $('[data-clock]', root);
   if (clock) { const upd = () => { clock.textContent = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata' }) + ' IST'; }; upd(); const ci = setInterval(upd, 15000); app.cleanup.push(() => clearInterval(ci)); }
@@ -2375,6 +2578,90 @@ function paperHTML(c) {
 }
 
 /* =========================================================================
+   BACKGROUND MUSIC
+   1) If a file named music.mp3 sits next to index.html, it is used (loop).
+   2) Otherwise an original royalty-free piece is generated live in the
+      browser: tanpura drone + bansuri-style melody in Raag Yaman + soft
+      tabla (keherwa) + santoor shimmer. Nothing is downloaded.
+   ========================================================================= */
+const MUSIC = (() => {
+  let ctx, master, rev, on = false, timer = null, nodes = [], file = null, fileOk = null, nextT = 0, step = 0;
+  const SA = 293.66, BPM = 76, BEAT = 60 / BPM;
+  const deg = { '-5': -5, '-6': -3, '-7': -1, 1: 0, 2: 2, 3: 4, 4: 6, 5: 7, 6: 9, 7: 11, 8: 12, 9: 14, 10: 16 };
+  const hz = (d) => SA * Math.pow(2, deg[d] / 12);
+  // original melody, [degree, beats]; 0 = rest
+  const A = [[-7, 1], [1, .5], [3, .5], [5, 2], [4, .5], [3, .5], [2, 1], [3, 2.5], [0, .5], [3, .5], [4, .5], [5, 1], [6, 1], [5, 2], [0, 1]];
+  const B = [[5, 1], [6, .5], [7, .5], [8, 2], [7, .5], [6, .5], [5, 1], [6, 1], [4, .5], [3, .5], [2, 1], [3, 3], [0, 1]];
+  const C = [[8, 1.5], [9, .5], [8, 1], [7, 1], [6, .5], [7, .5], [6, .5], [5, .5], [4, 1], [5, 2], [3, .5], [4, .5], [5, .5], [3, .5], [2, 1], [1, 3], [0, 1]];
+  const SONG = [...A, ...B, ...A, ...C];
+  const TABLA = ['dha', 0, 'ge', 'na', 'ti', 'na', 'ka', 'dhin', 'na', 0, 'dha', 'ge', 'na', 'ti', 'dhin', 0]; // eighth notes
+  let mi = 0, mT = 0, ti = 0, tT = 0, voice = null;
+
+  function impulse(c) { const len = c.sampleRate * 3, b = c.createBuffer(2, len, c.sampleRate); for (let ch = 0; ch < 2; ch++) { const d = b.getChannelData(ch); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.4); } return b; }
+  function out(node, wet = .35) { const g = ctx.createGain(); g.gain.value = wet; node.connect(master); node.connect(g); g.connect(rev); }
+  function drone() {
+    [146.83, 220, 293.66, 146.83 * 1.002, 73.42].forEach((f, i) => { const o = ctx.createOscillator(), g = ctx.createGain(), fl = ctx.createBiquadFilter(), l = ctx.createOscillator(), lg = ctx.createGain();
+      o.type = 'sawtooth'; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = 700 + i * 120; fl.Q.value = 4; g.gain.value = i === 4 ? .02 : .014;
+      l.frequency.value = .11 + i * .037; lg.gain.value = 500; l.connect(lg); lg.connect(fl.frequency);
+      o.connect(fl); fl.connect(g); out(g, .5); o.start(); l.start(); nodes.push(o, l); });
+  }
+  function makeVoice() { // one continuous bansuri-like voice with glide + vibrato
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), fl = ctx.createBiquadFilter(), vib = ctx.createOscillator(), vg = ctx.createGain(), br = ctx.createBufferSource(), bf = ctx.createBiquadFilter(), bg = ctx.createGain();
+    o.type = 'sine'; o2.type = 'triangle'; o2.detune.value = 3; vib.frequency.value = 5.2; vg.gain.value = 0; vib.connect(vg); vg.connect(o.frequency); vg.connect(o2.frequency);
+    const g2 = ctx.createGain(); g2.gain.value = .35; o2.connect(g2); g2.connect(fl); o.connect(fl); fl.type = 'lowpass'; fl.frequency.value = 2400; fl.connect(g); g.gain.value = 0;
+    const nb = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate), d = nb.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    br.buffer = nb; br.loop = true; bf.type = 'bandpass'; bf.Q.value = 2; bg.gain.value = 0; br.connect(bf); bf.connect(bg); bg.connect(g);
+    out(g, .45); [o, o2, vib, br].forEach((n) => { n.start(); nodes.push(n); });
+    return { o, o2, g, vg, bf, bg };
+  }
+  function note(d, t, dur) {
+    const v = voice; if (!d) { v.g.gain.setTargetAtTime(0.0001, t, .08); v.bg.gain.setTargetAtTime(0, t, .05); return; }
+    const f = hz(d); [v.o, v.o2].forEach((o) => o.frequency.setTargetAtTime(f, t, .035));
+    v.bf.frequency.setTargetAtTime(f * 2, t, .02);
+    v.g.gain.cancelScheduledValues(t); v.g.gain.setTargetAtTime(.11, t, .06); v.g.gain.setTargetAtTime(.075, t + .25, .3);
+    v.bg.gain.setTargetAtTime(.02, t, .02); v.bg.gain.setTargetAtTime(.006, t + .12, .1);
+    v.vg.gain.setValueAtTime(0, t); v.vg.gain.linearRampToValueAtTime(dur > .6 ? f * .012 : 0, t + Math.min(dur, .5));
+    if (Math.random() < .3 && dur >= 1) pluck(f * 2, t + dur * .5, .035);
+  }
+  function pluck(f, t, amp = .05) { [1, 2, 3.01].forEach((h, k) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = k ? 'sine' : 'triangle'; o.frequency.value = f * h; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(amp / (h * h), t + .008); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.2 / h); o.connect(g); out(g, .6); o.start(t); o.stop(t + 2.4); }); }
+  function tabla(kind, t) {
+    if (!kind) return;
+    const low = kind === 'dha' || kind === 'dhin' || kind === 'ge';
+    if (low) { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(kind === 'ge' ? 110 : 130, t); o.frequency.exponentialRampToValueAtTime(kind === 'ge' ? 70 : 85, t + .25); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(kind === 'ge' ? .12 : .18, t + .006); g.gain.exponentialRampToValueAtTime(0.0001, t + .45); o.connect(g); out(g, .2); o.start(t); o.stop(t + .5); }
+    if (kind !== 'ge') { const o = ctx.createOscillator(), g = ctx.createGain(), o2 = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = kind === 'ka' ? 520 : 587; o2.type = 'sine'; o2.frequency.value = (kind === 'ka' ? 520 : 587) * 2.76; const amp = kind === 'ti' || kind === 'ka' ? .035 : .06;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(amp, t + .003); g.gain.exponentialRampToValueAtTime(0.0001, t + (kind === 'na' || kind === 'dhin' ? .5 : .12)); o.connect(g); o2.connect(g); out(g, .25); o.start(t); o2.start(t); o.stop(t + .6); o2.stop(t + .6); }
+  }
+  function schedule() {
+    const now = ctx.currentTime, ahead = now + .35;
+    while (mT < ahead) { const [d, b] = SONG[mi]; note(d, mT, b * BEAT); mT += b * BEAT; mi = (mi + 1) % SONG.length; if (mi === 0) mT += BEAT; }
+    while (tT < ahead) { if (step > 3) tabla(TABLA[ti], tT); tT += BEAT / 2; ti = (ti + 1) % TABLA.length; if (ti === 0) step++; }
+  }
+  function startSynth() {
+    ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume();
+    master = ctx.createGain(); master.gain.setValueAtTime(0.0001, ctx.currentTime); master.gain.exponentialRampToValueAtTime(.7, ctx.currentTime + 4); master.connect(ctx.destination);
+    rev = ctx.createConvolver(); rev.buffer = impulse(ctx); const rg = ctx.createGain(); rg.gain.value = .55; rev.connect(rg); rg.connect(master);
+    drone(); voice = makeVoice(); step = 0; mi = 0; ti = 0; mT = ctx.currentTime + BEAT * 4; tT = ctx.currentTime + BEAT * 2;
+    timer = setInterval(schedule, 90); schedule();
+  }
+  function stopSynth() { clearInterval(timer); timer = null; if (!master) return; const m = master, n = nodes; nodes = []; master = null;
+    try { m.gain.cancelScheduledValues(ctx.currentTime); m.gain.setValueAtTime(Math.max(.0001, m.gain.value), ctx.currentTime); m.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2); } catch (e) {}
+    setTimeout(() => { n.forEach((o) => { try { o.stop(); } catch (e) {} }); try { m.disconnect(); } catch (e) {} }, 1400); }
+  function fadeFile(to, ms, done) { const a = file, from = a.volume, t0 = performance.now(); const f = (now) => { const k = Math.min(1, (now - t0) / ms); a.volume = from + (to - from) * k; if (k < 1) requestAnimationFrame(f); else if (done) done(); }; requestAnimationFrame(f); }
+  function start() {
+    if (on) return; on = true;
+    if (fileOk === false || location.protocol === 'file:') return startSynth();
+    try {
+      file = file || new Audio('music.mp3'); file.loop = true; file.volume = 0;
+      const fail = () => { fileOk = false; if (on) startSynth(); };
+      file.addEventListener('error', fail, { once: true });
+      file.play().then(() => { fileOk = true; fadeFile(.6, 2500); }).catch(fail);
+    } catch (e) { fileOk = false; startSynth(); }
+  }
+  function stop() { if (!on) return; on = false; if (fileOk && file) fadeFile(0, 900, () => file.pause()); stopSynth(); }
+  return { start, stop, get on() { return on; } };
+})();
+
+/* =========================================================================
    INVITATION ENGINE — timelines, particles, sound design, tilt, reveal
    ========================================================================= */
 const EASE = { out: 'cubic-bezier(.16,1,.3,1)', inOut: 'cubic-bezier(.65,0,.35,1)', in: 'cubic-bezier(.55,0,.75,.2)', heavy: 'cubic-bezier(.78,0,.12,1)', back: 'cubic-bezier(.34,1.56,.64,1)', soft: 'cubic-bezier(.25,.1,.25,1)' };
@@ -2445,11 +2732,15 @@ function createFX(host) {
     g.beginPath(); g.moveTo(0, -s); g.bezierCurveTo(s * .95, -s * .6, s * .75, s * .85, 0, s); g.bezierCurveTo(-s * .75, s * .85, -s * .95, -s * .6, 0, -s); g.fill();
     g.globalAlpha = al * .35; g.strokeStyle = '#fff'; g.lineWidth = .6; g.beginPath(); g.moveTo(0, -s * .7); g.quadraticCurveTo(s * .15, 0, 0, s * .7); g.stroke(); g.restore(); };
   const drawMari = (p, al) => { g.save(); g.translate(p.x, p.y); g.rotate(p.rot); g.globalAlpha = al; for (let k = 0; k < 7; k++) { g.rotate(Math.PI * 2 / 7); g.fillStyle = k % 2 ? p.pal[0] : p.pal[1]; g.beginPath(); g.ellipse(0, -p.s * .55, p.s * .32, p.s * .55, 0, 0, 6.28); g.fill(); } g.fillStyle = '#b4560f'; g.beginPath(); g.arc(0, 0, p.s * .25, 0, 6.28); g.fill(); g.restore(); };
+  const drawFive = (p, al) => { const s = p.s, w = p.type === 'jas'; g.save(); g.translate(p.x, p.y); g.rotate(p.rot); g.scale(.55 + .45 * Math.abs(Math.cos(p.fl)), 1); g.globalAlpha = al;
+    for (let k = 0; k < 5; k++) { g.rotate(Math.PI * 2 / 5); const gr = g.createLinearGradient(0, 0, 0, -s); gr.addColorStop(0, w ? '#f7e7c4' : '#e0457a'); gr.addColorStop(1, w ? '#ffffff' : '#ff9cc0'); g.fillStyle = gr; g.beginPath(); g.ellipse(0, -s * .52, s * .3, s * .52, 0, 0, 6.28); g.fill(); }
+    g.fillStyle = w ? '#f2c14e' : '#ffe08a'; g.beginPath(); g.arc(0, 0, s * .17, 0, 6.28); g.fill(); g.restore(); };
   const glowDot = (x, y, r, c, al) => { const gr = g.createRadialGradient(x, y, 0, x, y, r); gr.addColorStop(0, `rgba(${c},${al})`); gr.addColorStop(.35, `rgba(${c},${al * .45})`); gr.addColorStop(1, `rgba(${c},0)`); g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, 6.28); g.fill(); };
   function draw(p, al) {
     switch (p.type) {
       case 'petal': case 'rose': drawPetal(p, al); break;
       case 'marigold': drawMari(p, al); break;
+      case 'jas': case 'pinkf': drawFive(p, al); break;
       case 'dust': g.globalCompositeOperation = 'lighter'; glowDot(p.x, p.y, p.s * 3, '255,214,140', al * (.55 + .45 * Math.sin(p.life * 3 + p.ph))); g.globalCompositeOperation = 'source-over'; break;
       case 'bokeh': g.globalCompositeOperation = 'lighter'; glowDot(p.x, p.y, p.s, '255,200,130', al * .18); g.globalCompositeOperation = 'source-over'; break;
       case 'ember': g.globalCompositeOperation = 'lighter'; glowDot(p.x, p.y, p.s * 2.4, '255,150,50', al); glowDot(p.x, p.y, p.s * .8, '255,240,200', al); g.globalCompositeOperation = 'source-over'; break;
@@ -2489,8 +2780,22 @@ function createFX(host) {
   raf = requestAnimationFrame(step);
   return { add, burst, emit, flame, killFlames, stop() { cancelAnimationFrame(raf); removeEventListener('resize', resize); cv.remove(); } };
 }
+const FLOWERS = ['marigold', 'marigold', 'jas', 'jas', 'pinkf', 'petal', 'petal', 'rose'];
+const pickFlower = () => FLOWERS[Math.floor(Math.random() * FLOWERS.length)];
+function boom(fx, x, y, n = 24, o = {}) {
+  for (let i = 0; i < n; i++) { const a = (o.angle ?? -Math.PI / 2) + rnd(-(o.spread ?? .55), o.spread ?? .55), sp = rnd(o.min ?? 420, o.max ?? 820), t = pickFlower();
+    fx.add(t, x + rnd(-14, 14), y, { vx: Math.cos(a) * sp, vy: Math.sin(a) * sp, g: 820, drag: .988, wind: 22, vr: rnd(-6, 6), vf: rnd(3, 7), life: rnd(2.6, 3.8), size: t === 'petal' || t === 'rose' ? rnd(6, 10) : rnd(7, 12) }); }
+}
+function scrollBooms(fx) {
+  let last = scrollY, acc = 0, side = 0, lastT = 0;
+  const on = () => { const y = scrollY, d = Math.abs(y - last); last = y; acc += d; const now = performance.now();
+    if (acc > 260 && now - lastT > 420) { acc = 0; lastT = now; side = 1 - side; const W = innerWidth, H = innerHeight;
+      boom(fx, side ? W * .08 : W * .92, H + 20, W < 600 ? 14 : 20, { angle: side ? -1.25 : -1.89, spread: .32, min: 520, max: 900 }); } };
+  addEventListener('scroll', on, { passive: true }); return () => removeEventListener('scroll', on);
+}
+function openBoom(fx) { const W = innerWidth, H = innerHeight; boom(fx, W * .2, H + 20, 22, { angle: -1.35, spread: .35, min: 600, max: 1000 }); boom(fx, W * .8, H + 20, 22, { angle: -1.79, spread: .35, min: 600, max: 1000 }); setTimeout(() => boom(fx, W * .5, H + 20, 26, { spread: .5, min: 650, max: 1050 }), 220); }
 const AMBIENT = {
-  petals: (fx, rate = 1.6) => fx.emit((W) => fx.add(Math.random() < .2 ? 'marigold' : 'petal', rnd(0, W), -20, { vy: rnd(40, 80), vx: rnd(-15, 15), wind: 40, life: 14, size: rnd(5, 9), drag: .999, vf: rnd(1.5, 3.5) }), rate),
+  petals: (fx, rate = 3) => fx.emit((W) => { const t = pickFlower(); fx.add(t, rnd(0, W), -20, { vy: rnd(40, 85), vx: rnd(-15, 15), wind: 40, life: 16, size: t === 'petal' || t === 'rose' ? rnd(5, 9) : rnd(6, 10), drag: .999, vf: rnd(1.5, 3.5) }); }, rate),
   roses: (fx, rate = .8) => fx.emit((W) => fx.add('rose', rnd(0, W), -20, { vy: rnd(35, 70), wind: 30, life: 16, size: rnd(4, 7), drag: .999 }), rate),
   dust: (fx, rate = 3) => fx.emit((W, H) => fx.add('dust', rnd(0, W), rnd(H * .1, H), { vy: rnd(-14, -4), vx: rnd(-6, 6), wind: 10, life: rnd(4, 8), size: rnd(.8, 2), drag: 1 }), rate),
   embers: (fx, rate = 2) => fx.emit((W, H) => fx.add('ember', rnd(W * .1, W * .9), H + 10, { vy: rnd(-70, -35), wind: 26, life: rnd(5, 9), size: rnd(.8, 1.8), drag: 1 }), rate),
@@ -2761,7 +3066,7 @@ OPENERS.gatefold = {
     x.untilt(); A($x('.ix-hint'), [{ opacity: 1 }, { opacity: 0 }], { duration: 300 });
     sfx('click'); await A($x('.ixg__medal'), [{ transform: 'rotate(0) scale(1)' }, { transform: 'rotate(-120deg) scale(1.12)' }], { duration: 520, easing: EASE.back }).finished;
     sfx('slide');
-    A($x('#band'), [{ transform: 'translateY(-50%)', opacity: 1 }, { transform: 'translateY(-50%) translateY(340%) rotate(7deg)', opacity: 0 }], { duration: 900, easing: EASE.in });
+    A($x('#band'), [{ transform: 'translateY(-50%) translateZ(6px)', opacity: 1 }, { transform: 'translateY(-50%) translateY(340%) translateZ(6px) rotate(7deg)', opacity: 0 }], { duration: 900, easing: EASE.in });
     await sleep(500);
     const W = gate.offsetWidth, fit = Math.min(1, (innerWidth - 24) / (W * 2.02));
     if (fit < 1) A(gate, [{ transform: 'scale(1)' }, { transform: `scale(${fit})` }], { duration: 1500, easing: EASE.inOut });
@@ -2917,7 +3222,7 @@ function initStories(c, x) {
     bars.forEach((b, k) => { b.classList.toggle('done', k < i); b.classList.remove('run'); }); void bars[i].offsetWidth; bars[i].style.setProperty('--dur', DUR + 'ms');
     clearTimeout(timer); if (i < slides.length - 1) { bars[i].classList.add('run'); remaining = DUR; t0 = Date.now(); timer = setTimeout(() => show(i + 1), DUR); } else bars[i].classList.add('done');
   };
-  const start = async () => { if (started) return; started = true; chime(); const cov = $('.stories__cover', st);
+  const start = async () => { if (started) return; started = true; chime(); if (soundOn) { MUSIC.start(); $('#cardView').classList.add('is-opening'); } if (x && x.fx) openBoom(x.fx); const cov = $('.stories__cover', st);
     A($('.sc-bg', cov), [{ transform: 'scale(1.08)' }, { transform: 'scale(1.35)' }], { duration: 900, easing: EASE.in }); await A(cov, [{ opacity: 1 }, { opacity: 0 }], { duration: 700, delay: 200 }).finished; cov.style.display = 'none'; show(0); };
   $('.stories__cover', st).addEventListener('click', start);
   $('.stories__cover', st).addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); start(); } });
@@ -2949,18 +3254,19 @@ function renderCard(c) {
   const isStories = c.layout === 'stories', O = OPENERS[c.opener];
   root.innerHTML = `<div class="cv-top"><button class="cv-btn" id="cvSound" aria-label="Toggle sound">${I(soundOn ? 'sound' : 'mute')}</button><button class="cv-btn" id="cvReplay" aria-label="Replay">${I('replay')}</button></div>
     <div class="cv-stage">${isStories ? storiesHTML(c) : `<div class="cv-opener" id="cvOpener">${O.html(c)}</div><div class="cv-card ${c.layout === 'lotus' ? 'cv-card--wide' : ''}" id="cvCard">${c.layout === 'lotus' ? lotusHTML(c) : paperHTML(c)}</div>`}</div>`;
-  $('#cvSound').addEventListener('click', () => { soundOn = !soundOn; store.set('yn-sound', soundOn); $('#cvSound').innerHTML = I(soundOn ? 'sound' : 'mute'); });
+  $('#cvSound').addEventListener('click', () => { soundOn = !soundOn; store.set('yn-sound', soundOn); $('#cvSound').innerHTML = I(soundOn ? 'sound' : 'mute'); if (soundOn && root.classList.contains('is-opening')) MUSIC.start(); else MUSIC.stop(); });
+  app.cleanup.push(() => MUSIC.stop());
   $('#cvReplay').addEventListener('click', () => { window.scrollTo(0, 0); app.cleanup.forEach((fn) => { try { fn(); } catch (e) {} }); app.cleanup = []; renderCard(c); });
   root.onclick = (e) => { if (e.target.closest('[data-ics]')) downloadICS(); };
   const fx = createFX(root); app.cleanup.push(() => fx.stop());
-  if (isStories) return initStories(c);
+  if (isStories) { AMBIENT.petals(fx, 1.6); return initStories(c, { fx }); }
   const x = { c, root, fx, op: $('#cvOpener'), card: $('#cvCard'), alive: () => run === cardRun };
   const te = $('#tiltEl', x.op); x.untilt = tilt(te, 8); app.cleanup.push(() => x.untilt());
-  if (c.layout === 'lotus') x.stopAmb = AMBIENT.petals(fx, 1.4);
+  if (c.layout === 'lotus') x.stopAmb = AMBIENT.petals(fx, 2.4);
   requestAnimationFrame(() => { if (x.alive() && O.init) O.init(x); });
   let opened = false;
   x.open = async () => {
-    if (opened) return; opened = true; root.classList.add('is-opening');
+    if (opened) return; opened = true; root.classList.add('is-opening'); if (soundOn) MUSIC.start();
     try { await O.open(x); } catch (e) { console.error(e); }
     if (!x.alive()) return;
     if (x.stopAmb) x.stopAmb();
@@ -2978,7 +3284,8 @@ function showCard(x) {
   }[x.entrance || 'rise'];
   A(card, ent[0], { ...ent[1], fill: 'none' });
   revealInside(card, c);
-  ({ lotus_diya: () => AMBIENT.petals(fx, .9), velvet_haveli: () => AMBIENT.dust(fx, 2.5), gold_foil: () => AMBIENT.dust(fx, 2), emerald_gatefold: () => AMBIENT.dust(fx, 2), mehendi: () => AMBIENT.roses(fx, .6), diya: () => AMBIENT.embers(fx, 1.6) }[c.id] || (() => {}))();
+  ({ lotus_diya: () => AMBIENT.petals(fx, 3.2), velvet_haveli: () => { AMBIENT.dust(fx, 2.5); AMBIENT.petals(fx, 2); }, gold_foil: () => { AMBIENT.dust(fx, 2); AMBIENT.petals(fx, 1.4); }, emerald_gatefold: () => { AMBIENT.dust(fx, 2); AMBIENT.petals(fx, 2.2); }, mehendi: () => AMBIENT.petals(fx, 2.6), diya: () => { AMBIENT.embers(fx, 1.6); AMBIENT.petals(fx, 1.4); } }[c.id] || (() => AMBIENT.petals(fx, 2)))();
+  openBoom(fx); app.cleanup.push(scrollBooms(fx));
   const cc = card.getBoundingClientRect(); setTimeout(() => x.alive() && fx.burst('dust', innerWidth / 2, Math.min(innerHeight * .4, cc.top + 200), 36, { min: 40, max: 260, life: 2, size: 2.4, drag: .95 }), 300);
 }
 
@@ -3190,17 +3497,18 @@ function renderPainted(c, root, run) {
   const alive = () => run === cardRun;
   root.innerHTML = `<div class="cv-top"><button class="cv-btn" id="cvSound" aria-label="Toggle sound">${I(soundOn ? 'sound' : 'mute')}</button><button class="cv-btn" id="cvReplay" aria-label="Replay">${I('replay')}</button></div>
     ${paintedPageHTML(c)}${envelopeOverlayHTML(c)}`;
-  $('#cvSound').addEventListener('click', () => { soundOn = !soundOn; store.set('yn-sound', soundOn); $('#cvSound').innerHTML = I(soundOn ? 'sound' : 'mute'); });
+  $('#cvSound').addEventListener('click', () => { soundOn = !soundOn; store.set('yn-sound', soundOn); $('#cvSound').innerHTML = I(soundOn ? 'sound' : 'mute'); if (soundOn && root.classList.contains('is-opening')) MUSIC.start(); else MUSIC.stop(); });
+  app.cleanup.push(() => MUSIC.stop());
   $('#cvReplay').addEventListener('click', () => { window.scrollTo(0, 0); app.cleanup.forEach((fn) => { try { fn(); } catch (e) {} }); app.cleanup = []; renderCard(c); });
   root.onclick = (e) => { if (e.target.closest('[data-ics]')) downloadICS(); };
   const fx = createFX(root); app.cleanup.push(() => fx.stop());
   document.body.classList.add('no-scroll'); app.cleanup.push(() => document.body.classList.remove('no-scroll'));
   const rb = $('#rb'), pl = $('#pl');
   // idle: drifting blossoms over the painting
-  const stopIdle = fx.emit((W) => fx.add('petal', rnd(0, W), -20, { pal: Math.random() < .5 ? ['#ffffff', '#eadfd2'] : ['#f08ab0', '#c2336a'], vy: rnd(30, 60), wind: 35, life: 18, size: rnd(5, 8), drag: .999 }), .9);
+  const stopIdle = AMBIENT.petals(fx, 2.2);
   let opened = false;
   const open = async () => {
-    if (opened) return; opened = true; rb.classList.add('is-opening');
+    if (opened) return; opened = true; rb.classList.add('is-opening'); root.classList.add('is-opening'); if (soundOn) MUSIC.start();
     const $r = (s) => $(s, rb);
     A($r('.rb__hint'), [{ opacity: 1 }, { opacity: 0 }], { duration: 400 });
     sfx('slide');
@@ -3225,7 +3533,7 @@ function renderPainted(c, root, run) {
     await sleep(900); chime(); sfx('sparkle');
     fx.burst('dust', innerWidth / 2, innerHeight * .45, 50, { min: 40, max: 260, life: 2, size: 2.6, drag: .95 });
     rb.remove(); stopIdle(); document.body.classList.remove('no-scroll');
-    fx.emit((W) => fx.add('petal', rnd(0, W), -20, { pal: Math.random() < .55 ? ['#ffffff', '#eadfd2'] : ['#f08ab0', '#c2336a'], vy: rnd(30, 60), wind: 35, life: 18, size: rnd(4, 7), drag: .999 }), .5);
+    openBoom(fx); app.cleanup.push(scrollBooms(fx)); AMBIENT.petals(fx, 2.4);
   };
   let heroStarted = false;
   const startHero = () => { if (heroStarted) return; heroStarted = true; $$('.pt-hero [data-rv]', pl).forEach((e, i) => { e.style.transitionDelay = (300 + i * 140) + 'ms'; e.classList.add('in'); }); };
@@ -3237,6 +3545,226 @@ function renderPainted(c, root, run) {
   const onS = () => { pars.forEach((p) => { const r = p.parentElement.getBoundingClientRect(); const k = +p.dataset.par; p.style.transform = `translateY(${(-(r.top + r.height / 2 - innerHeight / 2) * k).toFixed(1)}px) scale(1.12)`; }); };
   window.addEventListener('scroll', onS, { passive: true }); onS(); app.cleanup.push(() => window.removeEventListener('scroll', onS));
   if (REDUCED) { $$('[data-rv]', pl).forEach((e) => e.classList.add('in')); }
+}
+
+/* =========================================================================
+   SHUBH VIVAH — traditional bilingual invitation website
+   ========================================================================= */
+const T = (en, hi) => `<span class="t" data-hi="${esc(hi)}">${en}</span>`;
+const SH_EV = {
+  haldi: { hiT: 'सुबह 9:00 बजे', hiD: 'सुबह की धूप, हल्दी का उबटन और गेंदे के फूलों की बरसात।' },
+  mehendi: { hiT: 'सुबह 11:30 बजे', hiD: 'मेहंदी की खुशबू, लोक-नृत्य और राजस्थानी भोज।' },
+  baraat: { hiT: 'शाम 4:30 बजे', hiD: 'शाही बारात, बैंड-बाजा और ढलते सूरज के साथ वरमाला।' },
+  sangeet: { hiT: 'शाम 7:00 बजे', hiD: 'नाच-गाना, दोनों परिवारों की जुगलबंदी और सूफ़ी शाम।' },
+  pheras: { hiT: 'रात 9:30 बजे', hiD: 'अग्नि के साक्षी सात फेरे, उसके बाद प्रीतिभोज।' },
+  vidaai: { hiT: 'रात 11:45 बजे', hiD: 'केसर कुल्हड़ चाय, घेवर और तारों की छाँव में विदाई।' },
+};
+const SH_VEN = { rambagh: 'रामबाग पैलेस', jaimahal: 'जय महल पैलेस', samode: 'सामोद हवेली', fairmont: 'फेयरमोंट जयपुर' };
+
+function latkan(h = 120, bell = true) {
+  const beads = Array.from({ length: Math.floor(h / 22) }, (_, i) => `<circle cx="12" cy="${12 + i * 20}" r="${i % 2 ? 3.2 : 4.2}" fill="${i % 3 === 1 ? '#b3162d' : 'url(#lg)'}"/>`).join('');
+  return `<svg class="lk" viewBox="0 0 24 ${h + 60}" aria-hidden="true"><defs><radialGradient id="lg" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#fff1b8"/><stop offset=".5" stop-color="#d4a64a"/><stop offset="1" stop-color="#7a5418"/></radialGradient></defs>
+    <path d="M12 0V${h}" stroke="#d4a64a" stroke-width="1"/>${beads}
+    ${bell ? `<path d="M4 ${h + 18}q8 -22 16 0z" fill="url(#lg)"/><circle cx="12" cy="${h + 21}" r="2.2" fill="#7a5418"/>` : ''}
+    <g stroke="#c9922f" stroke-width="1">${Array.from({ length: 7 }, (_, i) => `<path d="M${6 + i * 2} ${h + 22}v${20 + (i % 3) * 6}"/>`).join('')}</g></svg>`;
+}
+function swag() {
+  return `<svg class="swag" viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 4Q100 60 200 4Q300 60 400 4" fill="none" stroke="#d4a64a" stroke-width="1.2"/>
+    ${Array.from({ length: 19 }, (_, i) => { const x = 10 + i * 21, t = (x % 200) / 200, y = 4 + Math.sin(t * Math.PI) * 26; return `<circle cx="${x}" cy="${y.toFixed(1)}" r="${i % 2 ? 3.6 : 5}" fill="${i % 2 ? '#fff6dc' : (i % 4 ? '#e6892a' : '#f2b53a')}"/>`; }).join('')}</svg>`;
+}
+function cornerOrn() {
+  return `<svg class="co" viewBox="0 0 120 120" aria-hidden="true"><g fill="none" stroke="#d4a64a" stroke-width="1.1">
+    <path d="M4 116V30Q4 4 30 4H116"/><path d="M12 116V36Q12 12 36 12H116" stroke-opacity=".5"/>
+    <path d="M24 60c0-20 16-36 36-36"/><path d="M30 46c8 2 14 8 16 16-8-2-14-8-16-16z" fill="#d4a64a" fill-opacity=".25"/>
+    <circle cx="30" cy="30" r="6"/><circle cx="30" cy="30" r="2" fill="#d4a64a"/><path d="M44 22q10-8 20 0M22 44q-8 10 0 20"/></g></svg>`;
+}
+function lotusOm() {
+  const petals = (n, rx, ry, cy, fill, op) => Array.from({ length: n }, (_, i) => { const a = -80 + i * (160 / (n - 1)); return `<ellipse cx="0" cy="${cy}" rx="${rx}" ry="${ry}" transform="rotate(${a.toFixed(1)} 0 0)" fill="${fill}" fill-opacity="${op}" stroke="#d4a64a" stroke-width=".9"/>`; }).join('');
+  return `<svg viewBox="-110 -120 220 200" aria-hidden="true"><defs><radialGradient id="omg" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#fff3c8" stop-opacity=".9"/><stop offset="1" stop-color="#d4a64a" stop-opacity="0"/></radialGradient></defs>
+    <circle cx="0" cy="-40" r="78" fill="url(#omg)" class="om-glow"/>
+    <g transform="translate(0 40)">${petals(9, 14, 46, -40, '#f6d2c4', .9)}${petals(7, 11, 34, -30, '#fbe3d6', 1)}</g>
+    <path d="M-70 44h140" stroke="#d4a64a" stroke-width="1.2"/><path d="M-50 52h100" stroke="#d4a64a" stroke-width=".8" stroke-opacity=".6"/>
+    <text x="0" y="-26" text-anchor="middle" font-family="'Tiro Devanagari Hindi', serif" font-size="64" fill="#b8862f">ॐ</text></svg>`;
+}
+
+function shubhHTML(s) {
+  const ev = EVENTS.map((e, i) => { const v = VENUES[e.venue], h = SH_EV[e.id];
+    return `<article class="sh-ev rv">
+      <div class="sh-ev__art">${ILL.ICO_EV[e.id]}</div>
+      <div class="sh-ev__k">${T('12 December 2026', '12 दिसंबर 2026')}</div>
+      <h3 class="sh-ev__n">${T(e.name, e.hi)}</h3>
+      <p class="sh-ev__time">${T(`${e.time} – ${e.end}`, h.hiT)}</p>
+      <p class="sh-ev__d">${T(e.text, h.hiD)}</p>
+      <div class="sh-ev__meta"><div>${I('pin')}<span>${T(`${v.name} · ${e.spot}`, SH_VEN[e.venue])}</span></div><div>${I('shirt')}<span>${e.dress}</span></div></div>
+      <div class="sh-ev__btns"><a class="sh-btn" href="${mapsUrl(v.q)}" target="_blank" rel="noopener">${I('pin')} ${T('Directions', 'रास्ता देखें')}</a>
+        <div class="sh-cal"><button class="sh-btn" data-calmenu aria-expanded="false">${I('cal')} ${T('Add to calendar', 'कैलेंडर में जोड़ें')}</button>
+          <div class="sh-cal__m" role="menu"><a role="menuitem" href="${gcalUrl(e)}" target="_blank" rel="noopener">Google Calendar</a><button role="menuitem" data-ics1="${i}">Apple / Outlook (.ics)</button></div></div></div>
+    </article>`; }).join('');
+  return `
+  <div class="sh-gate" id="shGate">
+    <div class="sh-gate__half l"></div><div class="sh-gate__half r"></div>
+    <div class="sh-gate__lk">${[90, 130, 70, 150, 100, 150, 70, 130, 90].map((h, i) => `<span style="--d:${i * .15}s">${latkan(h, i % 2 === 0)}</span>`).join('')}</div>
+    <div class="sh-gate__in">
+      <div class="sh-inv">॥ श्री गणेशाय नमः ॥</div>
+      <div class="sh-gate__k">${T('You are invited', 'आप सादर आमंत्रित हैं')}</div>
+      <div class="sh-mono"><span>${CONFIG.groom[0]}</span><i></i><span>${CONFIG.bride[0]}</span></div>
+      <div class="sh-gate__names">${CONFIG.groom} <em>&amp;</em> ${CONFIG.bride}</div>
+      <div class="sh-gate__d">12 · 12 · 2026</div>
+      <button class="sh-open" id="shOpen"><span class="sh-open__ring"></span>${T('Tap to open', 'खोलने के लिए स्पर्श करें')}</button>
+      <p class="sh-gate__note">${T('Best with sound on', 'आवाज़ चालू रखें')}</p>
+    </div>
+  </div>
+
+  <div class="sh-ctl"><button class="sh-ctl__b" id="shLang" aria-label="Switch language"><span class="t" data-hi="EN">हिं</span></button><button class="sh-ctl__b" id="shMusic" aria-label="Music"><span class="eq"><i></i><i></i><i></i><i></i></span></button></div>
+
+  <section class="sh-hero" id="top">
+    <div class="sh-lks">${[120, 170, 90, 200, 90, 170, 120].map((h, i) => `<span style="--d:${i * .2}s">${latkan(h, i % 2 === 0)}</span>`).join('')}</div>
+    <div class="sh-swag">${swag()}</div>
+    <span class="sh-co tl">${cornerOrn()}</span><span class="sh-co tr">${cornerOrn()}</span>
+    <div class="sh-hero__in">
+      <div class="sh-inv rv">॥ श्री गणेशाय नमः ॥</div>
+      <div class="sh-k rv">${T('You are invited', 'आप सादर आमंत्रित हैं')}</div>
+      <h1 class="sh-names rv"><span>${T(CONFIG.groom, CONFIG.groomHi)}</span><em>&amp;</em><span>${T(CONFIG.bride, CONFIG.brideHi)}</span></h1>
+      <div class="sh-mono rv"><span>${CONFIG.groom[0]}</span><i></i><span>${CONFIG.bride[0]}</span></div>
+      <div class="sh-date rv">12 · 12 · 2026</div>
+      <p class="sh-day rv">${T('Saturday · 12 December 2026 · Jaipur', 'शनिवार · 12 दिसंबर 2026 · जयपुर')}</p>
+      <a class="sh-scroll rv" href="#ganesh" data-jump>${T('Scroll', 'नीचे देखें')}<i></i></a>
+    </div>
+  </section>
+
+  <section class="sh-sec sh-ganesh" id="ganesh">
+    <div class="sh-wreath rv">${ILL.toran()}</div>
+    <h2 class="sh-h rv">${T('Blessings of Shri Ganesh', 'श्री गणेश का आशीर्वाद')}</h2>
+    <div class="sh-lotus rv">${lotusOm()}</div>
+    <p class="sh-shloka rv">वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥</p>
+    <p class="sh-gloss rv">${T('O Lord of the curved trunk and mighty form, radiant as a million suns — remove every obstacle from all that we begin, always.', 'हे वक्रतुण्ड, महाकाय, करोड़ों सूर्यों के समान तेजस्वी प्रभु — हमारे हर शुभ कार्य को सदा निर्विघ्न करें।')}</p>
+  </section>
+
+  <section class="sh-sec sh-paper" id="invite">
+    <span class="sh-co tl dark">${cornerOrn()}</span><span class="sh-co tr dark">${cornerOrn()}</span><span class="sh-co bl dark">${cornerOrn()}</span><span class="sh-co br dark">${cornerOrn()}</span>
+    <h2 class="sh-h dark rv">${T('Shubh Vivah', 'शुभ विवाह')}</h2>
+    <p class="sh-formal rv">${T(`With the blessings of our elders, the ${CONFIG.groomFamily} and ${CONFIG.brideFamily} families joyfully request the pleasure of your company, with your family, at the wedding of`, 'बड़ों के आशीर्वाद से, किरोड़ीवाल एवं मीणा परिवार आपको सपरिवार हमारे बच्चों के शुभ विवाह में पधारने का हार्दिक निमंत्रण देते हैं')}</p>
+    <div class="sh-couple">
+      <div class="sh-p rv"><small>${T('Chi.', 'चि.')}</small><b>${T(CONFIG.groomFull, 'योगेश')}</b><span>${T(`${CONFIG.groomFamily} family`, 'किरोड़ीवाल परिवार')}</span></div>
+      <div class="sh-with rv">${T('with', 'संग')}</div>
+      <div class="sh-p rv"><small>${T('Ayu.', 'आयु.')}</small><b>${T(CONFIG.brideFull, 'निकिता')}</b><span>${T(`${CONFIG.brideFamily} family`, 'मीणा परिवार')}</span></div>
+    </div>
+    <div class="sh-garland rv">${swag()}</div>
+  </section>
+
+  <section class="sh-sec" id="celebrations">
+    <h2 class="sh-h rv">${T('Celebrations', 'उत्सव')}</h2>
+    <p class="sh-sub rv">${T('One day · six ceremonies · Jaipur', 'एक दिन · छह रस्में · जयपुर')}</p>
+    <div class="sh-evs">${ev}</div>
+  </section>
+
+  <section class="sh-sec sh-paper" id="rsvp">
+    <h2 class="sh-h dark rv">${T('Kindly reply', 'कृपया उत्तर दें')}</h2>
+    <p class="sh-sub dark rv">${T(`by ${CONFIG.rsvpBy}`, '25 नवंबर 2026 तक')}</p>
+    <form class="sh-form rv" id="shForm" novalidate>
+      <div class="sh-f"><label for="sh-name">${T('Your name', 'आपका नाम')}</label><input id="sh-name" name="name" autocomplete="name" required></div>
+      <fieldset class="sh-f"><legend>${T('Invited by', 'किसकी ओर से आमंत्रित')}</legend><div class="sh-chips">
+        <label><input type="radio" name="side" value="Yogesh's family" checked><span>${T("Yogesh's family", 'योगेश का परिवार')}</span></label>
+        <label><input type="radio" name="side" value="Nikita's family"><span>${T("Nikita's family", 'निकिता का परिवार')}</span></label></div></fieldset>
+      <fieldset class="sh-f"><legend>${T('Will you attend?', 'क्या आप पधारेंगे?')}</legend><div class="sh-chips">
+        <label><input type="radio" name="attend" value="Joyfully accepts" checked><span>${T('Joyfully accept', 'सहर्ष स्वीकार')}</span></label>
+        <label><input type="radio" name="attend" value="Regretfully declines"><span>${T('Regretfully decline', 'खेद सहित असमर्थ')}</span></label></div></fieldset>
+      <fieldset class="sh-f" id="shEvents"><legend>${T('Which celebrations?', 'किन उत्सवों में?')}</legend><div class="sh-chips wrap">
+        <label><input type="checkbox" value="All" data-all checked><span>${T('All', 'सभी')}</span></label>
+        ${EVENTS.map((e) => `<label><input type="checkbox" name="events" value="${e.name}" checked><span>${T(e.name, e.hi)}</span></label>`).join('')}</div></fieldset>
+      <div class="sh-f"><span class="sh-lbl">${T('Number of guests', 'अतिथियों की संख्या')}</span><div class="sh-step"><button type="button" data-step="-1" aria-label="Fewer guests">−</button><output id="shCount">2</output><button type="button" data-step="1" aria-label="More guests">+</button></div></div>
+      <div class="sh-f"><label for="sh-phone">${T('Phone (optional)', 'फ़ोन (वैकल्पिक)')}</label><input id="sh-phone" name="phone" type="tel" autocomplete="tel" placeholder="+91"></div>
+      <div class="sh-f"><label for="sh-msg">${T('A blessing for the couple (optional)', 'नवदंपति के लिए आशीर्वाद (वैकल्पिक)')}</label><textarea id="sh-msg" name="msg" rows="3"></textarea></div>
+      <label class="sh-tick"><input type="checkbox" name="public" checked><span>${T('Show my blessing on the blessings wall', 'मेरा संदेश आशीर्वाद-पटल पर दिखाएँ')}</span></label>
+      <button class="sh-send" type="submit">${T('Send RSVP', 'उत्तर भेजें')}</button>
+      <div class="sh-ok" id="shOk" role="status"><h3>${T('Thank you', 'धन्यवाद')}</h3><p id="shOkT"></p><a class="sh-send" id="shOkWa" target="_blank" rel="noopener">${I('chat')} ${T('Send on WhatsApp', 'व्हाट्सऐप पर भेजें')}</a><button type="button" class="sh-btn" id="shEdit">${T('Edit reply', 'उत्तर बदलें')}</button></div>
+    </form>
+  </section>
+
+  <section class="sh-sec" id="blessings">
+    <h2 class="sh-h rv">${T('Blessings', 'आशीर्वाद')}</h2>
+    <div class="sh-wall" id="shWall"></div>
+  </section>
+
+  <section class="sh-sec sh-count">
+    <h2 class="sh-h rv">${T('Counting down', 'उलटी गिनती')}</h2>
+    <div class="sh-cd rv" data-cd><div><b data-d>00</b><span>${T('Days', 'दिन')}</span></div><div><b data-h>00</b><span>${T('Hours', 'घंटे')}</span></div><div><b data-m>00</b><span>${T('Minutes', 'मिनट')}</span></div><div><b data-s>00</b><span>${T('Seconds', 'सेकंड')}</span></div></div>
+  </section>
+
+  <footer class="sh-sec sh-close">
+    <div class="sh-lks small">${[80, 120, 80].map((h, i) => `<span style="--d:${i * .3}s">${latkan(h)}</span>`).join('')}</div>
+    <p class="sh-close__t rv">${T('We look forward to celebrating with you', 'आपके साथ यह उत्सव मनाने की प्रतीक्षा में')}</p>
+    <p class="sh-close__f rv">${T(`With love, the ${CONFIG.groomFamily} &amp; ${CONFIG.brideFamily} families`, 'सप्रेम, किरोड़ीवाल एवं मीणा परिवार')}</p>
+    <p class="sh-tag rv">${CONFIG.hashtag}</p>
+    <div class="sh-diya rv">${ILL.ICO_EV.pheras}</div>
+  </footer>`;
+}
+
+function downloadOneICS(e) {
+  const v = VENUES[e.venue];
+  const body = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//YN Wedding//EN', 'BEGIN:VEVENT', `UID:${e.id}-yn-20261212@wedding`, 'DTSTAMP:20261101T000000Z', `DTSTART:${e.ics[0]}`, `DTEND:${e.ics[1]}`, `SUMMARY:${e.name} · ${CONFIG.groom} & ${CONFIG.bride}`, `LOCATION:${v.name}\\, ${v.address.replace(/,/g, '\\,')}`, `DESCRIPTION:${e.title}`, 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([body], { type: 'text/calendar' })); a.download = `${e.name}-Yogesh-Nikita.ics`; document.body.appendChild(a); a.click(); a.remove();
+}
+
+function initShubh(root) {
+  let lang = store.get('yn-lang', 'en');
+  const applyLang = () => { root.setAttribute('data-lang', lang); document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
+    $$('.t', root).forEach((el) => { if (el.dataset.en == null) el.dataset.en = el.innerHTML; el.innerHTML = lang === 'hi' ? el.dataset.hi : el.dataset.en; }); };
+  applyLang();
+  $('#shLang', root).addEventListener('click', () => { lang = lang === 'hi' ? 'en' : 'hi'; store.set('yn-lang', lang); applyLang(); paintWall(); });
+
+  // music
+  const mb = $('#shMusic', root);
+  const setM = (v) => { if (v) MUSIC.start(); else MUSIC.stop(); mb.classList.toggle('on', v); };
+  mb.addEventListener('click', () => setM(!MUSIC.on));
+  app.cleanup.push(() => MUSIC.stop());
+
+  const fx = createFX(root); app.cleanup.push(() => fx.stop()); AMBIENT.petals(fx, 2.4);
+  // gate
+  const gate = $('#shGate', root); document.body.classList.add('no-scroll'); app.cleanup.push(() => document.body.classList.remove('no-scroll'));
+  $('#shOpen', root).addEventListener('click', async () => {
+    if (soundOn) setM(true);
+    sfx('slide');
+    A($('.sh-gate__in', gate), [{ opacity: 1, transform: 'scale(1)' }, { opacity: 0, transform: 'scale(1.08)', filter: 'blur(6px)' }], { duration: 700, easing: EASE.in });
+    A($('.sh-gate__lk', gate), [{ transform: 'translateY(0)' }, { transform: 'translateY(-110%)' }], { duration: 1200, delay: 300, easing: EASE.inOut });
+    A($('.sh-gate__half.l', gate), [{ transform: 'translateX(0)' }, { transform: 'translateX(-102%)' }], { duration: 1400, delay: 450, easing: EASE.heavy });
+    await A($('.sh-gate__half.r', gate), [{ transform: 'translateX(0)' }, { transform: 'translateX(102%)' }], { duration: 1400, delay: 450, easing: EASE.heavy }).finished;
+    gate.remove(); document.body.classList.remove('no-scroll'); chime(); openBoom(fx); app.cleanup.push(scrollBooms(fx));
+    $$('.sh-hero .rv', root).forEach((e, i) => { e.style.transitionDelay = (i * 120) + 'ms'; e.classList.add('in'); });
+  });
+
+  // calendar menus
+  root.addEventListener('click', (e) => {
+    const cb = e.target.closest('[data-calmenu]');
+    $$('.sh-cal.open', root).forEach((m) => { if (!cb || m !== cb.parentElement) { m.classList.remove('open'); $('[data-calmenu]', m).setAttribute('aria-expanded', 'false'); } });
+    if (cb) { const m = cb.parentElement; const o = m.classList.toggle('open'); cb.setAttribute('aria-expanded', o); }
+    const one = e.target.closest('[data-ics1]'); if (one) { downloadOneICS(EVENTS[+one.dataset.ics1]); toast(lang === 'hi' ? 'कैलेंडर फ़ाइल डाउनलोड हो गई' : 'Calendar file downloaded'); }
+  });
+
+  // RSVP
+  const form = $('#shForm', root), count = $('#shCount', root); let n = 2;
+  $$('[data-step]', form).forEach((b) => b.addEventListener('click', () => { n = Math.max(1, Math.min(12, n + Number(b.dataset.step))); count.textContent = n; A(count, [{ transform: 'scale(1.3)' }, { transform: 'scale(1)' }], { duration: 300, fill: 'none' }); }));
+  const all = $('[data-all]', form), evs = $$('input[name="events"]', form);
+  all.addEventListener('change', () => evs.forEach((c) => { c.checked = all.checked; }));
+  evs.forEach((c) => c.addEventListener('change', () => { all.checked = evs.every((x) => x.checked); }));
+  const wall = $('#shWall', root);
+  const paintWall = () => { const mine = store.get('yn-bless', []);
+    wall.innerHTML = mine.length ? mine.map((b) => `<figure class="sh-b rv in"><blockquote>“${esc(b.text)}”</blockquote><figcaption>${esc(b.name)} · ${esc(b.side)}</figcaption></figure>`).join('')
+      : `<div class="sh-empty">${lang === 'hi' ? 'नवदंपति को आशीर्वाद देने वाले पहले व्यक्ति बनें।' : 'Be the first to bless the couple.'} <a href="#rsvp" data-jump>${lang === 'hi' ? 'आशीर्वाद लिखें' : 'Write a blessing'}</a></div>`; };
+  paintWall();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); const d = Object.fromEntries(new FormData(form)); d.events = evs.filter((c) => c.checked).map((c) => c.value);
+    if (!d.name.trim()) { $('#sh-name', form).focus(); toast(lang === 'hi' ? 'कृपया अपना नाम लिखें' : 'Please add your name'); return; }
+    if (d.attend.startsWith('Joy') && !d.events.length) { toast(lang === 'hi' ? 'कम से कम एक उत्सव चुनें' : 'Choose at least one celebration'); return; }
+    store.set('yn-rsvp', { ...d, guests: n });
+    if (d.msg.trim() && d.public) { const mine = store.get('yn-bless', []); mine.unshift({ name: d.name, side: d.side, text: d.msg }); store.set('yn-bless', mine.slice(0, 8)); paintWall(); }
+    const text = `RSVP — ${CONFIG.groom} & ${CONFIG.bride}, 12 Dec 2026\nName: ${d.name}\nInvited by: ${d.side}\nResponse: ${d.attend}\nEvents: ${d.attend.startsWith('Joy') ? (d.events.length === EVENTS.length ? 'All' : d.events.join(', ')) : '-'}\nGuests: ${n}\nPhone: ${d.phone || '-'}${d.msg ? `\nBlessing: ${d.msg}` : ''}`;
+    const first = d.name.split(' ')[0];
+    $('#shOkT', form).textContent = lang === 'hi' ? (d.attend.startsWith('Joy') ? `${first} जी, आपके आने की प्रतीक्षा रहेगी। नीचे टैप करके परिवार को व्हाट्सऐप पर उत्तर भेजें।` : `${first} जी, आपकी कमी खलेगी। परिवार को सूचित करने के लिए नीचे टैप करें।`)
+      : (d.attend.startsWith('Joy') ? `We can’t wait to celebrate with you, ${first}. Tap below to send your reply to the family on WhatsApp.` : `We’ll miss you, ${first}. Tap below to let the family know.`);
+    $('#shOkWa', form).href = waUrl(text); form.classList.add('done'); sfx('sparkle');
+  });
+  $('#shEdit', form).addEventListener('click', () => form.classList.remove('done'));
 }
 
 /* pill hides while scrolling down, returns on scroll up */

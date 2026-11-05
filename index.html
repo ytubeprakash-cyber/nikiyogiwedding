@@ -1004,8 +1004,8 @@ fieldset.field { border: 0; margin: 0; padding: 0; }
    WEDDING DATA — edit these values and every website + card updates.
    ========================================================================== */
 const CONFIG = {
-  groom: 'Yogesh', groomFull: 'Yogesh Rathore', groomHi: 'योगेश',
-  bride: 'Nikita', brideFull: 'Nikita Sharma', brideHi: 'निकिता',
+  groom: 'Yogesh', groomFull: 'Yogesh Kiroriwal', groomHi: 'योगेश',
+  bride: 'Nikita', brideFull: 'Nikita Meena', brideHi: 'निकिता',
   dateISO: '2026-12-12T09:00:00+05:30',
   dateLong: 'Saturday, 12 December 2026',
   dateShort: '12 · 12 · 2026',
@@ -1015,22 +1015,22 @@ const CONFIG = {
   // Left blank, WhatsApp lets the guest pick the contact.
   rsvpWhatsApp: '',
   hashtag: '#YogeshWedsNikita',
-  groomParents: 'Smt. Kaushalya & Shri Mahendra Singh Rathore',
-  brideParents: 'Smt. Vandana & Shri Rajendra Prasad Sharma',
-  groomGrandparents: 'Late Thakurani & Thakur Bhawani Singh Ji Rathore',
-  brideGrandparents: 'Smt. Savitri Devi & Pandit Govind Narayan Ji Sharma',
+  // Replace with the parents' names, e.g. 'Smt. ____ & Shri ____ Kiroriwal'
+  groomParents: 'The Kiroriwal Family',
+  brideParents: 'The Meena Family',
+  groomFamily: 'Kiroriwal', brideFamily: 'Meena',
 };
 
-const GROOM_BIO = 'Architect and heritage enthusiast who can name every fort wall in Rajasthan — and who planned a surprise proposal under the desert stars.';
-const BRIDE_BIO = 'Product designer, classical Kathak dancer and devoted collector of Johari Bazaar kundan, who brings joy into every room she enters.';
+const GROOM_BIO = 'IIT Delhi alumnus. Add a line or two about Yogesh here.';
+const BRIDE_BIO = 'IIT Delhi alumna. Add a line or two about Nikita here.';
 
 const STORY = [
-  { year: 'Nov 2023', title: 'Kulhad chai that lasted four hours',
-    text: 'We met through college friends at Tapri Central, overlooking Central Park. A quick 30-minute chai turned into four hours of debating Jaipur vs Jodhpur kachoris, until the café lights came on.' },
-  { year: 'Aug 2024', title: 'Monsoon drives to Nahargarh',
-    text: 'Every milestone since was celebrated watching the Pink City glow at dusk from Nahargarh Fort, with late-night kulfi at Bapu Bazaar on the way home.' },
-  { year: '2026', title: 'A starlit yes',
-    text: 'Under a canopy of desert stars, a quiet question became the easiest “yes” of our lives. With the blessings of the Rathore and Sharma families, we begin our forever in Jaipur.' },
+  { year: 'IIT Delhi', title: 'Where it all began',
+    text: 'We met as students at IIT Delhi — between classes, late-night canteen runs and campus festivals, two strangers slowly became best friends.' },
+  { year: 'After campus', title: 'From friends to forever',
+    text: 'Life took us beyond Hauz Khas and the hostel corridors, but every chapter since has been better together.' },
+  { year: '2026', title: 'The easiest yes',
+    text: 'With the blessings of the Kiroriwal and Meena families, we begin our forever in Jaipur — and we would love you there.' },
 ];
 
 const VENUES = {
@@ -1091,11 +1091,7 @@ const FAQS = [
   { q: 'Is parking available?', a: 'Yes, complimentary valet parking is available at every venue.' },
 ];
 
-const BLESSINGS_SEED = [
-  { name: 'Devendra & Padmini Rathore', side: 'Groom’s family', text: 'Khamma Ghani! Watching Yogesh and Nikita together fills our hearts with pride. See you at Rambagh!' },
-  { name: 'Aarav & Meera Kulkarni', side: 'Friends · Mumbai', text: 'Flights to Jaipur booked! Already practising our Sangeet hook steps.' },
-  { name: 'Ananya & Rohan Sharma', side: 'Bride’s family · Jodhpur', text: 'Our dearest Nikita Baisa is getting married! Get ready for a morning-to-midnight celebration.' },
-];
+const BLESSINGS_SEED = []; // real blessings from the RSVP form appear on the wall
 
 /* ==========================================================================
    DESIGN REGISTRY — 10 website styles + 11 invitation cards
@@ -1616,7 +1612,7 @@ function heroHTML(s) {
         <div class="pass-k">${I('plane')} Now boarding · Flight YN1212</div>
         <div class="bpass">
           <div class="bpass__main">
-            <div class="bpass__air"><b>Rathore–Sharma Airways</b><span>Boarding pass</span></div>
+            <div class="bpass__air"><b>Kiroriwal–Meena Airways</b><span>Boarding pass</span></div>
             <div class="bpass__route"><div><div class="bpass__code">ANY</div><div class="bpass__city">Wherever you are</div></div>
               <div class="bpass__plane">${I('plane')}<span></span></div>
               <div><div class="bpass__code">JAI</div><div class="bpass__city">Jaipur</div></div></div>
@@ -1833,7 +1829,7 @@ function renderSite(s) {
 
   // rsvp + blessings
   const wall = $('#wall');
-  const paintWall = () => { const mine = store.get('yn-bless', []); wall.innerHTML = [...mine, ...BLESSINGS_SEED].slice(0, 6).map((b) => `<div class="bless"><p>“${esc(b.text)}”</p><div><b>${esc(b.name)}</b> · ${esc(b.side)}</div></div>`).join(''); };
+  const paintWall = () => { const mine = store.get('yn-bless', []); const all = [...mine, ...BLESSINGS_SEED].slice(0, 6); wall.innerHTML = all.length ? all.map((b) => `<div class="bless"><p>“${esc(b.text)}”</p><div><b>${esc(b.name)}</b> · ${esc(b.side)}</div></div>`).join('') : '<div class="bless"><p>Be the first to leave a blessing for the couple — add one with your RSVP.</p></div>'; };
   paintWall();
   const form = $('#rsvpForm');
   form.addEventListener('submit', (e) => {
@@ -1877,7 +1873,7 @@ function revealAll(root) {
    ========================================================================= */
 const DETAILS = [
   { k: 'families', t: 'Wedding party', s: 'Meet our families', ill: () => `<img src="${P()}" alt="">`,
-    body: () => `<div class="dl-grid"><div><h4>The groom’s family</h4><p>${CONFIG.groomParents}</p><p class="mut">Grandparents: ${CONFIG.groomGrandparents}</p><p class="mut">Baraat captains: Siddharth, Harshvardhan &amp; Kabir</p></div><div><h4>The bride’s family</h4><p>${CONFIG.brideParents}</p><p class="mut">Grandparents: ${CONFIG.brideGrandparents}</p><p class="mut">Bridesmaids: Ananya, Riya, Meera &amp; Kriti</p></div></div>` },
+    body: () => `<div class="dl-grid"><div><h4>The groom’s family</h4><p>${CONFIG.groomParents}</p></div><div><h4>The bride’s family</h4><p>${CONFIG.brideParents}</p></div></div>` },
   { k: 'travel', t: 'Travel logistics', s: 'Getting to Jaipur', ill: () => ILL.nahargarh(),
     body: () => TRAVEL.map((t) => `<h4>${t.title}</h4><p>${t.text}</p>`).join('') },
   { k: 'attire', t: 'Dress code', s: 'What to wear, ceremony by ceremony', ill: () => ILL.hawaMahal(),
@@ -1890,8 +1886,8 @@ const DETAILS = [
     body: () => `<p>Having you travel to Jaipur to celebrate with us is the greatest gift. We kindly request no boxed gifts — a blessing on our RSVP page means the world.</p>` },
 ];
 const STACK = [
-  { ill: () => ILL.chai(), cap: 'Tapri Central, Jaipur · Nov 2023' },
-  { ill: () => ILL.nahargarh(), cap: 'Nahargarh at dusk · Aug 2024' },
+  { ill: () => ILL.chai(), cap: 'Where it began · IIT Delhi' },
+  { ill: () => ILL.nahargarh(), cap: 'Friends to forever' },
   { ill: () => ILL.desertStars(), cap: 'A starlit yes · 2026' },
 ];
 const VISION = 'The vision for the day is simple: all of our most beloved people in one place that happens to be a Jaipur palace — marigolds in the morning, music at sunset, and vows under the stars.';
@@ -2027,7 +2023,7 @@ function lotusHTML(c) {
     </section>
     <section class="lt lt--bless">
       <div class="lt__caps">With the blessings of</div>
-      <p class="lt__par"><b>${CONFIG.groomParents}</b><span>Jaipur</span></p><div class="lt__amp">&amp;</div><p class="lt__par"><b>${CONFIG.brideParents}</b><span>Jodhpur &amp; Jaipur</span></p>
+      <p class="lt__par"><b>${CONFIG.groomParents}</b></p><div class="lt__amp">&amp;</div><p class="lt__par"><b>${CONFIG.brideParents}</b></p>
       <div class="lt__kalash">${ILL.kalashKolam()}</div>
     </section>
     <section class="lt lt--wed">
@@ -2045,7 +2041,7 @@ function lotusHTML(c) {
       <div class="p-actions"><a class="p-btn p-btn--solid lt__loc" href="${mapsUrl(v.q)}" target="_blank" rel="noopener">${I('pin')} Click for location</a>
         <a class="p-btn" href="${siteLinkFor(c)}">${I('globe')} Wedding website</a><button class="p-btn" data-ics>${I('cal')} Save to calendar</button>
         <a class="p-btn" href="${waUrl(`Hi! RSVP for ${CONFIG.groom} & ${CONFIG.bride}'s wedding on 12 Dec 2026 — Name: , Guests: `)}" target="_blank" rel="noopener">${I('chat')} RSVP on WhatsApp</a></div>
-      <p class="p-reply">Kindly respond by ${CONFIG.rsvpBy}</p><div class="p-sign">with love, the Rathore &amp; Sharma families</div>
+      <p class="p-reply">Kindly respond by ${CONFIG.rsvpBy}</p><div class="p-sign">with love, the Kiroriwal &amp; Meena families</div>
     </section>
   </div>`;
 }
@@ -2091,7 +2087,7 @@ function paperHTML(c) {
       <a class="p-btn" href="${waUrl(`Hi! RSVP for ${CONFIG.groom} & ${CONFIG.bride}'s wedding on 12 Dec 2026 — Name: , Guests: `)}" target="_blank" rel="noopener">${I('chat')} RSVP on WhatsApp</a>
     </div>
     <p class="p-reply">Kindly respond by ${CONFIG.rsvpBy}</p>
-    <div class="p-sign">with love, the Rathore &amp; Sharma families</div>
+    <div class="p-sign">with love, the Kiroriwal &amp; Meena families</div>
   </div>`;
 }
 

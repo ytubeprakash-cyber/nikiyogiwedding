@@ -1,0 +1,523 @@
+{
+  "dataset_metadata": {
+    "title": "Indian Wedding Invitation Design Research & Generative AI Knowledge Base",
+    "version": "2.0.0",
+    "created_at": "2026-11-05",
+    "couple_implementation_context": {
+      "groom": "Yogesh Rathore",
+      "bride": "Nikita Sharma",
+      "wedding_date": "2026-12-12",
+      "same_day_schedule": true,
+      "city": "Jaipur, Rajasthan, India"
+    },
+    "researched_platforms": [
+      {
+        "name": "Shuubh",
+        "source_url": "https://shuubh.io/invitations",
+        "catalog_scale": "222 invitation designs and 148 save-the-date designs across 6 traditions, 12 palettes, 6 font pairings, and 81 background patterns",
+        "signature_strengths": "Per-event customizable card versions (Mehendi, Haldi, Sangeet, Wedding), 5x7 flat 300 DPI CMYK print export + tap-to-open digital delivery"
+      },
+      {
+        "name": "WedMeGood",
+        "source_url": "https://www.wedmegood.com/wedding-invitations/wedding-card-designs",
+        "catalog_scale": "Curated marketplace of Indian luxury e-cards, caricatures, Story/Save-the-Date reels, and regional royal suites",
+        "signature_strengths": "Rajasthani miniature art, pastel watercolor florals, multi-function itinerary inserts, and custom couple portrait illustrations"
+      },
+      {
+        "name": "Riwaaz",
+        "source_url": "https://riwaaz.in/invitations/wedding-card",
+        "catalog_scale": "Traditional & regional Indian wedding stationery and digital nimantran patrika suites",
+        "signature_strengths": "Auspicious Sanskrit/Hindi shlokas, Ganesh vandana headers, laser-cut jharokha motifs, and classic red-and-gold zari borders"
+      },
+      {
+        "name": "Canva India",
+        "source_url": "https://www.canva.com/wedding-invitations/templates/",
+        "catalog_scale": "Hundreds of customizable Indian wedding card and vertical mobile video templates",
+        "signature_strengths": "Long-scroll mobile-first Canva websites with wax-seal envelope openers, brass diya & kolam photography composites, and sunset mandap illustrations"
+      },
+      {
+        "name": "WedCraft",
+        "source_url": "https://www.wedcraft.in/catalog",
+        "catalog_scale": "26 curated interactive digital wedding invitation templates across Basic, Standard, Premium, and Luxury tiers",
+        "signature_strengths": "Religion/culture-tagged interactive templates (Hindu, Muslim, Christian, Sikh, Universal) with built-in RSVP dashboards and unique invite URLs"
+      },
+      {
+        "name": "Shagun Studio",
+        "source_url": "https://shagunstudio.com/templates",
+        "catalog_scale": "In-house hand-drawn Indian digital wedding invitation websites",
+        "signature_strengths": "Personal guest-addressed links, elder-friendly one-page scroll with 10-second RSVP and direct Google Maps links"
+      },
+      {
+        "name": "MyWedProfile",
+        "source_url": "https://mywedprofile.com/invitation-cards",
+        "catalog_scale": "170 designs (86 Marriage Cards, 51 Save the Dates, 18 Ring Ceremony, 8 Days to Go, 7 Reception) across 8+ Indian languages",
+        "signature_strengths": "Standardized 750x1050 px (5:7) typographic hierarchy, drag-and-drop Devanagari/regional script support, and instant PDF/PNG export"
+      },
+      {
+        "name": "Woo Invites",
+        "source_url": "https://www.wooinvites.in/templates",
+        "catalog_scale": "32+ interactive phone-first ('Fresh'), long-scroll ('Classic'), and 3D photo-walk ('3D') templates in 10 Indian languages",
+        "signature_strengths": "Interactive wax-seal envelope openers ('Tap the seal to open'), flower-shower taps ('Poola Jallu'), audio ragas/shabads/chenda melam, and playful editorial formats ('The Shaadi Times')"
+      }
+    ],
+    "taxonomy_categories": [
+      "Royal Indian",
+      "Traditional Hindu",
+      "Muslim / Nikah",
+      "Sikh / Punjabi",
+      "Christian",
+      "South Indian",
+      "Minimalist",
+      "Floral",
+      "Luxury",
+      "Modern editorial",
+      "Illustrated",
+      "Destination wedding"
+    ]
+  },
+  "designs": [
+    {
+      "design_id": "DSN-001",
+      "design_name": "Velvet Haveli & Sunset Mandap",
+      "source_platform": "WedCraft",
+      "source_url": "https://www.wedcraft.in/catalog",
+      "preview_reference": "Mughal-Rajputana cusped arch framing a glowing sunset palace courtyard mandap with hanging jasmine and marigold garlands",
+      "categories": [
+        "Royal Indian",
+        "Traditional Hindu",
+        "Luxury",
+        "Destination wedding"
+      ],
+      "overall_visual_style": "Opulent Rajputana palace grandeur combining deep velvet crimson tones, antique metallic gold filigree, and atmospheric sunset lighting",
+      "colors": {
+        "primary": [
+          "#5C0A1B",
+          "#7A1227"
+        ],
+        "secondary": [
+          "#D4AF37",
+          "#F6E7D0"
+        ],
+        "accents": [
+          "#E07A5F",
+          "#FFFDF9"
+        ],
+        "contrast_ratio": "AAA (Gold/Ivory on Deep Crimson)"
+      },
+      "typography": {
+        "heading_font": "Cinzel Decorative / Rozha One",
+        "script_accent": "Great Vibes / Mrs Saint Delafield",
+        "body_font": "Cormorant Garamond / Plus Jakarta Sans",
+        "hierarchy_scale": {
+          "invocation_shloka": "13px tracked uppercase / Devanagari",
+          "couple_names": "48px - 56px display serif",
+          "date_and_muhurat": "16px bold serif",
+          "venue_details": "11px uppercase tracked sans-serif"
+        }
+      },
+      "background_patterns_and_textures": "Subtle geometric sandstone Jaali lattice watermark overlaid on a radial crimson-to-burgundy velvet gradient",
+      "borders_and_decorative_elements": "Double-lined Zari gold cusped Mughal arch (Jharokha) with corner lotus medallions and hanging pearl tassels",
+      "illustrations_and_cultural_motifs": [
+        "Lord Ganesha auspicious crest",
+        "Twin trumpeting royal elephants (Gajraj)",
+        "Rajasthani chhatri domes",
+        "Hanging genda phool (marigold) and mogra (jasmine) torans"
+      ],
+      "text_placement_and_hierarchy": "Strict central vertical axis symmetry: Invocation at crown -> Family blessing -> Couple monogram & names -> Date/Time badge -> Palace venue footer",
+      "layout_and_aspect_ratio": "5:7 portrait (750x1050 px) for static card; 9:16 continuous vertical scroll for mobile web card",
+      "visual_balance_and_whitespace": "30% breathing room around the central typography block; heavy ornamental weight anchored at top arch and bottom palace silhouette"
+    },
+    {
+      "design_id": "DSN-002",
+      "design_name": "Deckle & Seal — Tap to Open Keepsake",
+      "source_platform": "Woo Invites",
+      "source_url": "https://www.wooinvites.in/templates",
+      "preview_reference": "Interactive 3D diagonal envelope with botanical liners, crimson-gold monogram wax seal ('Tap the seal to open'), unfolding into a long-scroll illustrated invitation",
+      "categories": [
+        "Luxury",
+        "Illustrated",
+        "Destination wedding",
+        "Traditional Hindu"
+      ],
+      "overall_visual_style": "Tactile, experiential digital stationery that mimics opening a hand-crafted cotton-rag envelope sealed with embossed crimson wax and a silk tassel",
+      "colors": {
+        "primary": [
+          "#F7EFE3",
+          "#EADBC6"
+        ],
+        "secondary": [
+          "#781224",
+          "#C89D54"
+        ],
+        "accents": [
+          "#2B4C3F",
+          "#D96B43"
+        ],
+        "contrast_ratio": "AA+ (Warm Espresso & Crimson on Cream Parchment)"
+      },
+      "typography": {
+        "heading_font": "Cormorant Garamond / Playfair Display",
+        "script_accent": "Great Vibes",
+        "body_font": "Josefin Sans / Outfit",
+        "hierarchy_scale": {
+          "envelope_caption": "12px italic serif + script ('Tap the seal to open')",
+          "couple_names": "52px script + serif combination",
+          "section_headers": "28px italic display serif ('Pre-Wedding Celebrations')",
+          "event_entries": "18px title + 10px tracked caps date/time"
+        }
+      },
+      "background_patterns_and_textures": "Warm deckle-edge handmade cotton paper grain with soft sunlit leaf shadow overlays",
+      "borders_and_decorative_elements": "Torn deckle paper edges, embossed 3D wax seal with golden cord tassel, and botanical corner vignettes",
+      "illustrations_and_cultural_motifs": [
+        "Alata-adorned bride's feet with payal anklets",
+        "Lit brass Kutthu Vilakku / Diya lamps with floating rose petals",
+        "Traditional rice-flour Kolam / Rangoli",
+        "Purna Kalash with coconut, mango leaves, and jasmine garlands",
+        "Sunset beachfront/palace mandap illustration"
+      ],
+      "text_placement_and_hierarchy": "Storybook vertical scroll progression: Envelope opener -> 'Together: A Beautiful Beginning' -> Parents' blessings -> Couple names -> Wedding Mandap scene -> Vertical function timeline -> 'Click for Location' map CTA",
+      "layout_and_aspect_ratio": "9:16 mobile-first continuous vertical scroll tapestry (390x2800 px virtual scroll canvas)",
+      "visual_balance_and_whitespace": "Alternates full-bleed illustrated transitions (diyas, mandap, courtyard) with airy parchment text clearings (40% open parchment center)"
+    },
+    {
+      "design_id": "DSN-003",
+      "design_name": "Phulkari Ivory & Anand Karaj",
+      "source_platform": "Shuubh & Woo Invites",
+      "source_url": "https://shuubh.io/invitations",
+      "preview_reference": "Ivory card framed by geometric Punjabi Phulkari embroidery in rani pink, saffron, and royal blue with Ik Onkar crest",
+      "categories": [
+        "Sikh / Punjabi",
+        "Traditional Hindu",
+        "Illustrated",
+        "Floral"
+      ],
+      "overall_visual_style": "Vibrant, high-craft textile-inspired design translating traditional Punjabi thread-work into crisp vector/watercolor borders",
+      "colors": {
+        "primary": [
+          "#FFFDF7",
+          "#D81159"
+        ],
+        "secondary": [
+          "#FF9F1C",
+          "#0F4C81"
+        ],
+        "accents": [
+          "#1B4332",
+          "#D4AF37"
+        ],
+        "contrast_ratio": "AAA (Deep Navy/Maroon on Warm Ivory)"
+      },
+      "typography": {
+        "heading_font": "Rozha One / Bodoni Moda",
+        "script_accent": "Great Vibes",
+        "body_font": "Plus Jakarta Sans / Gurmukhi & Devanagari",
+        "hierarchy_scale": {
+          "invocation": "16px Gurmukhi (ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ) or Devanagari",
+          "couple_names": "46px bold serif",
+          "ceremony_blocks": "14px structured timeline cards"
+        }
+      },
+      "background_patterns_and_textures": "Fine khadi linen weave texture in soft cream",
+      "borders_and_decorative_elements": "Four-sided geometric Phulkari / Bandhani diamond-stitch border with metallic gold dividers",
+      "illustrations_and_cultural_motifs": [
+        "Ik Onkar / Khanda or Ganesh symbol",
+        "Geometric Phulkari floral diamonds",
+        "Dhol & Kalire tassels",
+        "Gurdwara dome or Haveli courtyard arch"
+      ],
+      "text_placement_and_hierarchy": "Centered bilingual header (Punjabi/Hindi + English) followed by structured event blocks (Jaggo, Milni, Anand Karaj / Haldi, Sangeet)",
+      "layout_and_aspect_ratio": "5:7 flat print-ready card (300 DPI) + responsive mobile scroll",
+      "visual_balance_and_whitespace": "Dense, colorful outer border (18% frame width) balanced by a clean, uncrowded ivory interior (82% content area)"
+    },
+    {
+      "design_id": "DSN-004",
+      "design_name": "Panchangam, Kolam & Kasavu South Indian Suite",
+      "source_platform": "Woo Invites & MyWedProfile",
+      "source_url": "https://www.wooinvites.in/templates",
+      "preview_reference": "Kasavu ivory and gold zari border with Gopuram temple arch, rice-flour Kolam, banana leaf motifs, and bilingual Tamil/Telugu/Kannada/Malayalam typography",
+      "categories": [
+        "South Indian",
+        "Traditional Hindu",
+        "Minimalist",
+        "Royal Indian"
+      ],
+      "overall_visual_style": "Sacred temple architecture and Kerala Kasavu handloom elegance with auspicious turmeric, kumkum, and gold leaf accents",
+      "colors": {
+        "primary": [
+          "#FDFBF5",
+          "#8B1E24"
+        ],
+        "secondary": [
+          "#D4AF37",
+          "#2D5A27"
+        ],
+        "accents": [
+          "#F4A226",
+          "#5C3A21"
+        ],
+        "contrast_ratio": "AAA"
+      },
+      "typography": {
+        "heading_font": "Cinzel / DM Serif Display",
+        "script_accent": "Mrs Saint Delafield",
+        "body_font": "Cormorant Garamond / Outfit",
+        "hierarchy_scale": {
+          "auspicious_header": "13px native script (శ్రీరస్తు · శుభమస్తు / श्री गणेशाय नमः)",
+          "couple_names": "48px Cinzel with Chi. La. Sow. / Chi. prefixes",
+          "muhurtham_box": "12px bordered Lagnam & Muhurtham callout"
+        }
+      },
+      "background_patterns_and_textures": "Unbleached Kanchipuram silk / Kerala Kasavu cotton texture with subtle gold zari selvedge",
+      "borders_and_decorative_elements": "Temple Gopuram arch header, woven gold Kasavu vertical side stripes, and mango-leaf (Mavilakku) toran",
+      "illustrations_and_cultural_motifs": [
+        "Intricate white rice-flour Kolam / Muggu",
+        "Hanging banana trees (Vazhai Maram) with flower strings",
+        "Brass Nilavilakku temple lamps",
+        "Nadaswaram and Thavil / Chenda Melam instruments"
+      ],
+      "text_placement_and_hierarchy": "Traditional Panchangam order: Deity invocation -> Grandparents & Parents -> Bride & Groom with maternal/paternal lineage -> Sumuhurtham Lagnam -> Venue & Sadya details",
+      "layout_and_aspect_ratio": "5:7 portrait (750x1050 px) and long-scroll mobile format",
+      "visual_balance_and_whitespace": "Generous vertical spacing between lineage blocks; gold temple border frames the edges cleanly"
+    },
+    {
+      "design_id": "DSN-005",
+      "design_name": "Noor & Nikah Nazm",
+      "source_platform": "Woo Invites & WedCraft",
+      "source_url": "https://www.wedcraft.in/catalog",
+      "preview_reference": "Emerald green, ivory, and champagne gold Mughal pietradura arch with Urdu/Arabic Bismillah calligraphy and hanging Moroccan/Lucknowi fanoos lanterns",
+      "categories": [
+        "Muslim / Nikah",
+        "Royal Indian",
+        "Luxury",
+        "Floral"
+      ],
+      "overall_visual_style": "Refined Indo-Islamic and Awadhi/Mughal elegance with delicate floral arabesques, marble inlay motifs, and gilded calligraphy",
+      "colors": {
+        "primary": [
+          "#0F2E24",
+          "#FDFBF7"
+        ],
+        "secondary": [
+          "#D4AF37",
+          "#B8860B"
+        ],
+        "accents": [
+          "#E6C2BF",
+          "#1E4D3B"
+        ],
+        "contrast_ratio": "AAA"
+      },
+      "typography": {
+        "heading_font": "Playfair Display / Cinzel",
+        "script_accent": "Great Vibes / Nastaliq Urdu Calligraphy",
+        "body_font": "Cormorant Garamond / Josefin Sans",
+        "hierarchy_scale": {
+          "bismillah_header": "18px Arabic/Urdu calligraphy + Surah An-Naba 78:8 verse",
+          "couple_names": "50px serif with Urdu transliteration below",
+          "event_trio": "14px structured cards for Mehndi, Nikah, and Walima"
+        }
+      },
+      "background_patterns_and_textures": "Taj-inspired white makrana marble texture or deep emerald velvet with faint geometric star-lattice (Girih)",
+      "borders_and_decorative_elements": "Pointed Mughal multifoil arch with Pietra Dura floral vines and hanging brass lanterns",
+      "illustrations_and_cultural_motifs": [
+        "Bismillah-ir-Rahman-ir-Rahim calligraphy",
+        "Hanging fanoos chandeliers",
+        "White jasmine, pastel roses, and cypress silhouettes",
+        "Mughal jali screen dividers"
+      ],
+      "text_placement_and_hierarchy": "Bilingual symmetry: Quranic verse ('And We created you in pairs' 78:8) -> Family Duas -> Couple names -> Nikah & Walima timings -> Insha'Allah RSVP",
+      "layout_and_aspect_ratio": "5:7 portrait card and mobile scroll page",
+      "visual_balance_and_whitespace": "High-contrast negative space around the central arch to let the calligraphy breathe"
+    },
+    {
+      "design_id": "DSN-006",
+      "design_name": "Sacred Vows & Botanical Watercolor",
+      "source_platform": "WedCraft & Canva India",
+      "source_url": "https://www.wedcraft.in/catalog",
+      "preview_reference": "Soft sage green, eucalyptus, and blush rose watercolor wreath on textured ivory paper with gold cross and church arch motif",
+      "categories": [
+        "Christian",
+        "Floral",
+        "Minimalist",
+        "Modern editorial"
+      ],
+      "overall_visual_style": "Airy botanical romance blending soft watercolor florals, fine gold geometry, and classic serif typography",
+      "colors": {
+        "primary": [
+          "#FAF8F5",
+          "#2C3E35"
+        ],
+        "secondary": [
+          "#7A9A8B",
+          "#E6B8AF"
+        ],
+        "accents": [
+          "#C5A059",
+          "#5C6B64"
+        ],
+        "contrast_ratio": "AAA"
+      },
+      "typography": {
+        "heading_font": "Bodoni Moda / Playfair Display",
+        "script_accent": "Great Vibes",
+        "body_font": "Plus Jakarta Sans / Cormorant",
+        "hierarchy_scale": {
+          "bible_verse": "12px italic serif (1 Corinthians 13:4-8)",
+          "couple_names": "48px editorial serif",
+          "service_details": "13px tracked caps for Nuptial Mass & Reception"
+        }
+      },
+      "background_patterns_and_textures": "Cold-pressed 300gsm watercolor paper grain",
+      "borders_and_decorative_elements": "Thin geometric gold hexagon or arch intertwined with loose watercolor eucalyptus and white roses",
+      "illustrations_and_cultural_motifs": [
+        "Minimalist gold leaf cross",
+        "Eucalyptus, olive branches, and blush English roses",
+        "Wedding bells and intertwined rings",
+        "Watercolor church / heritage chapel facade"
+      ],
+      "text_placement_and_hierarchy": "Centered editorial layout with generous margins and clean separation between Church Service and Reception Banquet",
+      "layout_and_aspect_ratio": "5:7 portrait (750x1050 px)",
+      "visual_balance_and_whitespace": "Over 50% open ivory whitespace for an uncluttered, contemporary sanctuary feel"
+    },
+    {
+      "design_id": "DSN-007",
+      "design_name": "Ivory Manuscript & Golden Minimalism",
+      "source_platform": "WedCraft, MyWedProfile & Woo Invites",
+      "source_url": "https://mywedprofile.com/invitation-cards",
+      "preview_reference": "Editorial luxury website & card with splash screen, bento photo collage, stacked Polaroid story cards, and oversized serif typography on warm alabaster",
+      "categories": [
+        "Minimalist",
+        "Modern editorial",
+        "Luxury",
+        "Destination wedding"
+      ],
+      "overall_visual_style": "Vogue-style contemporary editorial layout relying on micro-typography, generous negative space, Polaroid storytelling, and fluid scroll animations",
+      "colors": {
+        "primary": [
+          "#F7F4EE",
+          "#1E1B18"
+        ],
+        "secondary": [
+          "#B85D3B",
+          "#8C8275"
+        ],
+        "accents": [
+          "#D4AF37",
+          "#E8DFD1"
+        ],
+        "contrast_ratio": "AAA (Espresso Black on Alabaster Cream)"
+      },
+      "typography": {
+        "heading_font": "Playfair Display / Bodoni Moda",
+        "script_accent": "Cormorant Garamond Italic",
+        "body_font": "Plus Jakarta Sans / Outfit",
+        "hierarchy_scale": {
+          "editorial_hero": "64px - 88px lowercase/title-case serif",
+          "countdown_digits": "56px light serif",
+          "vision_quote": "36px scroll-revealed serif paragraph",
+          "bento_labels": "18px bold sans + 12px caption"
+        }
+      },
+      "background_patterns_and_textures": "Matte museum-grade warm alabaster with subtle floating gold/terracotta petal particles on scroll",
+      "borders_and_decorative_elements": "Hairline 1px warm stone dividers, rounded 20px bento cards, and tilted white-framed Polaroid photo prints",
+      "illustrations_and_cultural_motifs": [
+        "Custom architectural watercolor of the destination palace venue",
+        "Single-line botanical marigold/lotus stamp",
+        "Minimal monogram badge"
+      ],
+      "text_placement_and_hierarchy": "Cinematic web flow: Dark splash gate -> Bento hero collage -> Stacked Polaroid 'Our Story' -> Confetti Date & Countdown -> Watercolor Venue -> 6-card Bento Concierge Grid -> Vision Statement -> FAQ Accordion -> Full-bleed closing quote",
+      "layout_and_aspect_ratio": "16:9 / Responsive full-viewport editorial web experience + 5:7 companion card",
+      "visual_balance_and_whitespace": "60% whitespace; relies on scale contrast between 72px serif headlines and 11px tracked uppercase labels"
+    },
+    {
+      "design_id": "DSN-008",
+      "design_name": "Pichwai Lotus & Jaipur Blue Pottery",
+      "source_platform": "Woo Invites & Shuubh",
+      "source_url": "https://www.wooinvites.in/templates",
+      "preview_reference": "Nathdwara Pichwai lotus pond and Jaipur Blue Pottery cobalt-turquoise arches with dancing peacocks and kadamba trees",
+      "categories": [
+        "Illustrated",
+        "Royal Indian",
+        "Destination wedding",
+        "Floral"
+      ],
+      "overall_visual_style": "Artisan Rajasthani heritage celebrating hand-painted Pichwai kamal talai (lotus pond) and Jaipur cobalt-blue ceramic floral motifs",
+      "colors": {
+        "primary": [
+          "#0F4C81",
+          "#F4F9FC"
+        ],
+        "secondary": [
+          "#E85D75",
+          "#1F7A8C"
+        ],
+        "accents": [
+          "#FFB703",
+          "#1B4332"
+        ],
+        "contrast_ratio": "AAA"
+      },
+      "typography": {
+        "heading_font": "Rozha One / Cinzel Decorative",
+        "script_accent": "Great Vibes",
+        "body_font": "Cormorant Garamond / Tiro Devanagari Hindi",
+        "hierarchy_scale": {
+          "shrinathji_invocation": "14px Devanagari (॥ श्री गणेशाय नमः ॥)",
+          "couple_names": "50px Rozha One display",
+          "event_pills": "13px ceramic-tile bordered blocks"
+        }
+      },
+      "background_patterns_and_textures": "Porcelain glaze sheen with repeating lotus and geometric jaali tile borders",
+      "borders_and_decorative_elements": "Scalloped blue-pottery ceramic arch border with blooming pink Pichwai lotuses along the base",
+      "illustrations_and_cultural_motifs": [
+        "Dancing Rajasthani peacocks (Mor)",
+        "Blooming pink Pichwai lotuses (Kamal)",
+        "Hanging palace bells and brass diyas",
+        "Jaipur Hawa Mahal & Amer Fort silhouettes"
+      ],
+      "text_placement_and_hierarchy": "Framed inside a central porcelain cusped arch with illustrated peacocks flanking the couple's portrait and schedule",
+      "layout_and_aspect_ratio": "5:7 card and 9:16 interactive scroll card",
+      "visual_balance_and_whitespace": "Richly illustrated 25% perimeter frame surrounding a high-contrast ivory/porcelain center"
+    }
+  ],
+  "generative_design_knowledge_base": {
+    "core_design_principles": [
+      {
+        "principle": "Cultural Invocation & Lineage First",
+        "rule": "Indian wedding invitations establish sacred and familial context before announcing the couple: always place the religious invocation (॥ श्री गणेशाय नमः ॥, ੴ, بِسْمِ اللّٰهِ, or Cross) at the top crown, followed by grandparents'/parents' blessings."
+      },
+      {
+        "principle": "Architectural Framing (The Jharokha / Mandap Rule)",
+        "rule": "Use a strong architectural silhouette—a Rajputana cusped Jharokha arch, South Indian Gopuram, or Mughal multifoil arch—to frame the couple's names and portrait, creating an immediate sense of place."
+      },
+      {
+        "principle": "Multi-Function Color Coding",
+        "rule": "Even when all functions occur on the same day (e.g., December 12), assign each ceremony its own visual mood and dress-code swatch: Turmeric/Marigold for Morning Haldi, Pistachio/Leheriya for Noon Mehendi, Crimson/Gold for Sunset Baraat, Indigo/Champagne for Evening Sangeet, and Sindoor Red/Emerald for Night Pheras."
+      },
+      {
+        "principle": "Tactile Digital Interactivity",
+        "rule": "Modern Indian digital invites succeed by combining tactile rituals (tapping a wax seal to open an envelope, showering flower petals, flipping Polaroid story cards, playing gentle Santoor/Shehnai audio) with frictionless utility (one-tap Google Maps links, .ics calendar downloads, and 10-second WhatsApp/web RSVPs)."
+      },
+      {
+        "principle": "5:7 Typographic Scale Ratio",
+        "rule": "Maintain a 3.5x to 4x scale ratio between the Couple Names (46-56px display serif/script) and the supporting Date/Venue copy (12-15px), pairing high-contrast serifs (Cinzel, Playfair, Rozha One, Bodoni Moda) with clean geometric sans-serifs (Plus Jakarta Sans, Outfit, Josefin Sans) for addresses and timings."
+      }
+    ],
+    "prompt_to_card_generation_schema": {
+      "input_parameters": [
+        "couple_names",
+        "wedding_date",
+        "city_and_venues",
+        "category_style",
+        "color_palette",
+        "cultural_invocation",
+        "same_day_or_multi_day_events"
+      ],
+      "automated_layout_mapping": {
+        "Royal Indian": "Jharokha cusped arch + Crimson/Gold palette + Elephant/Peacock motifs + Cinzel Decorative",
+        "Minimalist / Modern editorial": "Alabaster canvas + Bento/Polaroid photo frames + Playfair Display + 60% whitespace",
+        "Illustrated / Floral": "Wax-seal envelope opener + Continuous vertical scroll + Brass diyas, Kalash, Sunset Mandap & Marigold torans"
+      }
+    }
+  }
+}

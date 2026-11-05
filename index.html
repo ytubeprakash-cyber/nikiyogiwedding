@@ -2585,145 +2585,81 @@ function paperHTML(c) {
 }
 
 /* =========================================================================
-   BACKGROUND MUSIC — "Shubh Aagman", an original piece played live by the
-   browser with physically-modelled classical Indian instruments:
-     • tanpura  — plucked drone, Pa–Sa–Sa–Sa cycle (Karplus–Strong strings)
-     • sitar    — plucked melody with jawari buzz, meend (glides) and tarab shimmer
-     • shehnai  — the auspicious double-reed wedding horn, carrying the main tune
-     • santoor  — hammered strings, quick tremolo fills between phrases
-     • tabla    — keherwa theka (dha ge na ti na ka dhin na)
-   Raag Yaman on Sa = D. If music.mp3 exists next to index.html it is used instead.
+   BACKGROUND MUSIC
+   1) If a file named music.mp3 sits next to index.html, it is used (loop).
+   2) Otherwise an original royalty-free piece is generated live in the
+      browser: tanpura drone + bansuri-style melody in Raag Yaman + soft
+      tabla (keherwa) + santoor shimmer. Nothing is downloaded.
    ========================================================================= */
 const MUSIC = (() => {
-  let ctx, master, rev, bus = {}, on = false, timer = null, file = null, fileOk = null;
-  let cycleStart = 0, ei = 0, cycleN = 0, liveNodes = [];
-  const SA = 293.66, BPM = 72, B = 60 / BPM;
-  const semi = { '-5': -5, '-6': -3, '-7': -1, 1: 0, 2: 2, 3: 4, 4: 6, 5: 7, 6: 9, 7: 11, 8: 12, 9: 14, 10: 16 };
-  const hz = (d) => SA * Math.pow(2, semi[d] / 12);
-  const cache = new Map();
+  let ctx, master, rev, on = false, timer = null, nodes = [], file = null, fileOk = null, nextT = 0, step = 0;
+  const SA = 293.66, BPM = 76, BEAT = 60 / BPM;
+  const deg = { '-5': -5, '-6': -3, '-7': -1, 1: 0, 2: 2, 3: 4, 4: 6, 5: 7, 6: 9, 7: 11, 8: 12, 9: 14, 10: 16 };
+  const hz = (d) => SA * Math.pow(2, deg[d] / 12);
+  // original melody, [degree, beats]; 0 = rest
+  const A = [[-7, 1], [1, .5], [3, .5], [5, 2], [4, .5], [3, .5], [2, 1], [3, 2.5], [0, .5], [3, .5], [4, .5], [5, 1], [6, 1], [5, 2], [0, 1]];
+  const B = [[5, 1], [6, .5], [7, .5], [8, 2], [7, .5], [6, .5], [5, 1], [6, 1], [4, .5], [3, .5], [2, 1], [3, 3], [0, 1]];
+  const C = [[8, 1.5], [9, .5], [8, 1], [7, 1], [6, .5], [7, .5], [6, .5], [5, .5], [4, 1], [5, 2], [3, .5], [4, .5], [5, .5], [3, .5], [2, 1], [1, 3], [0, 1]];
+  const SONG = [...A, ...B, ...A, ...C];
+  const TABLA = ['dha', 0, 'ge', 'na', 'ti', 'na', 'ka', 'dhin', 'na', 0, 'dha', 'ge', 'na', 'ti', 'dhin', 0]; // eighth notes
+  let mi = 0, mT = 0, ti = 0, tT = 0, voice = null;
 
-  /* ---- Karplus–Strong string, rendered once per pitch & instrument ---- */
-  function string(freq, kind) {
-    const key = kind + Math.round(freq * 10); if (cache.has(key)) return cache.get(key);
-    const sr = ctx.sampleRate, dur = { tanpura: 4.2, sitar: 3.2, santoor: 1.8, tarab: 3 }[kind], N = Math.floor(sr * dur), b = ctx.createBuffer(1, N, sr), out = b.getChannelData(0);
-    const p = Math.max(2, Math.round(sr / freq)), line = new Float32Array(p);
-    let lp = 0; for (let i = 0; i < p; i++) { const w = Math.random() * 2 - 1; lp = kind === 'santoor' ? w : lp * .55 + w * .45; line[i] = lp; }
-    const damp = { tanpura: .9993, sitar: .9978, santoor: .9955, tarab: .9988 }[kind], buzz = { tanpura: 2.2, sitar: 3.2, santoor: 0, tarab: 0 }[kind];
-    let idx = 0, peak = 0;
-    for (let n = 0; n < N; n++) {
-      const a = line[idx], c = line[(idx + 1) % p]; const v = (a * .5 + c * .5) * damp; line[idx] = v; idx = (idx + 1) % p;
-      let s = a; if (buzz) s = Math.tanh(a * buzz) * .8 + a * .2; // jawari: the bridge's buzzing brightness
-      out[n] = s; const m = Math.abs(s); if (m > peak) peak = m;
-    }
-    for (let n = 0; n < N; n++) out[n] /= peak || 1;
-    cache.set(key, b); return b;
+  function impulse(c) { const len = c.sampleRate * 3, b = c.createBuffer(2, len, c.sampleRate); for (let ch = 0; ch < 2; ch++) { const d = b.getChannelData(ch); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.4); } return b; }
+  function out(node, wet = .35) { const g = ctx.createGain(); g.gain.value = wet; node.connect(master); node.connect(g); g.connect(rev); }
+  function drone() {
+    [146.83, 220, 293.66, 146.83 * 1.002, 73.42].forEach((f, i) => { const o = ctx.createOscillator(), g = ctx.createGain(), fl = ctx.createBiquadFilter(), l = ctx.createOscillator(), lg = ctx.createGain();
+      o.type = 'sawtooth'; o.frequency.value = f; fl.type = 'lowpass'; fl.frequency.value = 700 + i * 120; fl.Q.value = 4; g.gain.value = i === 4 ? .02 : .014;
+      l.frequency.value = .11 + i * .037; lg.gain.value = 500; l.connect(lg); lg.connect(fl.frequency);
+      o.connect(fl); fl.connect(g); out(g, .5); o.start(); l.start(); nodes.push(o, l); });
   }
-  function play(buf, t, gain, dest, { rate = 1, glideFrom } = {}) {
-    const s = ctx.createBufferSource(), g = ctx.createGain(); s.buffer = buf;
-    if (glideFrom) { s.playbackRate.setValueAtTime(glideFrom, t); s.playbackRate.exponentialRampToValueAtTime(rate, t + .22); } else s.playbackRate.value = rate;
-    g.gain.value = gain; s.connect(g); g.connect(dest); s.start(t); s.stop(t + buf.duration); return s;
+  function makeVoice() { // one continuous bansuri-like voice with glide + vibrato
+    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain(), fl = ctx.createBiquadFilter(), vib = ctx.createOscillator(), vg = ctx.createGain(), br = ctx.createBufferSource(), bf = ctx.createBiquadFilter(), bg = ctx.createGain();
+    o.type = 'sine'; o2.type = 'triangle'; o2.detune.value = 3; vib.frequency.value = 5.2; vg.gain.value = 0; vib.connect(vg); vg.connect(o.frequency); vg.connect(o2.frequency);
+    const g2 = ctx.createGain(); g2.gain.value = .35; o2.connect(g2); g2.connect(fl); o.connect(fl); fl.type = 'lowpass'; fl.frequency.value = 2400; fl.connect(g); g.gain.value = 0;
+    const nb = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate), d = nb.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    br.buffer = nb; br.loop = true; bf.type = 'bandpass'; bf.Q.value = 2; bg.gain.value = 0; br.connect(bf); bf.connect(bg); bg.connect(g);
+    out(g, .45); [o, o2, vib, br].forEach((n) => { n.start(); nodes.push(n); });
+    return { o, o2, g, vg, bf, bg };
   }
-  function impulse() { const len = ctx.sampleRate * 2.6, b = ctx.createBuffer(2, len, ctx.sampleRate); for (let ch = 0; ch < 2; ch++) { const d = b.getChannelData(ch); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.8); } return b; }
-  function mkBus(vol, wet, pan = 0) { const g = ctx.createGain(); g.gain.value = vol; const p = ctx.createStereoPanner ? ctx.createStereoPanner() : null; if (p) { p.pan.value = pan; g.connect(p); p.connect(master); } else g.connect(master); const w = ctx.createGain(); w.gain.value = wet; g.connect(w); w.connect(rev); return g; }
-
-  /* ---- shehnai: one continuous reed voice with glides, vibrato and nasal formants ---- */
-  let reed = null;
-  function mkReed() {
-    const o = ctx.createOscillator(), o2 = ctx.createOscillator(), mix = ctx.createGain(), f1 = ctx.createBiquadFilter(), f2 = ctx.createBiquadFilter(), f3 = ctx.createBiquadFilter(), lp = ctx.createBiquadFilter(), env = ctx.createGain(), vib = ctx.createOscillator(), vd = ctx.createGain();
-    o.type = 'sawtooth'; o2.type = 'square'; o2.detune.value = -6; const g2 = ctx.createGain(); g2.gain.value = .25;
-    o.connect(mix); o2.connect(g2); g2.connect(mix);
-    f1.type = 'bandpass'; f1.frequency.value = 1150; f1.Q.value = 3.5; f2.type = 'bandpass'; f2.frequency.value = 2600; f2.Q.value = 5; f3.type = 'bandpass'; f3.frequency.value = 600; f3.Q.value = 2;
-    const fg1 = ctx.createGain(), fg2 = ctx.createGain(), fg3 = ctx.createGain(); fg1.gain.value = 1; fg2.gain.value = .55; fg3.gain.value = .4;
-    mix.connect(f1); mix.connect(f2); mix.connect(f3); f1.connect(fg1); f2.connect(fg2); f3.connect(fg3); [fg1, fg2, fg3].forEach((x) => x.connect(lp));
-    lp.type = 'lowpass'; lp.frequency.value = 4200; lp.connect(env); env.gain.value = 0; env.connect(bus.shehnai);
-    vib.frequency.value = 5.6; vd.gain.value = 0; vib.connect(vd); vd.connect(o.frequency); vd.connect(o2.frequency);
-    [o, o2, vib].forEach((n) => { n.start(); liveNodes.push(n); });
-    return { o, o2, env, vd };
+  function note(d, t, dur) {
+    const v = voice; if (!d) { v.g.gain.setTargetAtTime(0.0001, t, .08); v.bg.gain.setTargetAtTime(0, t, .05); return; }
+    const f = hz(d); [v.o, v.o2].forEach((o) => o.frequency.setTargetAtTime(f, t, .035));
+    v.bf.frequency.setTargetAtTime(f * 2, t, .02);
+    v.g.gain.cancelScheduledValues(t); v.g.gain.setTargetAtTime(.11, t, .06); v.g.gain.setTargetAtTime(.075, t + .25, .3);
+    v.bg.gain.setTargetAtTime(.02, t, .02); v.bg.gain.setTargetAtTime(.006, t + .12, .1);
+    v.vg.gain.setValueAtTime(0, t); v.vg.gain.linearRampToValueAtTime(dur > .6 ? f * .012 : 0, t + Math.min(dur, .5));
+    if (Math.random() < .3 && dur >= 1) pluck(f * 2, t + dur * .5, .035);
   }
-  function reedNote(d, t, dur) {
-    if (!d) { reed.env.gain.setTargetAtTime(0.0001, t, .07); return; }
-    const f = hz(d); [reed.o, reed.o2].forEach((x) => x.frequency.setTargetAtTime(f, t, .045));
-    reed.env.gain.cancelScheduledValues(t); reed.env.gain.setTargetAtTime(.5, t, .05); reed.env.gain.setTargetAtTime(.36, t + .2, .25);
-    reed.vd.gain.cancelScheduledValues(t); reed.vd.gain.setValueAtTime(0, t); reed.vd.gain.linearRampToValueAtTime(dur > .7 ? f * .016 : f * .004, t + Math.min(dur * .8, .7));
-  }
-
-  /* ---- tabla ---- */
-  function tabla(k, t) {
-    if (!k) return;
-    if (k === 'dha' || k === 'dhin' || k === 'ge') { // bayan: low drum with the palm-pressed pitch bend
-      const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(k === 'ge' ? 98 : 120, t); o.frequency.exponentialRampToValueAtTime(k === 'ge' ? 140 : 78, t + .32);
-      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(k === 'ge' ? .55 : .7, t + .006); g.gain.exponentialRampToValueAtTime(0.0001, t + .5); o.connect(g); g.connect(bus.tabla); o.start(t); o.stop(t + .55);
-    }
-    if (k !== 'ge') { // dayan: tuned to Sa, ringing "na" or damped "ti/ka"
-      const ring = k === 'na' || k === 'dhin' || k === 'dha'; const amp = ring ? .32 : .16;
-      [1, 2.02, 2.98, 4.1].forEach((h, i) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine'; o.frequency.value = SA * 2 * h; const dd = (ring ? .55 : .09) / (1 + i * .6);
-        g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(amp / (1 + i), t + .002); g.gain.exponentialRampToValueAtTime(0.0001, t + dd); o.connect(g); g.connect(bus.tabla); o.start(t); o.stop(t + dd + .05); });
-      const nb = ctx.createBufferSource(), nf = ctx.createBiquadFilter(), ng = ctx.createGain(); nb.buffer = string(4000, 'santoor'); nf.type = 'highpass'; nf.frequency.value = 3000; ng.gain.setValueAtTime(.12, t); ng.gain.exponentialRampToValueAtTime(0.0001, t + .03); nb.connect(nf); nf.connect(ng); ng.connect(bus.tabla); nb.start(t); nb.stop(t + .05);
-    }
-  }
-
-  /* ---- the composition (original) ---- */
-  // Alaap on sitar: [degree, beats, meend-from-degree?]
-  const ALAAP = [[1, 2], [-7, 1, 1], [1, 1.5], [3, 2, 2], [2, 1], [3, 2.5], [5, 2, 4], [4, 1], [3, 1], [2, 1, 3], [1, 3], [0, 1]];
-  // Gat on shehnai (with tabla): [degree, beats]
-  const PA = [[-7, 1], [1, .5], [3, .5], [5, 2], [4, .5], [3, .5], [2, 1], [3, 2.5], [0, .5], [3, .5], [4, .5], [5, 1], [6, 1], [5, 2], [0, 1]];
-  const PB = [[5, 1], [6, .5], [7, .5], [8, 2], [7, .5], [6, .5], [5, 1], [6, 1], [4, .5], [3, .5], [2, 1], [3, 3], [0, 1]];
-  const PC = [[8, 1.5], [9, .5], [8, 1], [7, 1], [6, .5], [7, .5], [6, .5], [5, .5], [4, 1], [5, 2], [3, .5], [4, .5], [5, .5], [3, .5], [2, 1], [1, 3], [0, 1]];
-  const THEKA = ['dha', 0, 'ge', 'na', 'ti', 'na', 'ka', 'dhin', 'na', 0, 'dha', 'ge', 'na', 'ti', 'dhin', 0];
-  let EVENTS = [], CYCLE = 0;
-  function compose() {
-    const ev = []; let b = 0;
-    ALAAP.forEach(([d, len, from]) => { if (d) ev.push({ b, k: 'sitar', d, from }); b += len; });
-    const gatStart = b + 1; b = gatStart;
-    [...PA, ...PB, ...PA, ...PC].forEach(([d, len], i, arr) => { ev.push({ b, k: 'reed', d, len }); if (d && len >= 2 && i % 3 === 0) ev.push({ b: b + len * .5, k: 'sitar', d: d > 7 ? d - 7 : d, soft: true });
-      if (!d) for (let r = 0; r < 6; r++) ev.push({ b: b + r * .125, k: 'santoor', d: r % 2 ? 5 : 8 }); b += len; });
-    const end = b + 1;
-    for (let x = gatStart - 1, i = 0; x < end; x += .5, i++) ev.push({ b: x, k: 'tabla', t: THEKA[i % THEKA.length] });
-    for (let x = 0, i = 0; x < end; x += 1, i++) ev.push({ b: x, k: 'tanpura', d: [-5, 1, 1, 'low'][i % 4] });
-    ev.sort((a, c) => a.b - c.b); EVENTS = ev; CYCLE = end;
-  }
-  function fire(e, t) {
-    switch (e.k) {
-      case 'tanpura': { const f = e.d === 'low' ? SA / 2 : hz(e.d) / 2; play(string(f, 'tanpura'), t, .5, bus.tanpura); break; }
-      case 'sitar': { const f = hz(e.d); const buf = string(f, 'sitar'); play(buf, t, e.soft ? .35 : .8, bus.sitar, e.from ? { glideFrom: hz(e.from) / f } : {});
-        if (!e.soft) play(string(f * 2, 'tarab'), t + .05, .12, bus.tarab); break; }
-      case 'santoor': { const f = hz(e.d); play(string(f, 'santoor'), t, .45, bus.santoor); play(string(f * 1.003, 'santoor'), t + .004, .3, bus.santoor); break; }
-      case 'reed': reedNote(e.d, t, e.len * B); break;
-      case 'tabla': tabla(e.t, t); break;
-    }
+  function pluck(f, t, amp = .05) { [1, 2, 3.01].forEach((h, k) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = k ? 'sine' : 'triangle'; o.frequency.value = f * h; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(amp / (h * h), t + .008); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.2 / h); o.connect(g); out(g, .6); o.start(t); o.stop(t + 2.4); }); }
+  function tabla(kind, t) {
+    if (!kind) return;
+    const low = kind === 'dha' || kind === 'dhin' || kind === 'ge';
+    if (low) { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = 'sine'; o.frequency.setValueAtTime(kind === 'ge' ? 110 : 130, t); o.frequency.exponentialRampToValueAtTime(kind === 'ge' ? 70 : 85, t + .25); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(kind === 'ge' ? .12 : .18, t + .006); g.gain.exponentialRampToValueAtTime(0.0001, t + .45); o.connect(g); out(g, .2); o.start(t); o.stop(t + .5); }
+    if (kind !== 'ge') { const o = ctx.createOscillator(), g = ctx.createGain(), o2 = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = kind === 'ka' ? 520 : 587; o2.type = 'sine'; o2.frequency.value = (kind === 'ka' ? 520 : 587) * 2.76; const amp = kind === 'ti' || kind === 'ka' ? .035 : .06;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(amp, t + .003); g.gain.exponentialRampToValueAtTime(0.0001, t + (kind === 'na' || kind === 'dhin' ? .5 : .12)); o.connect(g); o2.connect(g); out(g, .25); o.start(t); o2.start(t); o.stop(t + .6); o2.stop(t + .6); }
   }
   function schedule() {
-    const ahead = ctx.currentTime + .4;
-    while (true) {
-      const e = EVENTS[ei], t = cycleStart + e.b * B; if (t > ahead) break;
-      fire(e, t); ei++;
-      if (ei >= EVENTS.length) { ei = 0; cycleStart += CYCLE * B; cycleN++; }
-    }
+    const now = ctx.currentTime, ahead = now + .35;
+    while (mT < ahead) { const [d, b] = SONG[mi]; note(d, mT, b * BEAT); mT += b * BEAT; mi = (mi + 1) % SONG.length; if (mi === 0) mT += BEAT; }
+    while (tT < ahead) { if (step > 3) tabla(TABLA[ti], tT); tT += BEAT / 2; ti = (ti + 1) % TABLA.length; if (ti === 0) step++; }
   }
   function startSynth() {
     ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume();
-    master = ctx.createGain(); master.gain.setValueAtTime(0.0001, ctx.currentTime); master.gain.exponentialRampToValueAtTime(.8, ctx.currentTime + 3);
-    const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -18; comp.ratio.value = 3; master.connect(comp); comp.connect(ctx.destination);
-    rev = ctx.createConvolver(); rev.buffer = impulse(); const rg = ctx.createGain(); rg.gain.value = .5; rev.connect(rg); rg.connect(master);
-    bus = { tanpura: mkBus(.22, .5, -.2), sitar: mkBus(.42, .35, .15), tarab: mkBus(.2, .8, .3), santoor: mkBus(.3, .45, -.25), shehnai: mkBus(.2, .38, 0), tabla: mkBus(.42, .18, .05) };
-    reed = mkReed(); if (!EVENTS.length) compose();
-    // warm the string cache for the first notes so playback starts cleanly
-    [hz(1) / 2, hz(-5) / 2, SA / 2].forEach((f) => string(f, 'tanpura'));
-    cycleStart = ctx.currentTime + .3; ei = 0; cycleN = 0;
-    timer = setInterval(schedule, 80); schedule();
+    master = ctx.createGain(); master.gain.setValueAtTime(0.0001, ctx.currentTime); master.gain.exponentialRampToValueAtTime(.7, ctx.currentTime + 4); master.connect(ctx.destination);
+    rev = ctx.createConvolver(); rev.buffer = impulse(ctx); const rg = ctx.createGain(); rg.gain.value = .55; rev.connect(rg); rg.connect(master);
+    drone(); voice = makeVoice(); step = 0; mi = 0; ti = 0; mT = ctx.currentTime + BEAT * 4; tT = ctx.currentTime + BEAT * 2;
+    timer = setInterval(schedule, 90); schedule();
   }
-  function stopSynth() {
-    clearInterval(timer); timer = null; if (!master) return; const m = master, n = liveNodes; liveNodes = []; master = null;
+  function stopSynth() { clearInterval(timer); timer = null; if (!master) return; const m = master, n = nodes; nodes = []; master = null;
     try { m.gain.cancelScheduledValues(ctx.currentTime); m.gain.setValueAtTime(Math.max(.0001, m.gain.value), ctx.currentTime); m.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2); } catch (e) {}
-    setTimeout(() => { n.forEach((o) => { try { o.stop(); } catch (e) {} }); try { m.disconnect(); } catch (e) {} }, 1400);
-  }
+    setTimeout(() => { n.forEach((o) => { try { o.stop(); } catch (e) {} }); try { m.disconnect(); } catch (e) {} }, 1400); }
   function fadeFile(to, ms, done) { const a = file, from = a.volume, t0 = performance.now(); const f = (now) => { const k = Math.min(1, (now - t0) / ms); a.volume = from + (to - from) * k; if (k < 1) requestAnimationFrame(f); else if (done) done(); }; requestAnimationFrame(f); }
   function start() {
     if (on) return; on = true; document.documentElement.classList.add('music-on');
     if (fileOk === false || location.protocol === 'file:') return startSynth();
     try {
       file = file || new Audio('music.mp3'); file.loop = true; file.volume = 0;
-      const fail = () => { if (fileOk === false) return; fileOk = false; if (on) startSynth(); };
+      const fail = () => { fileOk = false; if (on) startSynth(); };
       file.addEventListener('error', fail, { once: true });
       file.play().then(() => { fileOk = true; fadeFile(.6, 2500); }).catch(fail);
     } catch (e) { fileOk = false; startSynth(); }
